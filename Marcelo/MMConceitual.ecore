@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ecore:EPackage xmi:version="2.0"
+    xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="MMConceitual">
+  <eClassifiers xsi:type="ecore:EClass" name="Negocio">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="entidadesNegocio" upperBound="-1"
+        eType="#//EntidadeNegocio" containment="true" eOpposite="#//EntidadeNegocio/negocioAssociado"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="nome" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="EntidadeNegocio">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="negocioAssociado" lowerBound="1"
+        eType="#//Negocio" eOpposite="#//Negocio/entidadesNegocio"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="dados" upperBound="-1"
+        eType="#//Dado" containment="true" eOpposite="#//Dado/entidadeNegAssociada"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="nome" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Dado">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="nome" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="tipo" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="entidadeNegAssociada" lowerBound="1"
+        eType="#//EntidadeNegocio" eOpposite="#//EntidadeNegocio/dados"/>
+  </eClassifiers>
+</ecore:EPackage>

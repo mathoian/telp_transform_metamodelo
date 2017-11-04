@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<uml:Profile xmi:version="2.1" xmlns:xmi="http://schema.omg.org/spec/XMI/2.1" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:uml="http://www.eclipse.org/uml2/3.0.0/UML" xmi:id="_0KAZQFH1Eeeppb2KGI-Yfg" name="Processo" metaclassReference="_7uWUcFH1Eeeppb2KGI-Yfg _GgfBUFH2Eeeppb2KGI-Yfg _O5jlEFH2Eeeppb2KGI-Yfg">
+  <eAnnotations xmi:id="_vwYRIFH2Eeeppb2KGI-Yfg" source="http://www.eclipse.org/uml2/2.0.0/UML">
+    <contents xmi:type="ecore:EPackage" xmi:id="_vwY4MFH2Eeeppb2KGI-Yfg" name="Processo" nsURI="http:///schemas/Processo/_vwXDAFH2Eeeppb2KGI-Yfg/0" nsPrefix="Processo">
+      <eClassifiers xmi:type="ecore:EClass" xmi:id="_vwY4MVH2Eeeppb2KGI-Yfg" name="Fase">
+        <eAnnotations xmi:id="_vwY4MlH2Eeeppb2KGI-Yfg" source="http://www.eclipse.org/uml2/2.0.0/UML" references="_1cbDYFH1Eeeppb2KGI-Yfg"/>
+        <eStructuralFeatures xmi:type="ecore:EReference" xmi:id="_vwY4M1H2Eeeppb2KGI-Yfg" name="base_Package" ordered="false" lowerBound="1">
+          <eType xmi:type="ecore:EClass" href="http://www.eclipse.org/uml2/3.0.0/UML#//Package"/>
+        </eStructuralFeatures>
+      </eClassifiers>
+      <eClassifiers xmi:type="ecore:EClass" xmi:id="_vwY4NVH2Eeeppb2KGI-Yfg" name="Tarefa">
+        <eAnnotations xmi:id="_vwY4NlH2Eeeppb2KGI-Yfg" source="http://www.eclipse.org/uml2/2.0.0/UML" references="_21u_sFH1Eeeppb2KGI-Yfg"/>
+        <eStructuralFeatures xmi:type="ecore:EReference" xmi:id="_vwY4N1H2Eeeppb2KGI-Yfg" name="base_Class" ordered="false" lowerBound="1">
+          <eType xmi:type="ecore:EClass" href="http://www.eclipse.org/uml2/3.0.0/UML#//Class"/>
+        </eStructuralFeatures>
+      </eClassifiers>
+      <eClassifiers xmi:type="ecore:EClass" xmi:id="_vwY4OVH2Eeeppb2KGI-Yfg" name="Papel">
+        <eAnnotations xmi:id="_vwY4OlH2Eeeppb2KGI-Yfg" source="http://www.eclipse.org/uml2/2.0.0/UML" references="_3soygFH1Eeeppb2KGI-Yfg"/>
+        <eStructuralFeatures xmi:type="ecore:EReference" xmi:id="_vwY4O1H2Eeeppb2KGI-Yfg" name="base_Class" ordered="false" lowerBound="1">
+          <eType xmi:type="ecore:EClass" href="http://www.eclipse.org/uml2/3.0.0/UML#//Class"/>
+        </eStructuralFeatures>
+      </eClassifiers>
+      <eClassifiers xmi:type="ecore:EClass" xmi:id="_vwY4PVH2Eeeppb2KGI-Yfg" name="Artefato">
+        <eAnnotations xmi:id="_vwY4PlH2Eeeppb2KGI-Yfg" source="http://www.eclipse.org/uml2/2.0.0/UML" references="_5tcMoFH1Eeeppb2KGI-Yfg"/>
+        <eStructuralFeatures xmi:type="ecore:EReference" xmi:id="_vwY4P1H2Eeeppb2KGI-Yfg" name="base_Class" ordered="false" lowerBound="1">
+          <eType xmi:type="ecore:EClass" href="http://www.eclipse.org/uml2/3.0.0/UML#//Class"/>
+        </eStructuralFeatures>
+      </eClassifiers>
+      <eClassifiers xmi:type="ecore:EClass" xmi:id="_vwY4QVH2Eeeppb2KGI-Yfg" name="Passo">
+        <eAnnotations xmi:id="_vwY4QlH2Eeeppb2KGI-Yfg" source="http://www.eclipse.org/uml2/2.0.0/UML" references="_6jCX4FH1Eeeppb2KGI-Yfg"/>
+        <eStructuralFeatures xmi:type="ecore:EReference" xmi:id="_vwY4Q1H2Eeeppb2KGI-Yfg" name="base_Class" ordered="false" lowerBound="1">
+          <eType xmi:type="ecore:EClass" href="http://www.eclipse.org/uml2/3.0.0/UML#//Class"/>
+        </eStructuralFeatures>
+      </eClassifiers>
+      <eClassifiers xmi:type="ecore:EClass" xmi:id="_vwY4RVH2Eeeppb2KGI-Yfg" name="Responsavel">
+        <eAnnotations xmi:id="_vwY4RlH2Eeeppb2KGI-Yfg" source="http://www.eclipse.org/uml2/2.0.0/UML" references="__2Yg0FH1Eeeppb2KGI-Yfg"/>
+        <eStructuralFeatures xmi:type="ecore:EReference" xmi:id="_vwY4R1H2Eeeppb2KGI-Yfg" name="base_Association" ordered="false" lowerBound="1">
+          <eType xmi:type="ecore:EClass" href="http://www.eclipse.org/uml2/3.0.0/UML#//Association"/>
+        </eStructuralFeatures>
+      </eClassifiers>
+      <eClassifiers xmi:type="ecore:EClass" xmi:id="_vwY4SVH2Eeeppb2KGI-Yfg" name="Participante">
+        <eAnnotations xmi:id="_vwY4SlH2Eeeppb2KGI-Yfg" source="http://www.eclipse.org/uml2/2.0.0/UML" references="_A09B4FH2Eeeppb2KGI-Yfg"/>
+        <eStructuralFeatures xmi:type="ecore:EReference" xmi:id="_vwY4S1H2Eeeppb2KGI-Yfg" name="base_Association" ordered="false" lowerBound="1">
+          <eType xmi:type="ecore:EClass" href="http://www.eclipse.org/uml2/3.0.0/UML#//Association"/>
+        </eStructuralFeatures>
+      </eClassifiers>
+      <eClassifiers xmi:type="ecore:EClass" xmi:id="_vwY4TVH2Eeeppb2KGI-Yfg" name="Produzido">
+        <eAnnotations xmi:id="_vwY4TlH2Eeeppb2KGI-Yfg" source="http://www.eclipse.org/uml2/2.0.0/UML" references="_CAVP4FH2Eeeppb2KGI-Yfg"/>
+        <eStructuralFeatures xmi:type="ecore:EReference" xmi:id="_vwY4T1H2Eeeppb2KGI-Yfg" name="base_Association" ordered="false" lowerBound="1">
+          <eType xmi:type="ecore:EClass" href="http://www.eclipse.org/uml2/3.0.0/UML#//Association"/>
+        </eStructuralFeatures>
+      </eClassifiers>
+      <eClassifiers xmi:type="ecore:EClass" xmi:id="_vwY4UVH2Eeeppb2KGI-Yfg" name="Consumido">
+        <eAnnotations xmi:id="_vwY4UlH2Eeeppb2KGI-Yfg" source="http://www.eclipse.org/uml2/2.0.0/UML" references="_DV-0MFH2Eeeppb2KGI-Yfg"/>
+        <eStructuralFeatures xmi:type="ecore:EReference" xmi:id="_vwY4U1H2Eeeppb2KGI-Yfg" name="base_Association" ordered="false" lowerBound="1">
+          <eType xmi:type="ecore:EClass" href="http://www.eclipse.org/uml2/3.0.0/UML#//Association"/>
+        </eStructuralFeatures>
+      </eClassifiers>
+    </contents>
+  </eAnnotations>
+  <elementImport xmi:id="_0KPCwFH1Eeeppb2KGI-Yfg">
+    <importedElement xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Boolean"/>
+  </elementImport>
+  <elementImport xmi:id="_0KPCwVH1Eeeppb2KGI-Yfg">
+    <importedElement xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+  </elementImport>
+  <elementImport xmi:id="_0KPCwlH1Eeeppb2KGI-Yfg">
+    <importedElement xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#UnlimitedNatural"/>
+  </elementImport>
+  <elementImport xmi:id="_0KPCw1H1Eeeppb2KGI-Yfg">
+    <importedElement xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Integer"/>
+  </elementImport>
+  <elementImport xmi:id="_7uWUcFH1Eeeppb2KGI-Yfg">
+    <importedElement xmi:type="uml:Class" href="pathmap://UML_METAMODELS/UML.metamodel.uml#Package"/>
+  </elementImport>
+  <elementImport xmi:id="_GgfBUFH2Eeeppb2KGI-Yfg">
+    <importedElement xmi:type="uml:Class" href="pathmap://UML_METAMODELS/UML.metamodel.uml#Association"/>
+  </elementImport>
+  <elementImport xmi:id="_O5jlEFH2Eeeppb2KGI-Yfg">
+    <importedElement xmi:type="uml:Class" href="pathmap://UML_METAMODELS/UML.metamodel.uml#Class"/>
+  </elementImport>
+  <packagedElement xmi:type="uml:Stereotype" xmi:id="_1cbDYFH1Eeeppb2KGI-Yfg" name="Fase">
+    <ownedAttribute xmi:id="_Lg3K8FH2Eeeppb2KGI-Yfg" name="base_Package" association="_Lg2j4FH2Eeeppb2KGI-Yfg">
+      <type xmi:type="uml:Class" href="pathmap://UML_METAMODELS/UML.metamodel.uml#Package"/>
+    </ownedAttribute>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Stereotype" xmi:id="_21u_sFH1Eeeppb2KGI-Yfg" name="Tarefa">
+    <ownedAttribute xmi:id="_mPB2sVH2Eeeppb2KGI-Yfg" name="base_Class" association="_mPBPoFH2Eeeppb2KGI-Yfg">
+      <type xmi:type="uml:Class" href="pathmap://UML_METAMODELS/UML.metamodel.uml#Class"/>
+    </ownedAttribute>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Stereotype" xmi:id="_3soygFH1Eeeppb2KGI-Yfg" name="Papel">
+    <ownedAttribute xmi:id="_mzmjYlH2Eeeppb2KGI-Yfg" name="base_Class" association="_mzmjYFH2Eeeppb2KGI-Yfg">
+      <type xmi:type="uml:Class" href="pathmap://UML_METAMODELS/UML.metamodel.uml#Class"/>
+    </ownedAttribute>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Stereotype" xmi:id="_5tcMoFH1Eeeppb2KGI-Yfg" name="Artefato">
+    <ownedAttribute xmi:id="_nRYrklH2Eeeppb2KGI-Yfg" name="base_Class" association="_nRYrkFH2Eeeppb2KGI-Yfg">
+      <type xmi:type="uml:Class" href="pathmap://UML_METAMODELS/UML.metamodel.uml#Class"/>
+    </ownedAttribute>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Stereotype" xmi:id="_6jCX4FH1Eeeppb2KGI-Yfg" name="Passo">
+    <ownedAttribute xmi:id="_n1_0glH2Eeeppb2KGI-Yfg" name="base_Class" association="_n1_0gFH2Eeeppb2KGI-Yfg">
+      <type xmi:type="uml:Class" href="pathmap://UML_METAMODELS/UML.metamodel.uml#Class"/>
+    </ownedAttribute>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Stereotype" xmi:id="__2Yg0FH1Eeeppb2KGI-Yfg" name="Responsavel">
+    <ownedAttribute xmi:id="_KEQDAlH2Eeeppb2KGI-Yfg" name="base_Association" association="_KEQDAFH2Eeeppb2KGI-Yfg">
+      <type xmi:type="uml:Class" href="pathmap://UML_METAMODELS/UML.metamodel.uml#Association"/>
+    </ownedAttribute>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Stereotype" xmi:id="_A09B4FH2Eeeppb2KGI-Yfg" name="Participante">
+    <ownedAttribute xmi:id="_KnyN4lH2Eeeppb2KGI-Yfg" name="base_Association" association="_KnyN4FH2Eeeppb2KGI-Yfg">
+      <type xmi:type="uml:Class" href="pathmap://UML_METAMODELS/UML.metamodel.uml#Association"/>
+    </ownedAttribute>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Stereotype" xmi:id="_CAVP4FH2Eeeppb2KGI-Yfg" name="Produzido">
+    <ownedAttribute xmi:id="_IsmTklH2Eeeppb2KGI-Yfg" name="base_Association" association="_IsmTkFH2Eeeppb2KGI-Yfg">
+      <type xmi:type="uml:Class" href="pathmap://UML_METAMODELS/UML.metamodel.uml#Association"/>
+    </ownedAttribute>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Stereotype" xmi:id="_DV-0MFH2Eeeppb2KGI-Yfg" name="Consumido">
+    <ownedAttribute xmi:id="_Jp-h0lH2Eeeppb2KGI-Yfg" name="base_Association" association="_Jp-h0FH2Eeeppb2KGI-Yfg">
+      <type xmi:type="uml:Class" href="pathmap://UML_METAMODELS/UML.metamodel.uml#Association"/>
+    </ownedAttribute>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Extension" xmi:id="_IsmTkFH2Eeeppb2KGI-Yfg" name="Association_Produzido" memberEnd="_IsmTkVH2Eeeppb2KGI-Yfg _IsmTklH2Eeeppb2KGI-Yfg">
+    <ownedEnd xmi:type="uml:ExtensionEnd" xmi:id="_IsmTkVH2Eeeppb2KGI-Yfg" name="extension_Produzido" type="_CAVP4FH2Eeeppb2KGI-Yfg" aggregation="composite" association="_IsmTkFH2Eeeppb2KGI-Yfg"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Extension" xmi:id="_Jp-h0FH2Eeeppb2KGI-Yfg" name="Association_Consumido" memberEnd="_Jp-h0VH2Eeeppb2KGI-Yfg _Jp-h0lH2Eeeppb2KGI-Yfg">
+    <ownedEnd xmi:type="uml:ExtensionEnd" xmi:id="_Jp-h0VH2Eeeppb2KGI-Yfg" name="extension_Consumido" type="_DV-0MFH2Eeeppb2KGI-Yfg" aggregation="composite" association="_Jp-h0FH2Eeeppb2KGI-Yfg"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Extension" xmi:id="_KEQDAFH2Eeeppb2KGI-Yfg" name="Association_Responsavel" memberEnd="_KEQDAVH2Eeeppb2KGI-Yfg _KEQDAlH2Eeeppb2KGI-Yfg">
+    <ownedEnd xmi:type="uml:ExtensionEnd" xmi:id="_KEQDAVH2Eeeppb2KGI-Yfg" name="extension_Responsavel" type="__2Yg0FH1Eeeppb2KGI-Yfg" aggregation="composite" association="_KEQDAFH2Eeeppb2KGI-Yfg"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Extension" xmi:id="_KnyN4FH2Eeeppb2KGI-Yfg" name="Association_Participante" memberEnd="_KnyN4VH2Eeeppb2KGI-Yfg _KnyN4lH2Eeeppb2KGI-Yfg">
+    <ownedEnd xmi:type="uml:ExtensionEnd" xmi:id="_KnyN4VH2Eeeppb2KGI-Yfg" name="extension_Participante" type="_A09B4FH2Eeeppb2KGI-Yfg" aggregation="composite" association="_KnyN4FH2Eeeppb2KGI-Yfg"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Extension" xmi:id="_Lg2j4FH2Eeeppb2KGI-Yfg" name="Package_Fase" memberEnd="_Lg2j4VH2Eeeppb2KGI-Yfg _Lg3K8FH2Eeeppb2KGI-Yfg">
+    <ownedEnd xmi:type="uml:ExtensionEnd" xmi:id="_Lg2j4VH2Eeeppb2KGI-Yfg" name="extension_Fase" type="_1cbDYFH1Eeeppb2KGI-Yfg" aggregation="composite" association="_Lg2j4FH2Eeeppb2KGI-Yfg"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Extension" xmi:id="_mPBPoFH2Eeeppb2KGI-Yfg" name="Class_Tarefa" memberEnd="_mPB2sFH2Eeeppb2KGI-Yfg _mPB2sVH2Eeeppb2KGI-Yfg">
+    <ownedEnd xmi:type="uml:ExtensionEnd" xmi:id="_mPB2sFH2Eeeppb2KGI-Yfg" name="extension_Tarefa" type="_21u_sFH1Eeeppb2KGI-Yfg" aggregation="composite" association="_mPBPoFH2Eeeppb2KGI-Yfg"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Extension" xmi:id="_mzmjYFH2Eeeppb2KGI-Yfg" name="Class_Papel" memberEnd="_mzmjYVH2Eeeppb2KGI-Yfg _mzmjYlH2Eeeppb2KGI-Yfg">
+    <ownedEnd xmi:type="uml:ExtensionEnd" xmi:id="_mzmjYVH2Eeeppb2KGI-Yfg" name="extension_Papel" type="_3soygFH1Eeeppb2KGI-Yfg" aggregation="composite" association="_mzmjYFH2Eeeppb2KGI-Yfg"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Extension" xmi:id="_nRYrkFH2Eeeppb2KGI-Yfg" name="Class_Artefato" memberEnd="_nRYrkVH2Eeeppb2KGI-Yfg _nRYrklH2Eeeppb2KGI-Yfg">
+    <ownedEnd xmi:type="uml:ExtensionEnd" xmi:id="_nRYrkVH2Eeeppb2KGI-Yfg" name="extension_Artefato" type="_5tcMoFH1Eeeppb2KGI-Yfg" aggregation="composite" association="_nRYrkFH2Eeeppb2KGI-Yfg"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Extension" xmi:id="_n1_0gFH2Eeeppb2KGI-Yfg" name="Class_Passo" memberEnd="_n1_0gVH2Eeeppb2KGI-Yfg _n1_0glH2Eeeppb2KGI-Yfg">
+    <ownedEnd xmi:type="uml:ExtensionEnd" xmi:id="_n1_0gVH2Eeeppb2KGI-Yfg" name="extension_Passo" type="_6jCX4FH1Eeeppb2KGI-Yfg" aggregation="composite" association="_n1_0gFH2Eeeppb2KGI-Yfg"/>
+  </packagedElement>
+</uml:Profile>

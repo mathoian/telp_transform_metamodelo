@@ -1,0 +1,183 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<notation:Diagram xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:notation="http://www.eclipse.org/gmf/runtime/1.0.2/notation" xmlns:uml="http://www.eclipse.org/uml2/3.0.0/UML" xmlns:uml2tools.notation="http://www.eclipse.org/mdt/uml2tools/gmf/notation/ext/2008" xmi:id="_PmRzoCtTEeeuIK_UI7emaQ" type="UMLProfile" name="perfilBanco.umlprofile" measurementUnit="Pixel">
+  <children xmi:type="notation:Shape" xmi:id="_P62VcCtTEeeuIK_UI7emaQ" type="2007" fontName="Segoe UI">
+    <children xmi:type="notation:DecorationNode" xmi:id="_P6_fYCtTEeeuIK_UI7emaQ" type="5009"/>
+    <children xmi:type="notation:BasicCompartment" xmi:id="_P6_fYStTEeeuIK_UI7emaQ" type="7005" collapsed="true">
+      <styles xmi:type="notation:SortingStyle" xmi:id="_P6_fYitTEeeuIK_UI7emaQ"/>
+      <styles xmi:type="notation:FilteringStyle" xmi:id="_P6_fYytTEeeuIK_UI7emaQ"/>
+      <styles xmi:type="notation:CanonicalStyle" xmi:id="_P6_fZCtTEeeuIK_UI7emaQ"/>
+    </children>
+    <element xmi:type="uml:Profile" href="perfilBanco.profile.uml#_PkMwAStTEeeuIK_UI7emaQ"/>
+    <layoutConstraint xmi:type="notation:Bounds" xmi:id="_P62VcStTEeeuIK_UI7emaQ"/>
+  </children>
+  <children xmi:type="notation:Shape" xmi:id="_9uWTUCtTEeeuIK_UI7emaQ" type="2001" fontName="Segoe UI">
+    <children xmi:type="notation:DecorationNode" xmi:id="_9uWTUitTEeeuIK_UI7emaQ" type="5001">
+      <styles xmi:type="notation:FontStyle" xmi:id="_9uy_QCtTEeeuIK_UI7emaQ" bold="true"/>
+    </children>
+    <children xmi:type="notation:DecorationNode" xmi:id="_9uWTUytTEeeuIK_UI7emaQ" type="5012"/>
+    <children xmi:type="notation:BasicCompartment" xmi:id="_9uWTVCtTEeeuIK_UI7emaQ" type="7001">
+      <styles xmi:type="notation:TitleStyle" xmi:id="_9uWTVStTEeeuIK_UI7emaQ" showTitle="true"/>
+      <styles xmi:type="notation:SortingStyle" xmi:id="_9uWTVitTEeeuIK_UI7emaQ"/>
+      <styles xmi:type="notation:FilteringStyle" xmi:id="_9uWTVytTEeeuIK_UI7emaQ"/>
+      <styles xmi:type="notation:CanonicalStyle" xmi:id="_9uWTWCtTEeeuIK_UI7emaQ"/>
+    </children>
+    <children xmi:type="notation:BasicCompartment" xmi:id="_9uWTWStTEeeuIK_UI7emaQ" type="7002">
+      <styles xmi:type="notation:TitleStyle" xmi:id="_9uWTWitTEeeuIK_UI7emaQ" showTitle="true"/>
+      <styles xmi:type="notation:SortingStyle" xmi:id="_9uWTWytTEeeuIK_UI7emaQ"/>
+      <styles xmi:type="notation:FilteringStyle" xmi:id="_9uWTXCtTEeeuIK_UI7emaQ"/>
+      <styles xmi:type="notation:CanonicalStyle" xmi:id="_9uWTXStTEeeuIK_UI7emaQ"/>
+    </children>
+    <children xmi:type="notation:BasicCompartment" xmi:id="_9uWTXitTEeeuIK_UI7emaQ" type="7006">
+      <styles xmi:type="notation:TitleStyle" xmi:id="_9uWTXytTEeeuIK_UI7emaQ" showTitle="true"/>
+      <styles xmi:type="notation:SortingStyle" xmi:id="_9uWTYCtTEeeuIK_UI7emaQ"/>
+      <styles xmi:type="notation:FilteringStyle" xmi:id="_9uWTYStTEeeuIK_UI7emaQ"/>
+      <styles xmi:type="notation:CanonicalStyle" xmi:id="_9uWTYitTEeeuIK_UI7emaQ"/>
+    </children>
+    <element xmi:type="uml:Stereotype" href="perfilBanco.profile.uml#_9s3FkCtTEeeuIK_UI7emaQ"/>
+    <layoutConstraint xmi:type="notation:Bounds" xmi:id="_9uWTUStTEeeuIK_UI7emaQ" x="230" y="165"/>
+  </children>
+  <children xmi:type="notation:Node" xmi:id="__JQLECtTEeeuIK_UI7emaQ" type="2006">
+    <children xmi:type="notation:DecorationNode" xmi:id="__JQLFStTEeeuIK_UI7emaQ" type="5008"/>
+    <styles xmi:type="notation:DescriptionStyle" xmi:id="__JQLEStTEeeuIK_UI7emaQ"/>
+    <styles xmi:type="notation:FontStyle" xmi:id="__JQLEitTEeeuIK_UI7emaQ" fontName="Segoe UI"/>
+    <styles xmi:type="notation:FillStyle" xmi:id="__JQLEytTEeeuIK_UI7emaQ"/>
+    <element xmi:type="uml:ElementImport" href="perfilBanco.profile.uml#__JGaECtTEeeuIK_UI7emaQ"/>
+    <layoutConstraint xmi:type="notation:Bounds" xmi:id="__JQLFCtTEeeuIK_UI7emaQ" x="260" y="48"/>
+  </children>
+  <children xmi:type="notation:Shape" xmi:id="_CUNEIStUEeeuIK_UI7emaQ" type="2001" fontName="Segoe UI">
+    <children xmi:type="notation:DecorationNode" xmi:id="_CUNEIytUEeeuIK_UI7emaQ" type="5001">
+      <styles xmi:type="notation:FontStyle" xmi:id="_CUW1ICtUEeeuIK_UI7emaQ" bold="true"/>
+    </children>
+    <children xmi:type="notation:DecorationNode" xmi:id="_CUNEJCtUEeeuIK_UI7emaQ" type="5012"/>
+    <children xmi:type="notation:BasicCompartment" xmi:id="_CUNEJStUEeeuIK_UI7emaQ" type="7001">
+      <styles xmi:type="notation:TitleStyle" xmi:id="_CUNEJitUEeeuIK_UI7emaQ" showTitle="true"/>
+      <styles xmi:type="notation:SortingStyle" xmi:id="_CUNEJytUEeeuIK_UI7emaQ"/>
+      <styles xmi:type="notation:FilteringStyle" xmi:id="_CUNEKCtUEeeuIK_UI7emaQ"/>
+      <styles xmi:type="notation:CanonicalStyle" xmi:id="_CUNEKStUEeeuIK_UI7emaQ"/>
+    </children>
+    <children xmi:type="notation:BasicCompartment" xmi:id="_CUNEKitUEeeuIK_UI7emaQ" type="7002">
+      <styles xmi:type="notation:TitleStyle" xmi:id="_CUNEKytUEeeuIK_UI7emaQ" showTitle="true"/>
+      <styles xmi:type="notation:SortingStyle" xmi:id="_CUNELCtUEeeuIK_UI7emaQ"/>
+      <styles xmi:type="notation:FilteringStyle" xmi:id="_CUNELStUEeeuIK_UI7emaQ"/>
+      <styles xmi:type="notation:CanonicalStyle" xmi:id="_CUNELitUEeeuIK_UI7emaQ"/>
+    </children>
+    <children xmi:type="notation:BasicCompartment" xmi:id="_CUNELytUEeeuIK_UI7emaQ" type="7006">
+      <styles xmi:type="notation:TitleStyle" xmi:id="_CUNEMCtUEeeuIK_UI7emaQ" showTitle="true"/>
+      <styles xmi:type="notation:SortingStyle" xmi:id="_CUNEMStUEeeuIK_UI7emaQ"/>
+      <styles xmi:type="notation:FilteringStyle" xmi:id="_CUNEMitUEeeuIK_UI7emaQ"/>
+      <styles xmi:type="notation:CanonicalStyle" xmi:id="_CUNEMytUEeeuIK_UI7emaQ"/>
+    </children>
+    <element xmi:type="uml:Stereotype" href="perfilBanco.profile.uml#_CUNEICtUEeeuIK_UI7emaQ"/>
+    <layoutConstraint xmi:type="notation:Bounds" xmi:id="_CUNEIitUEeeuIK_UI7emaQ" x="382" y="171"/>
+  </children>
+  <children xmi:type="notation:Shape" xmi:id="_KKnmwCtUEeeuIK_UI7emaQ" type="2001" fontName="Segoe UI">
+    <children xmi:type="notation:DecorationNode" xmi:id="_KKnmwitUEeeuIK_UI7emaQ" type="5001">
+      <styles xmi:type="notation:FontStyle" xmi:id="_KKwwwCtUEeeuIK_UI7emaQ" bold="true"/>
+    </children>
+    <children xmi:type="notation:DecorationNode" xmi:id="_KKwwsCtUEeeuIK_UI7emaQ" type="5012"/>
+    <children xmi:type="notation:BasicCompartment" xmi:id="_KKwwsStUEeeuIK_UI7emaQ" type="7001">
+      <styles xmi:type="notation:TitleStyle" xmi:id="_KKwwsitUEeeuIK_UI7emaQ" showTitle="true"/>
+      <styles xmi:type="notation:SortingStyle" xmi:id="_KKwwsytUEeeuIK_UI7emaQ"/>
+      <styles xmi:type="notation:FilteringStyle" xmi:id="_KKwwtCtUEeeuIK_UI7emaQ"/>
+      <styles xmi:type="notation:CanonicalStyle" xmi:id="_KKwwtStUEeeuIK_UI7emaQ"/>
+    </children>
+    <children xmi:type="notation:BasicCompartment" xmi:id="_KKwwtitUEeeuIK_UI7emaQ" type="7002">
+      <styles xmi:type="notation:TitleStyle" xmi:id="_KKwwtytUEeeuIK_UI7emaQ" showTitle="true"/>
+      <styles xmi:type="notation:SortingStyle" xmi:id="_KKwwuCtUEeeuIK_UI7emaQ"/>
+      <styles xmi:type="notation:FilteringStyle" xmi:id="_KKwwuStUEeeuIK_UI7emaQ"/>
+      <styles xmi:type="notation:CanonicalStyle" xmi:id="_KKwwuitUEeeuIK_UI7emaQ"/>
+    </children>
+    <children xmi:type="notation:BasicCompartment" xmi:id="_KKwwuytUEeeuIK_UI7emaQ" type="7006">
+      <styles xmi:type="notation:TitleStyle" xmi:id="_KKwwvCtUEeeuIK_UI7emaQ" showTitle="true"/>
+      <styles xmi:type="notation:SortingStyle" xmi:id="_KKwwvStUEeeuIK_UI7emaQ"/>
+      <styles xmi:type="notation:FilteringStyle" xmi:id="_KKwwvitUEeeuIK_UI7emaQ"/>
+      <styles xmi:type="notation:CanonicalStyle" xmi:id="_KKwwvytUEeeuIK_UI7emaQ"/>
+    </children>
+    <element xmi:type="uml:Stereotype" href="perfilBanco.profile.uml#_KKd1wCtUEeeuIK_UI7emaQ"/>
+    <layoutConstraint xmi:type="notation:Bounds" xmi:id="_KKnmwStUEeeuIK_UI7emaQ" x="540" y="175"/>
+  </children>
+  <children xmi:type="notation:Node" xmi:id="_LT7YMStUEeeuIK_UI7emaQ" type="2006">
+    <children xmi:type="notation:DecorationNode" xmi:id="_LT7YNitUEeeuIK_UI7emaQ" type="5008"/>
+    <styles xmi:type="notation:DescriptionStyle" xmi:id="_LT7YMitUEeeuIK_UI7emaQ"/>
+    <styles xmi:type="notation:FontStyle" xmi:id="_LT7YMytUEeeuIK_UI7emaQ" fontName="Segoe UI"/>
+    <styles xmi:type="notation:FillStyle" xmi:id="_LT7YNCtUEeeuIK_UI7emaQ"/>
+    <element xmi:type="uml:ElementImport" href="perfilBanco.profile.uml#_LT7YMCtUEeeuIK_UI7emaQ"/>
+    <layoutConstraint xmi:type="notation:Bounds" xmi:id="_LT7YNStUEeeuIK_UI7emaQ" x="545" y="50"/>
+  </children>
+  <children xmi:type="notation:Shape" xmi:id="_W4m8UCtUEeeuIK_UI7emaQ" type="2001" fontName="Segoe UI">
+    <children xmi:type="notation:DecorationNode" xmi:id="_W4m8UitUEeeuIK_UI7emaQ" type="5001">
+      <styles xmi:type="notation:FontStyle" xmi:id="_W4m8YytUEeeuIK_UI7emaQ" bold="true"/>
+    </children>
+    <children xmi:type="notation:DecorationNode" xmi:id="_W4m8UytUEeeuIK_UI7emaQ" type="5012"/>
+    <children xmi:type="notation:BasicCompartment" xmi:id="_W4m8VCtUEeeuIK_UI7emaQ" type="7001">
+      <children xmi:type="notation:Node" xmi:id="_ZgGjAStUEeeuIK_UI7emaQ" type="3001">
+        <element xmi:type="uml:Property" href="perfilBanco.profile.uml#_ZgGjACtUEeeuIK_UI7emaQ"/>
+        <layoutConstraint xmi:type="notation:Location" xmi:id="_ZgGjAitUEeeuIK_UI7emaQ"/>
+      </children>
+      <styles xmi:type="notation:TitleStyle" xmi:id="_W4m8VStUEeeuIK_UI7emaQ" showTitle="true"/>
+      <styles xmi:type="notation:SortingStyle" xmi:id="_W4m8VitUEeeuIK_UI7emaQ"/>
+      <styles xmi:type="notation:FilteringStyle" xmi:id="_W4m8VytUEeeuIK_UI7emaQ"/>
+      <styles xmi:type="notation:CanonicalStyle" xmi:id="_W4m8WCtUEeeuIK_UI7emaQ"/>
+    </children>
+    <children xmi:type="notation:BasicCompartment" xmi:id="_W4m8WStUEeeuIK_UI7emaQ" type="7002">
+      <styles xmi:type="notation:TitleStyle" xmi:id="_W4m8WitUEeeuIK_UI7emaQ" showTitle="true"/>
+      <styles xmi:type="notation:SortingStyle" xmi:id="_W4m8WytUEeeuIK_UI7emaQ"/>
+      <styles xmi:type="notation:FilteringStyle" xmi:id="_W4m8XCtUEeeuIK_UI7emaQ"/>
+      <styles xmi:type="notation:CanonicalStyle" xmi:id="_W4m8XStUEeeuIK_UI7emaQ"/>
+    </children>
+    <children xmi:type="notation:BasicCompartment" xmi:id="_W4m8XitUEeeuIK_UI7emaQ" type="7006">
+      <styles xmi:type="notation:TitleStyle" xmi:id="_W4m8XytUEeeuIK_UI7emaQ" showTitle="true"/>
+      <styles xmi:type="notation:SortingStyle" xmi:id="_W4m8YCtUEeeuIK_UI7emaQ"/>
+      <styles xmi:type="notation:FilteringStyle" xmi:id="_W4m8YStUEeeuIK_UI7emaQ"/>
+      <styles xmi:type="notation:CanonicalStyle" xmi:id="_W4m8YitUEeeuIK_UI7emaQ"/>
+    </children>
+    <element xmi:type="uml:Stereotype" href="perfilBanco.profile.uml#_W4dLUCtUEeeuIK_UI7emaQ"/>
+    <layoutConstraint xmi:type="notation:Bounds" xmi:id="_W4m8UStUEeeuIK_UI7emaQ" x="315" y="280"/>
+  </children>
+  <styles xmi:type="notation:DiagramStyle" xmi:id="_PmRzoStTEeeuIK_UI7emaQ"/>
+  <styles xmi:type="uml2tools.notation:U2TDiagramCanonicalStyle" xmi:id="_PmRzoitTEeeuIK_UI7emaQ"/>
+  <element xmi:type="uml:Profile" href="perfilBanco.profile.uml#_PkMwAStTEeeuIK_UI7emaQ"/>
+  <edges xmi:type="notation:Edge" xmi:id="_AymugCtUEeeuIK_UI7emaQ" type="4002" source="_9uWTUCtTEeeuIK_UI7emaQ" target="__JQLECtTEeeuIK_UI7emaQ">
+    <children xmi:type="notation:DecorationNode" xmi:id="_AymuhCtUEeeuIK_UI7emaQ" type="6001">
+      <layoutConstraint xmi:type="notation:Location" xmi:id="_AymuhStUEeeuIK_UI7emaQ" y="-15"/>
+    </children>
+    <styles xmi:type="notation:RoutingStyle" xmi:id="_AymugStUEeeuIK_UI7emaQ"/>
+    <styles xmi:type="notation:FontStyle" xmi:id="_AymugitUEeeuIK_UI7emaQ" fontName="Segoe UI"/>
+    <element xmi:type="uml:Extension" href="perfilBanco.profile.uml#_Ayc9gCtUEeeuIK_UI7emaQ"/>
+    <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_AymugytUEeeuIK_UI7emaQ" points="[-1, -30, -5, 96]$[-11, -106, -15, 20]"/>
+  </edges>
+  <edges xmi:type="notation:Edge" xmi:id="_Dbus4ytUEeeuIK_UI7emaQ" type="4002" source="_CUNEIStUEeeuIK_UI7emaQ" target="__JQLECtTEeeuIK_UI7emaQ">
+    <children xmi:type="notation:DecorationNode" xmi:id="_Db4d4CtUEeeuIK_UI7emaQ" type="6001">
+      <layoutConstraint xmi:type="notation:Location" xmi:id="_Db4d4StUEeeuIK_UI7emaQ" y="-15"/>
+    </children>
+    <styles xmi:type="notation:RoutingStyle" xmi:id="_Dbus5CtUEeeuIK_UI7emaQ"/>
+    <styles xmi:type="notation:FontStyle" xmi:id="_Dbus5StUEeeuIK_UI7emaQ" fontName="Segoe UI"/>
+    <element xmi:type="uml:Extension" href="perfilBanco.profile.uml#_Dbus4CtUEeeuIK_UI7emaQ"/>
+    <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_Dbus5itUEeeuIK_UI7emaQ" points="[-17, -15, 112, 103]$[-112, -98, 17, 20]"/>
+    <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_Db4d4itUEeeuIK_UI7emaQ" id="(0.45,0.2459016393442623)"/>
+  </edges>
+  <edges xmi:type="notation:Edge" xmi:id="_MgwXsytUEeeuIK_UI7emaQ" type="4002" source="_KKnmwCtUEeeuIK_UI7emaQ" target="_LT7YMStUEeeuIK_UI7emaQ">
+    <children xmi:type="notation:DecorationNode" xmi:id="_MgwXtytUEeeuIK_UI7emaQ" type="6001">
+      <layoutConstraint xmi:type="notation:Location" xmi:id="_MgwXuCtUEeeuIK_UI7emaQ" y="-15"/>
+    </children>
+    <styles xmi:type="notation:RoutingStyle" xmi:id="_MgwXtCtUEeeuIK_UI7emaQ"/>
+    <styles xmi:type="notation:FontStyle" xmi:id="_MgwXtStUEeeuIK_UI7emaQ" fontName="Segoe UI"/>
+    <element xmi:type="uml:Extension" href="perfilBanco.profile.uml#_MgwXsCtUEeeuIK_UI7emaQ"/>
+    <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_MgwXtitUEeeuIK_UI7emaQ" points="[-1, -30, 2, 94]$[-4, -116, -1, 8]"/>
+    <targetAnchor xmi:type="notation:IdentityAnchor" xmi:id="_MgwXuStUEeeuIK_UI7emaQ" id="(0.4868421052631579,0.8)"/>
+  </edges>
+  <edges xmi:type="notation:Connector" xmi:id="_YcmeoStUEeeuIK_UI7emaQ" type="4001" source="_9uWTUCtTEeeuIK_UI7emaQ" target="_W4m8UCtUEeeuIK_UI7emaQ">
+    <styles xmi:type="notation:FontStyle" xmi:id="_YcmeoitUEeeuIK_UI7emaQ" fontName="Segoe UI"/>
+    <element xmi:type="uml:Generalization" href="perfilBanco.profile.uml#_YcmeoCtUEeeuIK_UI7emaQ"/>
+    <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_YcmeoytUEeeuIK_UI7emaQ" points="[8, 13, -43, -61]$[49, 67, -2, -7]"/>
+    <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_YcmepCtUEeeuIK_UI7emaQ" id="(0.8,0.7868852459016393)"/>
+    <targetAnchor xmi:type="notation:IdentityAnchor" xmi:id="_YcmepStUEeeuIK_UI7emaQ" id="(0.46,0.11475409836065574)"/>
+  </edges>
+  <edges xmi:type="notation:Connector" xmi:id="_Y6_q0StUEeeuIK_UI7emaQ" type="4001" source="_CUNEIStUEeeuIK_UI7emaQ" target="_W4m8UCtUEeeuIK_UI7emaQ">
+    <styles xmi:type="notation:FontStyle" xmi:id="_Y6_q0itUEeeuIK_UI7emaQ" fontName="Segoe UI"/>
+    <element xmi:type="uml:Generalization" href="perfilBanco.profile.uml#_Y6_q0CtUEeeuIK_UI7emaQ"/>
+    <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_Y6_q0ytUEeeuIK_UI7emaQ" points="[-8, 12, 64, -96]$[-76, 121, -4, 13]"/>
+    <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_Y6_q1CtUEeeuIK_UI7emaQ" id="(0.5,0.8032786885245902)"/>
+    <targetAnchor xmi:type="notation:IdentityAnchor" xmi:id="_Y6_q1StUEeeuIK_UI7emaQ" id="(0.45,0.7868852459016393)"/>
+  </edges>
+</notation:Diagram>

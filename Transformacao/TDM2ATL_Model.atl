@@ -1,0 +1,525 @@
+--Transformação que recebe um modelo de lowdesign e gera um modelo ATL --
+module TDM2ATL_Model;
+create OUT:UML from IN:UML, PATL:UML; 
+
+--funcoes para testar os estereotipos dos elementos dos modelos --
+helper context UML!Package def:isTransPack():Boolean = self.getAppliedStereotypes()->exists(c|c.name='TransPack');
+helper context UML!Class def:isM2MTransf():Boolean = self.getAppliedStereotypes()->exists(c|c.name='M2MTransf');
+helper context UML!Class def:isSourceMM():Boolean = self.getAppliedStereotypes()->exists(c|c.name='SourceMM');
+helper context UML!Class def:isTargetMM():Boolean = self.getAppliedStereotypes()->exists(c|c.name='TargetMM');
+helper context UML!Association def:isSourceMM():Boolean = self.getAppliedStereotypes()->exists(c|c.name='SourceMM');
+helper context UML!Association def:isTargetMM():Boolean = self.getAppliedStereotypes()->exists(c|c.name='TargetMM');
+helper context UML!Class def:isRule():Boolean = self.getAppliedStereotypes()->exists(c|c.name='Rule');
+--testa se é uma regra que tem entrada, ou seja, se é matched rule ou lazy rule. 
+helper context UML!Class def:hasEntrada():Boolean = 
+	if  not (self.isRule() ) then false else true endif;
+--**** TIRAR ESSE ERRO DEPOIS ****
+	--else ( UML!Association.allInstancesFrom('IN')->select(x|x.isInElem())->select(y|y.ownedEnd)->select(w|w.type=self.type)->first().oclIsUndefined()) endif; --iterate(y;res:Boolean=false|if y.name=self.name then res=true else res endif)->exists(w|w = true)	
+   
+helper context UML!Class def:isSERule():Boolean = self.getAppliedStereotypes()->exists(c|c.name='SERule');
+helper context UML!Class def:isTERule():Boolean = self.getAppliedStereotypes()->exists(c|c.name='TERule');
+helper context UML!Class def:isRequired():Boolean = if (self.ownedAttribute->select(a|a.name='isRequired')->first()).oclIsUndefined() then false
+                                                    else if (self.ownedAttribute->select(a|a.name='isRequired')->first()).default='true' then 
+													true else false 
+													endif endif;
+
+helper context UML!Association def:isInElem():Boolean = self.getAppliedStereotypes()->exists(c|c.name='inElem');
+helper context UML!Association def:isOutElem():Boolean = self.getAppliedStereotypes()->exists(c|c.name='outElem');
+helper context UML!Class def:isCondition():Boolean = self.getAppliedStereotypes()->exists(c|c.name='Condition');
+helper context UML!Association def:isCondSE():Boolean = self.getAppliedStereotypes()->exists(c|c.name='CondSE');
+helper context UML!Class def:isConfig():Boolean = self.getAppliedStereotypes()->exists(c|c.name='Config');
+helper context UML!Association def:isConfigTE():Boolean = self.getAppliedStereotypes()->exists(c|c.name='ConfigTE');
+
+
+--funcoes para envontrar perfil e estereotipo--
+--name: passa o nome do profile no pacote profile; profile: passa o nome que esta no IN, no caso PerfilMTP.
+helper def : findProfile(name : String, profile : String): UML!Profile = UML!Profile.allInstancesFrom(profile)-> select(st| st.name = name)->first();
+helper def : findStereotype(name : String, profile : String) : UML!Stereotype = UML!Stereotype.allInstancesFrom(profile)-> select(st| st.name = name)->first();
+
+
+--Regra principal. Cria um pacote que vai representar a transformação, uma Unit
+rule Package2Unit{
+	from s1:UML!Package (s1.isTransPack())
+	--o modelo vai conter 1 pacote (a unit) onde estará toda a definição da transformação
+	to   tPacote:UML!Package( 
+		   name<-s1.name,
+		   packagedElement<-Set{
+		   UML!Class.allInstancesFrom('IN')->select (x| x.isM2MTransf())-> collect(e | thisModule.resolveTemp(e,'tClasse')),
+		   UML!Class.allInstancesFrom('IN')->select (x| x.isSourceMM())-> collect(e | thisModule.resolveTemp(e,'tSrcMM')),
+		   UML!Class.allInstancesFrom('IN')->select (x| x.isSourceMM())-> collect(e | thisModule.resolveTemp(e,'tSrcMod')),
+		   UML!Class.allInstancesFrom('IN')->select (x| x.isSourceMM())-> collect(e | thisModule.resolveTemp(e,'tAssocModMeta1')),
+		   UML!Class.allInstancesFrom('IN')->select (x| x.isSourceMM())-> collect(e | thisModule.resolveTemp(e,'tAssocOclModSrc')),
+		   UML!Class.allInstancesFrom('IN')->select (x| x.isTargetMM())-> collect(e | thisModule.resolveTemp(e,'tTargMM')),
+		   UML!Class.allInstancesFrom('IN')->select (x| x.isTargetMM())-> collect(e | thisModule.resolveTemp(e,'tTargMod')),
+		   UML!Class.allInstancesFrom('IN')->select (x| x.isTargetMM())-> collect(e | thisModule.resolveTemp(e,'tAssocModMeta2')),
+		   UML!Class.allInstancesFrom('IN')->select (x| x.isTargetMM())-> collect(e | thisModule.resolveTemp(e,'tAssocOclModTarg')),
+		   UML!Class.allInstancesFrom('IN')->select (x| x.isRule())-> collect(e | thisModule.resolveTemp(e,'tRule')),
+		   UML!Class.allInstancesFrom('IN')->select (x| x.isRule())-> collect(e | thisModule.resolveTemp(e,'tInPat')),
+		   UML!Class.allInstancesFrom('IN')->select (x| x.isRule())-> collect(e | thisModule.resolveTemp(e,'tOutPat')),
+		   UML!Class.allInstancesFrom('IN')->select (x| x.isRule())-> collect(e | thisModule.resolveTemp(e,'tInPatAssoc')),
+		   UML!Class.allInstancesFrom('IN')->select (x| x.isRule())-> collect(e | thisModule.resolveTemp(e,'tOutPatAssoc')),
+		   UML!Class.allInstancesFrom('IN')->select (x| x.isRule())-> collect(e | thisModule.resolveTemp(e,'tAssocModRule')),
+		   UML!Class.allInstancesFrom('IN')->select (x| x.isRule())-> collect(e | thisModule.resolveTemp(e,'tCalledRule')),
+		   UML!Class.allInstancesFrom('IN')->select (x| x.isRule())-> collect(e | thisModule.resolveTemp(e,'tOutPatCall')),
+		   UML!Class.allInstancesFrom('IN')->select (x| x.isRule())-> collect(e | thisModule.resolveTemp(e,'tOutPatAssocCall')),
+		   UML!Class.allInstancesFrom('IN')->select (x| x.isRule())-> collect(e | thisModule.resolveTemp(e,'tAssocModRuleCall')),
+		   UML!Class.allInstancesFrom('IN')->select (x| x.isSERule())-> collect(e | thisModule.resolveTemp(e,'tInPatElem')),
+		   UML!Class.allInstancesFrom('IN')->select (x| x.isSERule())-> collect(e | thisModule.resolveTemp(e,'assocIPE_MM')),
+		   UML!Class.allInstancesFrom('IN')->select (x| x.isTERule())-> collect(e | thisModule.resolveTemp(e,'tOutPatElem')),
+		   UML!Class.allInstancesFrom('IN')->select (x| x.isTERule())-> collect(e | thisModule.resolveTemp(e,'assocOPE_MM')),
+		   UML!Association.allInstancesFrom('IN')->select (x| x.isInElem())-> collect(e | thisModule.resolveTemp(e,'tAssocInPat')),
+		   UML!Association.allInstancesFrom('IN')->select (x| x.isOutElem())-> collect(e | thisModule.resolveTemp(e,'tAssocOutPat')),
+		   UML!Class.allInstancesFrom('IN')->select (x| x.isCondition())-> collect(e | thisModule.resolveTemp(e,'tFilter')),
+		   UML!Association.allInstancesFrom('IN')->select (x| x.isCondSE())-> collect(e | thisModule.resolveTemp(e,'tAssocFilt')),
+		   UML!Class.allInstancesFrom('IN')->select (x| x.isConfig())-> collect(e | thisModule.resolveTemp(e,'tBiding')),
+		   UML!Association.allInstancesFrom('IN')->select (x| x.isConfigTE())-> collect(e | thisModule.resolveTemp(e,'tAssocBid'))
+		   })      
+	do {
+       tPacote.applyProfile(thisModule.findProfile('PATL','PATL'));
+       tPacote.applyStereotype(thisModule.findStereotype('Unit', 'PATL'));
+      }
+}
+-- regra que cria uma classe que representa o modulo. Recebe como entrada um model2model transformation--
+rule transf2module{
+	from s2:UML!Class (s2.isM2MTransf())
+	to   tClasse:UML!Class( 
+		   name<-s2.name,
+		   ownedAttribute<-thisModule.copyComment(s2.ownedAttribute->select(m|m.name='description')->first()),
+		   ownedAttribute<-tRefining
+		   ),
+		  tRefining:UML!Property(
+		  	name<-'isRefining',
+			default<-'false'
+			)
+	do {
+       tClasse.applyStereotype(thisModule.findStereotype('Module', 'PATL'));
+      }
+}
+
+--Esta regra recebe o metamodelo de entrada e gera: um oclModel para representar o metamodelo de entrada;
+--um oclModel para representar o modelo de entrada (coloca o prefixo IN_); a associação entre metamodelo e modelo;
+--as associacoes entre metamodelo e o modulo e entre modelo e o módulo (neste caso elese são os inModel)
+rule sMM2sMM{
+	from s2:UML!Class (s2.isSourceMM())
+	using {
+		   classeTransf:UML!Class=UML!Class.allInstancesFrom('IN')->select (x| x.isM2MTransf())->first();
+	      }
+         --cria o metamodelo fonte
+	to   tSrcMM:UML!Class( 
+		   name<-s2.name),
+		 --cria o modelo fonte
+		 tSrcMod:UML!Class( 
+		 	name<-'IN_'+s2.name
+			),
+	     --cria associacao entre o modelo e o metamodelo fonte
+		 tAssocModMeta1:UML!Association(
+			ownedEnd<-ass1,
+			ownedEnd<-ass2),
+		 ass1:UML!Property(
+		 	name<-'model',
+			type<-tSrcMod),
+		 ass2:UML!Property(
+			name<-'metamodel',
+			type<-tSrcMM),
+		-- cria associacao entre o modelo e o modulo
+		tAssocOclModSrc:UML!Association(
+			ownedEnd<-ass3,
+			ownedEnd<-ass4),
+		ass3:UML!Property(
+			name<-'module',
+			type<-thisModule.resolveTemp(classeTransf,'tClasse')
+			),
+		ass4:UML!Property(
+			name<-'inModels',
+			type<-tSrcMod)	 
+	do{
+		tSrcMM.applyStereotype(thisModule.findStereotype('OclModel', 'PATL'));
+	    tSrcMod.applyStereotype(thisModule.findStereotype('OclModel', 'PATL'));
+	}
+}
+
+--Esta regra recebe o metamodelo de SAIDA e gera: um oclModel para representar o metamodelo de SAIDA;
+--um oclModel para representar o modelo de SAIDA (coloca o prefixo out_); a associação entre metamodelo e modelo;
+--as associacoes entre metamodelo e o modulo e entre modelo e o módulo (neste caso elese são os outModel)
+rule tMM2tMM{
+	from s3:UML!Class (s3.isTargetMM())
+	using {
+		   classeTransf:UML!Class=UML!Class.allInstancesFrom('IN')->select (x| x.isM2MTransf())->first();
+	      }
+	to   tTargMM:UML!Class( 
+		   name<-s3.name),
+		 tTargMod:UML!Class(
+		 	name<-'OUT_'+s3.name
+			),
+		 tAssocModMeta2:UML!Association(
+			ownedEnd<-ass7,
+			ownedEnd<-ass8),
+		 ass7:UML!Property(
+		 	name<-'model',
+			type<-tTargMod),
+		 ass8:UML!Property(
+			name<-'metamodel',
+			type<-tTargMM),
+		tAssocOclModTarg:UML!Association(
+			ownedEnd<-ass9,
+			ownedEnd<-ass10),
+		 ass9:UML!Property(
+			name<-'module',
+			type<-thisModule.resolveTemp(classeTransf,'tClasse')
+			),
+		ass10:UML!Property(
+			name<-'outModels',
+			type<-tTargMod)
+	do{
+		tTargMM.applyStereotype(thisModule.findStereotype('OclModel', 'PATL'));
+	    tTargMod.applyStereotype(thisModule.findStereotype('OclModel', 'PATL'));
+	}
+}
+
+--transforma a regra definida como isRequired em uma matched rule
+--essa regra somente é executada para transformações que tem elemento de entrada, ou seja, regras de 1-N ou N-N ou 1-1 ou N-1. 
+--neste caso ja cria tambem duas classes: InPattern e OutPattern que sempre existe em matchedRule e faz a 
+--associacao entre essas classes e a matchedRule.
+rule Rule2MachedRule{
+   from s4:UML!Class (s4.isRule() and s4.hasEntrada())
+   using {
+		   classeTransf:UML!Class=UML!Class.allInstancesFrom('IN')->select (x| x.isM2MTransf())->first();
+	      }
+   to   tRule:UML!Class(
+	    name<-s4.name,
+		ownedAttribute <- Set{ thisModule.copyAttribute(s4.ownedAttribute->select(m|m.name='isAbstract')->first()),
+	    	thisModule.copyComment(s4.ownedAttribute->select(m|m.name='description')->first()),
+			thisModule.copyAttribute(s4.ownedAttribute->select(m|m.name='super')->first())
+	       }
+	    ),
+		--cria o inPattern
+		tInPat:UML!Class(
+			name<-'IP_'+s4.name
+			),
+		--cria o outPattern
+	    tOutPat:UML!Class(
+	    	name<-'OP_'+s4.name),
+		--criar a associacao entre inPattern e a regra
+		tInPatAssoc:UML!Association(
+			ownedEnd<-ass13,
+			ownedEnd<-ass14),
+		 ass13:UML!Property(
+			name<-'inPattern',
+			type<-tInPat
+			),
+		 ass14:UML!Property(
+			name<-'rule',
+			type<-tRule),
+		--cria associacao entre outPattern e a regra
+		tOutPatAssoc:UML!Association(
+			ownedEnd<-ass15,
+			ownedEnd<-ass16),
+		 ass15:UML!Property(
+			name<-'outPattern',
+			type<-tOutPat
+			),
+		 ass16:UML!Property(
+			name<-'rule',
+			type<-tRule),
+		--cria a associacao entre a regra e o modulo. A regra é um elemento do modulo
+		tAssocModRule:UML!Association(
+			ownedEnd<-ass17,
+			ownedEnd<-ass18),
+		ass17:UML!Property(
+			name<-'elements',
+			type<-tRule),
+		ass18:UML!Property(
+			name<-'ownedModule',
+			type<-thisModule.resolveTemp(classeTransf,'tClasse'))
+		
+   do{
+   	
+       if (s4.isRequired()){
+   	      tRule.applyStereotype(thisModule.findStereotype('MatchedRule','PATL'));
+       }
+       else{
+       	  tRule.applyStereotype(thisModule.findStereotype('LazyMatchedRule','PATL'));
+       }
+       
+   	   tInPat.applyStereotype(thisModule.findStereotype('InPattern','PATL'));
+   	   tOutPat.applyStereotype(thisModule.findStereotype('OutPattern','PATL'));
+   }
+}
+
+--transforma a regra que nao tem entradas em uma calledRule com entrypoint
+--essa regra somente é executada para transformações que tem elemento de entrada, ou seja, regras de 0-1; 0-N. 
+--neste caso ja cria tambem a classe OutPattern que sempre existe em called Rule e faz a 
+--associacao entre essa classes e a called Rule.
+rule Rule2CalledRule{
+   from s5:UML!Class (s5.isRule() and not s5.hasEntrada())
+   using {
+		   classeTransf:UML!Class=UML!Class.allInstancesFrom('IN')->select (x| x.isM2MTransf())->first();
+	      }
+   to   tCalledRule:UML!Class(
+	    name<-s5.name,
+		ownedAttribute <- tEntryPoint,
+		ownedAttribute <- tEndPoint
+	    ),
+		tEntryPoint:UML!Property(
+			name<-'isEntryPoint',
+			default<-'true'),
+		tEndPoint:UML!Property(
+			name<-'isEndPoint',
+			default<-'false'),
+		--cria o outPattern
+	    tOutPatCall:UML!Class(
+	    	name<-'OP_'+s5.name),
+		--cria associacao entre outPattern e a regra
+		tOutPatAssocCall:UML!Association(
+			ownedEnd<-ass15_2,
+			ownedEnd<-ass16_2),
+		 ass15_2:UML!Property(
+			name<-'outPattern',
+			type<-tOutPatCall
+			),
+		 ass16_2:UML!Property(
+			name<-'rule',
+			type<-tCalledRule),
+		--cria a associacao entre a regra e o modulo. A regra é um elemento do modulo
+		tAssocModRuleCall:UML!Association(
+			ownedEnd<-ass17_2,
+			ownedEnd<-ass18_2),
+		ass17_2:UML!Property(
+			name<-'elements',
+			type<-tCalledRule),
+		ass18_2:UML!Property(
+			name<-'ownedModule',
+			type<-thisModule.resolveTemp(classeTransf,'tClasse'))
+		
+   do{ 
+   	   tCalledRule.applyStereotype(thisModule.findStereotype('CalledRule','PATL'));
+   	   tOutPatCall.applyStereotype(thisModule.findStereotype('OutPattern','PATL'));
+   }
+}
+
+
+--pega os elementos de entrada para gerar inPatternElement
+rule SourceER2InPatternElem{
+	from s8:UML!Class (s8.isSERule())
+	using{ ref:String=s8.ownedAttribute->select(ar|ar.name='ref')->first().default;
+           nomeType:String=s8.ownedAttribute->select(ant|ant.name='type')->first().default;
+           nomeMetaM:String=s8.ownedAttribute->select(anm|anm.name='metamodel')->first().default;
+           metamodeloSrc:UML!Class=UML!Class.allInstancesFrom('IN')->select (x| x.isSourceMM() and x.name=nomeMetaM)->first();
+          }
+         -- pattern element
+	to   tInPatElem:UML!Class(
+		   name<-ref,
+		   ownedAttribute<-propId,
+		   ownedAttribute<-propVarName,
+		   ownedAttribute<-propType
+	       ),
+		  --id, propriedade que o pattern element herda de variable declaration
+		  propId:UML!Property(
+		   name<-'id',
+		   default<-ref
+		  ),
+		  --varName, propriedade que o pattern element herda de variable declaration
+		  propVarName:UML!Property(
+		  name<-'varName',
+		  default<-ref
+		  ),
+		  --type, propriedade que o pattern element herda de variable declaration
+		  propType:UML!Property(
+		  name<-'type',
+		  default<-nomeType
+		  ),
+		  --cria associacao com o metamodelo de entrada que contem esse elemento definido o type acima
+		  assocIPE_MM:UML!Association(
+		  ownedEnd<-propInPatEle,
+		  ownedEnd<-propMM
+		  ),
+		  propInPatEle:UML!Property(
+			name<-'src',
+			type<-tInPatElem),
+		  propMM:UML!Property(
+			name<-'model',
+			type<-thisModule.resolveTemp(metamodeloSrc,'tSrcMM')
+		  	)
+	do{ 
+  	   tInPatElem.applyStereotype(thisModule.findStereotype('InPatternElement','PATL'));
+   }	   
+}
+
+--pega os elementos de saida para gerar outPatternElement
+rule TargetER2OutPatternElem{
+	from s10:UML!Class (s10.isTERule())
+	using {ref:String=s10.ownedAttribute->select(ar|ar.name='ref')->first().default;
+           nomeType:String=s10.ownedAttribute->select(ant|ant.name='type')->first().default;
+           nomeMetaM:String=s10.ownedAttribute->select(anm|anm.name='metamodel')->first().default;
+           metamodeloTarg:UML!Class=UML!Class.allInstancesFrom('IN')->select (x| x.isTargetMM() and x.name=nomeMetaM)->first();
+	      }
+         --pattern element 
+	to   tOutPatElem:UML!Class(
+		   name<-ref,
+		   ownedAttribute<-propId,
+		   ownedAttribute<-propVarName,
+		   ownedAttribute<-propType
+	       ),
+		  --id, propriedade que o pattern element herda de variable declaration 
+		  propId:UML!Property(
+		   name<-'id',
+		   default<-ref
+		  ),
+		  --varName, propriedade que o pattern element herda de variable declaration
+		  propVarName:UML!Property(
+		  name<-'varName',
+		  default<-ref
+		  ),
+		  --type, propriedade que o pattern element herda de variable declaration
+		  propType:UML!Property(
+		  name<-'type',
+		  default<-nomeType
+		  ),
+		  --cria associacao com o metamodelo de entrada que contem esse elemento definido o type acima
+		  assocOPE_MM:UML!Association(
+		  ownedEnd<-propOutPatEle,
+		  ownedEnd<-propMMOut
+		  ),
+		  propOutPatEle:UML!Property(
+			name<-'src',
+			type<-tOutPatElem),
+		  propMMOut:UML!Property(
+			name<-'model',
+			type<-thisModule.resolveTemp(metamodeloTarg,'tTargMM')
+		  	)
+	       
+	do{ 
+  	   tOutPatElem.applyStereotype(thisModule.findStereotype('SingleOutPatternElement','PATL'));
+   }	   
+}
+
+--cria associacao entre InPattern e inpatternElement
+rule assocInPat_PatElem{
+	from s12:UML!Association (s12.isInElem())
+	to   tAssocInPat:UML!Association(
+		    ownedEnd<-ass20,
+			ownedEnd<-ass21),
+		 ass20:UML!Property(
+			name<-'elements',
+			type<-thisModule.resolveTemp((s12.ownedEnd->select(m|m.name='dst')->first()).type,'tInPatElem')
+			),
+		 ass21:UML!Property(
+			name<-'inPattern',
+			type<-thisModule.resolveTemp((s12.ownedEnd->select(m|m.name='src')->first()).type,'tInPat')
+			)
+}
+
+rule assocOutPat_PatElem{
+	from s14:UML!Association (s14.isOutElem())
+	to   tAssocOutPat:UML!Association(
+		    ownedEnd<-ass24,
+			ownedEnd<-ass25),
+		 ass24:UML!Property(
+			name<-'elements', 
+			type<-thisModule.resolveTemp((s14.ownedEnd->select(m|m.name='dst')->first()).type,'tOutPatElem')
+			),
+	    ass25:UML!Property(
+		    name<-'outPattern',
+			type<-thisModule.resolveTemp((s14.ownedEnd->select(m|m.name='src')->first()).type,'tOutPat')
+			)
+}
+--regra para transformar a condicao de um elemento de entrada em um filtro (oclExpression) do atl
+rule Condition2Filter{
+	from sCond:UML!Class (sCond.isCondition())
+	to   tFilter:UML!Class(
+		  name<-sCond.name,
+		  ownedAttribute<-PropFilter
+	      ),
+		  PropFilter:UML!Property(
+			name<-'expression',
+			default<-sCond.ownedAttribute->select(af|af.name='exp')->first().default
+		)
+	do{
+		tFilter.applyStereotype(thisModule.findStereotype('OclExpression','PATL'));
+	}		
+}
+
+--rule para associar a oclExpression ao InPattern e colocar o nome da associacao de filter
+rule AssocOclExp_InPat{
+  from sAssocCond:UML!Association (sAssocCond.isCondSE())
+  using{
+  	  --pegar a classe que representa a regra
+  	  vRule:UML!Class=sAssocCond.ownedEnd->select(m|m.name='src')->first().type; 
+  }
+  to   tAssocFilt:UML!Association(
+		    name<-sAssocCond.name,
+			ownedEnd<-tOrigFilt,
+			ownedEnd<-tDestFilt
+			),
+		 tOrigFilt:UML!Property(
+		 	name<-'src',
+			type<-thisModule.resolveTemp(vRule,'tInPat')
+		 	),
+		 tDestFilt:UML!Property(
+		 	name<-'filter',
+			type<-thisModule.resolveTemp((sAssocCond.ownedEnd->select(m|m.name='dst')->first()).type,'tFilter')
+		 	)
+}
+
+--criação dos bidings a partir da configuração dos atributos
+rule Config2Biding{
+  from sConfig:UML!Class (sConfig.isConfig())
+  using{
+  	expressao:String=sConfig.ownedAttribute->select(anm|anm.name='exp')->first().default;
+  }
+  to   tBiding:UML!Class(
+         name<-sConfig.name,
+	     ownedAttribute<-pPropName,
+	     ownedAttribute<-pIsAssig,
+	     ownedAttribute<-pValue
+       ),
+	   pPropName:UML!Property(
+	   	 name<-'propertyName',
+		 default<-sConfig.ownedAttribute->select(anm|anm.name='property')->first().default
+		 ),
+	   pIsAssig:UML!Property(
+	   	name<-'isAssigment',
+		default<-'true'),
+	   pValue:UML!Property(
+	   	name<-'value',
+		--default<-sConfig.ownedAttribute->select(anm|anm.name='exp')->first().default
+		default<-if(expressao.startsWith('call')) then 
+		            'thisModule.resolveTemp'+expressao.substring(expressao.indexOf('(')+1,expressao.indexOf(','))+',"'+expressao.substring(expressao.indexOf(',')+2,expressao.indexOf(')'))+'")' 
+		         else expressao endif
+      )
+	 do{
+	 	tBiding.applyStereotype(thisModule.findStereotype('Biding','PATL'));
+	 }
+}
+
+--regra que liga o biding ao seu outPatternElement
+rule Biding_OPEle{
+	from sAssocConfigTE:UML!Association (sAssocConfigTE.isConfigTE())
+	to   tAssocBid:UML!Association(
+		    name<-sAssocConfigTE.name,
+			ownedEnd<-tSrcConf,
+			ownedEnd<-tDestConf
+			),
+		 tSrcConf:UML!Property(
+		 	name<-'outPatternElement',
+			type<-thisModule.resolveTemp((sAssocConfigTE.ownedEnd->select(m|m.name='src')->first()).type,'tOutPatElem')
+		 	),
+		 tDestConf:UML!Property(
+		 	name<-'bidings',
+			type<-thisModule.resolveTemp((sAssocConfigTE.ownedEnd->select(m|m.name='dst')->first()).type,'tBiding')
+		 	)
+}
+
+lazy rule copyAttribute{
+	from sLz1:UML!Property
+	to   tAttribute:UML!Property(
+		   name <-sLz1.name,
+		   type <-sLz1.type,
+		   default <-sLz1.default)
+}
+lazy rule copyComment{
+	from sLz2:UML!Property
+	to   tComment:UML!Property(
+		   name <-'commentsBefore',
+		   default <-sLz2.default)
+}

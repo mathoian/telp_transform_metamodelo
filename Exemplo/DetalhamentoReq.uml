@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xmi:XMI xmi:version="2.1" xmlns:xmi="http://schema.omg.org/spec/XMI/2.1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:MTPspec="http:///schemas/MTPspec/_jZ1UYCqoEeenV5XMBsEPwQ/17" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:uml="http://www.eclipse.org/uml2/3.0.0/UML" xsi:schemaLocation="http:///schemas/MTPspec/_jZ1UYCqoEeenV5XMBsEPwQ/17 ../Perfil/MTPspec.profile.uml#_jZ1UYSqoEeenV5XMBsEPwQ">
+  <uml:Package xmi:id="_rmFAoCr2EeeCNLEmAjzy4w" name="DemoCBSOFT">
+    <packagedElement xmi:type="uml:Class" xmi:id="_rmFnsir2EeeCNLEmAjzy4w" name="Metamodelo">
+      <ownedAttribute xmi:id="_rmFnsyr2EeeCNLEmAjzy4w" name="file">
+        <defaultValue xmi:type="uml:LiteralString" xmi:id="_v61aYCr2EeeCNLEmAjzy4w" value="UML"/>
+      </ownedAttribute>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Association" xmi:id="_rmFntir2EeeCNLEmAjzy4w" memberEnd="_rmFntyr2EeeCNLEmAjzy4w _rmFnuCr2EeeCNLEmAjzy4w">
+      <ownedEnd xmi:id="_rmFntyr2EeeCNLEmAjzy4w" name="src" type="_rmFnsCr2EeeCNLEmAjzy4w" association="_rmFntir2EeeCNLEmAjzy4w"/>
+      <ownedEnd xmi:id="_rmFnuCr2EeeCNLEmAjzy4w" name="dst" type="_rmFnsir2EeeCNLEmAjzy4w" association="_rmFntir2EeeCNLEmAjzy4w"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Class" xmi:id="_rmGOwCr2EeeCNLEmAjzy4w" name="ConverterClasse">
+      <ownedAttribute xmi:id="_rmGOwSr2EeeCNLEmAjzy4w" name="description"/>
+      <ownedAttribute xmi:id="_rmGOwir2EeeCNLEmAjzy4w" name="type">
+        <defaultValue xmi:type="uml:LiteralString" xmi:id="_rnbrgyr2EeeCNLEmAjzy4w" value="functional"/>
+      </ownedAttribute>
+      <ownedAttribute xmi:id="_rmGOwyr2EeeCNLEmAjzy4w" name="priority">
+        <defaultValue xmi:type="uml:LiteralString" xmi:id="_rnbrhCr2EeeCNLEmAjzy4w" value="0"/>
+      </ownedAttribute>
+      <ownedAttribute xmi:id="_rmGOxCr2EeeCNLEmAjzy4w" name="release">
+        <defaultValue xmi:type="uml:LiteralString" xmi:id="_rnbrhSr2EeeCNLEmAjzy4w" value="1"/>
+      </ownedAttribute>
+      <ownedAttribute xmi:id="_rmGOxSr2EeeCNLEmAjzy4w" name="verificationCriteria"/>
+      <ownedAttribute xmi:id="_rmGOxir2EeeCNLEmAjzy4w" name="domainRastreability"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Class" xmi:id="_rmFntCr2EeeCNLEmAjzy4w" name="Metamodelo">
+      <ownedAttribute xmi:id="_rmFntSr2EeeCNLEmAjzy4w" name="file">
+        <defaultValue xmi:type="uml:LiteralString" xmi:id="_xFWFsCr2EeeCNLEmAjzy4w" value="Banco"/>
+      </ownedAttribute>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Class" xmi:id="_rmFnsCr2EeeCNLEmAjzy4w" name="OO2Banco">
+      <ownedAttribute xmi:id="_rmFnsSr2EeeCNLEmAjzy4w" name="description">
+        <defaultValue xmi:type="uml:LiteralString" xmi:id="_yVNLECr2EeeCNLEmAjzy4w" value="Exemplo teste"/>
+      </ownedAttribute>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Association" xmi:id="_rmG10ir2EeeCNLEmAjzy4w" memberEnd="_rmG10Cr2EeeCNLEmAjzy4w _rmG10Sr2EeeCNLEmAjzy4w">
+      <ownedEnd xmi:id="_rmG10Cr2EeeCNLEmAjzy4w" name="src" type="_rmFnsCr2EeeCNLEmAjzy4w" association="_rmG10ir2EeeCNLEmAjzy4w"/>
+      <ownedEnd xmi:id="_rmG10Sr2EeeCNLEmAjzy4w" name="dst" type="_rmGOwCr2EeeCNLEmAjzy4w" aggregation="composite" association="_rmG10ir2EeeCNLEmAjzy4w"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Association" xmi:id="_rmFnuSr2EeeCNLEmAjzy4w" memberEnd="_rmFnuir2EeeCNLEmAjzy4w _rmFnuyr2EeeCNLEmAjzy4w">
+      <ownedEnd xmi:id="_rmFnuir2EeeCNLEmAjzy4w" name="src" type="_rmFnsCr2EeeCNLEmAjzy4w" association="_rmFnuSr2EeeCNLEmAjzy4w"/>
+      <ownedEnd xmi:id="_rmFnuyr2EeeCNLEmAjzy4w" name="dst" type="_rmFntCr2EeeCNLEmAjzy4w" association="_rmFnuSr2EeeCNLEmAjzy4w"/>
+    </packagedElement>
+    <profileApplication xmi:id="_rmJ5ICr2EeeCNLEmAjzy4w">
+      <eAnnotations xmi:id="_rmJ5ISr2EeeCNLEmAjzy4w" source="http://www.eclipse.org/uml2/2.0.0/UML">
+        <references xmi:type="ecore:EPackage" href="../Perfil/MTPspec.profile.uml#_jZ1UYSqoEeenV5XMBsEPwQ"/>
+      </eAnnotations>
+      <appliedProfile href="../Perfil/MTPspec.profile.uml#_0smawEGyEeWPcaZ390I2pA"/>
+    </profileApplication>
+  </uml:Package>
+  <uml:Generalization xmi:id="_rmID8Cr2EeeCNLEmAjzy4w"/>
+  <uml:Generalization xmi:id="_rmID8Sr2EeeCNLEmAjzy4w"/>
+  <MTPspec:TransPack xmi:id="_rnbEcCr2EeeCNLEmAjzy4w" base_Package="_rmFAoCr2EeeCNLEmAjzy4w"/>
+  <MTPspec:TransSpec xmi:id="_rnbEcSr2EeeCNLEmAjzy4w" base_Class="_rmFnsCr2EeeCNLEmAjzy4w"/>
+  <MTPspec:SourceMM xmi:id="_rnbEcir2EeeCNLEmAjzy4w" base_Class="_rmFnsir2EeeCNLEmAjzy4w"/>
+  <MTPspec:TargetMM xmi:id="_rnbrgCr2EeeCNLEmAjzy4w" base_Class="_rmFntCr2EeeCNLEmAjzy4w"/>
+  <MTPspec:SourceMM xmi:id="_rnbrgSr2EeeCNLEmAjzy4w" base_Association="_rmFntir2EeeCNLEmAjzy4w"/>
+  <MTPspec:TargetMM xmi:id="_rnbrgir2EeeCNLEmAjzy4w" base_Association="_rmFnuSr2EeeCNLEmAjzy4w"/>
+  <MTPspec:Req xmi:id="_rnbrhir2EeeCNLEmAjzy4w" base_Class="_rmGOwCr2EeeCNLEmAjzy4w"/>
+  <MTPspec:ReqTransf xmi:id="_rnbrhyr2EeeCNLEmAjzy4w" base_Association="_rmG10ir2EeeCNLEmAjzy4w"/>
+</xmi:XMI>

@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xmi:XMI xmi:version="2.1" xmlns:xmi="http://schema.omg.org/spec/XMI/2.1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:MTPlowd="http:///schemas/MTPlowd/_lI7TcCqoEeenV5XMBsEPwQ/27" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:uml="http://www.eclipse.org/uml2/3.0.0/UML" xsi:schemaLocation="http:///schemas/MTPlowd/_lI7TcCqoEeenV5XMBsEPwQ/27 ../Perfil/MTPlowd.profile.uml#_lI76gCqoEeenV5XMBsEPwQ">
+  <uml:Package xmi:id="_By1WsCr3EeeCNLEmAjzy4w" name="DemoCBSOFT">
+    <packagedElement xmi:type="uml:Class" xmi:id="_By3L4Cr3EeeCNLEmAjzy4w" name="ConverterClasse">
+      <ownedAttribute xmi:id="_B0Pr9Cr3EeeCNLEmAjzy4w" name="description"/>
+      <ownedAttribute xmi:id="_By3L4Sr3EeeCNLEmAjzy4w" name="isRequired">
+        <defaultValue xmi:type="uml:LiteralString" xmi:id="_B0QTACr3EeeCNLEmAjzy4w" value="true"/>
+      </ownedAttribute>
+      <ownedAttribute xmi:id="_By3L4ir3EeeCNLEmAjzy4w" name="isAbstract">
+        <defaultValue xmi:type="uml:LiteralString" xmi:id="_B0QTASr3EeeCNLEmAjzy4w" value="false"/>
+      </ownedAttribute>
+      <ownedAttribute xmi:id="_By3L4yr3EeeCNLEmAjzy4w" name="super">
+        <defaultValue xmi:type="uml:LiteralString" xmi:id="_B0QTAir3EeeCNLEmAjzy4w" value="null"/>
+      </ownedAttribute>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Class" xmi:id="_By62QCr3EeeCNLEmAjzy4w" name="Classe">
+      <ownedAttribute xmi:id="_By62QSr3EeeCNLEmAjzy4w" name="ref">
+        <defaultValue xmi:type="uml:LiteralString" xmi:id="_B0QTBCr3EeeCNLEmAjzy4w" value="se_Classe"/>
+      </ownedAttribute>
+      <ownedAttribute xmi:id="_By62Qir3EeeCNLEmAjzy4w" name="type">
+        <defaultValue xmi:type="uml:LiteralString" xmi:id="_B0QTBSr3EeeCNLEmAjzy4w" value="Classe"/>
+      </ownedAttribute>
+      <ownedAttribute xmi:id="_By62Qyr3EeeCNLEmAjzy4w" name="metamodel">
+        <defaultValue xmi:type="uml:LiteralString" xmi:id="_B0QTBir3EeeCNLEmAjzy4w" value="UML"/>
+      </ownedAttribute>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Association" xmi:id="_By7dWir3EeeCNLEmAjzy4w" memberEnd="_By7dWyr3EeeCNLEmAjzy4w _By7dXCr3EeeCNLEmAjzy4w">
+      <ownedEnd xmi:id="_By7dWyr3EeeCNLEmAjzy4w" name="src" type="_By7dUCr3EeeCNLEmAjzy4w" association="_By7dWir3EeeCNLEmAjzy4w"/>
+      <ownedEnd xmi:id="_By7dXCr3EeeCNLEmAjzy4w" name="dst" type="_By7dVyr3EeeCNLEmAjzy4w" association="_By7dWir3EeeCNLEmAjzy4w"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Association" xmi:id="_By8EYSr3EeeCNLEmAjzy4w" memberEnd="_By8EYir3EeeCNLEmAjzy4w _By8EYyr3EeeCNLEmAjzy4w">
+      <ownedEnd xmi:id="_By8EYir3EeeCNLEmAjzy4w" name="src" type="_By2k0Cr3EeeCNLEmAjzy4w" association="_By8EYSr3EeeCNLEmAjzy4w"/>
+      <ownedEnd xmi:id="_By8EYyr3EeeCNLEmAjzy4w" name="dst" type="_By8EYCr3EeeCNLEmAjzy4w" association="_By8EYSr3EeeCNLEmAjzy4w"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Association" xmi:id="_By7dVCr3EeeCNLEmAjzy4w" memberEnd="_By7dVSr3EeeCNLEmAjzy4w _By7dVir3EeeCNLEmAjzy4w">
+      <ownedEnd xmi:id="_By7dVSr3EeeCNLEmAjzy4w" name="src" type="_By3L4Cr3EeeCNLEmAjzy4w" association="_By7dVCr3EeeCNLEmAjzy4w"/>
+      <ownedEnd xmi:id="_By7dVir3EeeCNLEmAjzy4w" name="dst" type="_By7dUCr3EeeCNLEmAjzy4w" association="_By7dVCr3EeeCNLEmAjzy4w"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Class" xmi:id="_By8EZCr3EeeCNLEmAjzy4w" name="Banco"/>
+    <packagedElement xmi:type="uml:Class" xmi:id="_By8EYCr3EeeCNLEmAjzy4w" name="UML"/>
+    <packagedElement xmi:type="uml:Association" xmi:id="_By62RCr3EeeCNLEmAjzy4w" memberEnd="_By62RSr3EeeCNLEmAjzy4w _By62Rir3EeeCNLEmAjzy4w">
+      <ownedEnd xmi:id="_By62RSr3EeeCNLEmAjzy4w" name="src" type="_By3L4Cr3EeeCNLEmAjzy4w" association="_By62RCr3EeeCNLEmAjzy4w"/>
+      <ownedEnd xmi:id="_By62Rir3EeeCNLEmAjzy4w" name="dst" type="_By62QCr3EeeCNLEmAjzy4w" association="_By62RCr3EeeCNLEmAjzy4w"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Class" xmi:id="_By2k0Cr3EeeCNLEmAjzy4w" name="OO2Banco">
+      <ownedAttribute xmi:id="_B0Pr8Sr3EeeCNLEmAjzy4w" name="description">
+        <defaultValue xmi:type="uml:LiteralString" xmi:id="_B0Pr8ir3EeeCNLEmAjzy4w" value="Exemplo teste"/>
+      </ownedAttribute>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Class" xmi:id="_By7dUCr3EeeCNLEmAjzy4w" name="Tabela">
+      <ownedAttribute xmi:id="_By7dUSr3EeeCNLEmAjzy4w" name="ref">
+        <defaultValue xmi:type="uml:LiteralString" xmi:id="_B0Q6Eir3EeeCNLEmAjzy4w" value="te_Tabela"/>
+      </ownedAttribute>
+      <ownedAttribute xmi:id="_By7dUir3EeeCNLEmAjzy4w" name="type">
+        <defaultValue xmi:type="uml:LiteralString" xmi:id="_B0Q6Eyr3EeeCNLEmAjzy4w" value="Tabela"/>
+      </ownedAttribute>
+      <ownedAttribute xmi:id="_By7dUyr3EeeCNLEmAjzy4w" name="metamodel">
+        <defaultValue xmi:type="uml:LiteralString" xmi:id="_B0Q6FCr3EeeCNLEmAjzy4w" value="Banco"/>
+      </ownedAttribute>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Class" xmi:id="_By7dVyr3EeeCNLEmAjzy4w" name="Conf_Tabela">
+      <ownedAttribute xmi:id="_By7dWCr3EeeCNLEmAjzy4w" name="property">
+        <defaultValue xmi:type="uml:LiteralString" xmi:id="_B0Q6FSr3EeeCNLEmAjzy4w" value="nome"/>
+      </ownedAttribute>
+      <ownedAttribute xmi:id="_By7dWSr3EeeCNLEmAjzy4w" name="exp">
+        <defaultValue xmi:type="uml:LiteralString" xmi:id="_B0Q6Fir3EeeCNLEmAjzy4w" value="se_Classe.nome"/>
+      </ownedAttribute>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Association" xmi:id="_By8EZSr3EeeCNLEmAjzy4w" memberEnd="_By8EZir3EeeCNLEmAjzy4w _By8EZyr3EeeCNLEmAjzy4w">
+      <ownedEnd xmi:id="_By8EZir3EeeCNLEmAjzy4w" name="src" type="_By2k0Cr3EeeCNLEmAjzy4w" association="_By8EZSr3EeeCNLEmAjzy4w"/>
+      <ownedEnd xmi:id="_By8EZyr3EeeCNLEmAjzy4w" name="dst" type="_By8EZCr3EeeCNLEmAjzy4w" association="_By8EZSr3EeeCNLEmAjzy4w"/>
+    </packagedElement>
+    <profileApplication xmi:id="_By-goCr3EeeCNLEmAjzy4w">
+      <eAnnotations xmi:id="_By-goSr3EeeCNLEmAjzy4w" source="http://www.eclipse.org/uml2/2.0.0/UML">
+        <references xmi:type="ecore:EPackage" href="../Perfil/MTPlowd.profile.uml#_lI76gCqoEeenV5XMBsEPwQ"/>
+      </eAnnotations>
+      <appliedProfile href="../Perfil/MTPlowd.profile.uml#_sGb-wEarEeW0SYKf9yAf5Q"/>
+    </profileApplication>
+  </uml:Package>
+  <MTPlowd:TransPack xmi:id="_B0Pr8Cr3EeeCNLEmAjzy4w" base_Package="_By1WsCr3EeeCNLEmAjzy4w"/>
+  <MTPlowd:M2MTransf xmi:id="_B0Pr8yr3EeeCNLEmAjzy4w" base_Class="_By2k0Cr3EeeCNLEmAjzy4w"/>
+  <MTPlowd:Rule xmi:id="_B0QTAyr3EeeCNLEmAjzy4w" base_Class="_By3L4Cr3EeeCNLEmAjzy4w"/>
+  <MTPlowd:SERule xmi:id="_B0Q6ECr3EeeCNLEmAjzy4w" base_Class="_By62QCr3EeeCNLEmAjzy4w"/>
+  <MTPlowd:inElem xmi:id="_B0Q6ESr3EeeCNLEmAjzy4w" base_Association="_By62RCr3EeeCNLEmAjzy4w"/>
+  <MTPlowd:TERule xmi:id="_B0Q6Fyr3EeeCNLEmAjzy4w" base_Class="_By7dUCr3EeeCNLEmAjzy4w"/>
+  <MTPlowd:outElem xmi:id="_B0RhICr3EeeCNLEmAjzy4w" base_Association="_By7dVCr3EeeCNLEmAjzy4w"/>
+  <MTPlowd:Config xmi:id="_B0RhISr3EeeCNLEmAjzy4w" base_Class="_By7dVyr3EeeCNLEmAjzy4w"/>
+  <MTPlowd:ConfigTE xmi:id="_B0RhIir3EeeCNLEmAjzy4w" base_Association="_By7dWir3EeeCNLEmAjzy4w"/>
+  <MTPlowd:SourceMM xmi:id="_B0RhIyr3EeeCNLEmAjzy4w" base_Class="_By8EYCr3EeeCNLEmAjzy4w"/>
+  <MTPlowd:SourceMM xmi:id="_B0RhJCr3EeeCNLEmAjzy4w" base_Association="_By8EYSr3EeeCNLEmAjzy4w"/>
+  <MTPlowd:TargetMM xmi:id="_B0SIMCr3EeeCNLEmAjzy4w" base_Class="_By8EZCr3EeeCNLEmAjzy4w"/>
+  <MTPlowd:TargetMM xmi:id="_B0SIMSr3EeeCNLEmAjzy4w" base_Association="_By8EZSr3EeeCNLEmAjzy4w"/>
+</xmi:XMI>

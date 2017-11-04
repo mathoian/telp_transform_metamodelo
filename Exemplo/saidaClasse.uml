@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<xmi:XMI xmi:version="2.1" xmlns:xmi="http://schema.omg.org/spec/XMI/2.1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:MTPspec="http:///schemas/MTPspec/_jZ1UYCqoEeenV5XMBsEPwQ/17" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:uml="http://www.eclipse.org/uml2/3.0.0/UML" xsi:schemaLocation="http:///schemas/MTPspec/_jZ1UYCqoEeenV5XMBsEPwQ/17 ../Perfil/MTPspec.profile.uml#_jZ1UYSqoEeenV5XMBsEPwQ">
+  <uml:Package xmi:id="_s4ws0ESaEeeqH_SqAQBr-A" name="DemoCBSOFT">
+    <packagedElement xmi:type="uml:Class" xmi:id="_s4xT4ESaEeeqH_SqAQBr-A" name="OO2Banco">
+      <ownedAttribute xmi:id="_s4xT4USaEeeqH_SqAQBr-A" name="description"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Association" xmi:id="_s4xT6USaEeeqH_SqAQBr-A" memberEnd="_s4xT6kSaEeeqH_SqAQBr-A _s4xT60SaEeeqH_SqAQBr-A">
+      <ownedEnd xmi:id="_s4xT6kSaEeeqH_SqAQBr-A" name="src" type="_s4xT4ESaEeeqH_SqAQBr-A" association="_s4xT6USaEeeqH_SqAQBr-A"/>
+      <ownedEnd xmi:id="_s4xT60SaEeeqH_SqAQBr-A" name="dst" type="_s4xT5ESaEeeqH_SqAQBr-A" association="_s4xT6USaEeeqH_SqAQBr-A"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Class" xmi:id="_s4xT4kSaEeeqH_SqAQBr-A" name="Metamodelo">
+      <ownedAttribute xmi:id="_s4xT40SaEeeqH_SqAQBr-A" name="file"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Class" xmi:id="_s4xT5ESaEeeqH_SqAQBr-A" name="Metamodelo">
+      <ownedAttribute xmi:id="_s4xT5USaEeeqH_SqAQBr-A" name="file"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Association" xmi:id="_s4zJEESaEeeqH_SqAQBr-A" memberEnd="_s4yiAUSaEeeqH_SqAQBr-A _s4yiAESaEeeqH_SqAQBr-A">
+      <ownedEnd xmi:id="_s4yiAUSaEeeqH_SqAQBr-A" name="dst" type="_s4x68ESaEeeqH_SqAQBr-A" aggregation="composite" association="_s4zJEESaEeeqH_SqAQBr-A"/>
+      <ownedEnd xmi:id="_s4yiAESaEeeqH_SqAQBr-A" name="src" type="_s4xT4ESaEeeqH_SqAQBr-A" association="_s4zJEESaEeeqH_SqAQBr-A"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Association" xmi:id="_s4xT5kSaEeeqH_SqAQBr-A" memberEnd="_s4xT50SaEeeqH_SqAQBr-A _s4xT6ESaEeeqH_SqAQBr-A">
+      <ownedEnd xmi:id="_s4xT50SaEeeqH_SqAQBr-A" name="src" type="_s4xT4ESaEeeqH_SqAQBr-A" association="_s4xT5kSaEeeqH_SqAQBr-A"/>
+      <ownedEnd xmi:id="_s4xT6ESaEeeqH_SqAQBr-A" name="dst" type="_s4xT4kSaEeeqH_SqAQBr-A" association="_s4xT5kSaEeeqH_SqAQBr-A"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Class" xmi:id="_s4x68ESaEeeqH_SqAQBr-A" name="ConverterClasse">
+      <ownedAttribute xmi:id="_s4x68USaEeeqH_SqAQBr-A" name="description"/>
+      <ownedAttribute xmi:id="_s4x68kSaEeeqH_SqAQBr-A" name="type">
+        <defaultValue xmi:type="uml:LiteralString" xmi:id="_s5_b5USaEeeqH_SqAQBr-A" value="functional"/>
+      </ownedAttribute>
+      <ownedAttribute xmi:id="_s4x680SaEeeqH_SqAQBr-A" name="priority">
+        <defaultValue xmi:type="uml:LiteralString" xmi:id="_s6AC8ESaEeeqH_SqAQBr-A" value="0"/>
+      </ownedAttribute>
+      <ownedAttribute xmi:id="_s4x69ESaEeeqH_SqAQBr-A" name="release">
+        <defaultValue xmi:type="uml:LiteralString" xmi:id="_s6AC8USaEeeqH_SqAQBr-A" value="1"/>
+      </ownedAttribute>
+      <ownedAttribute xmi:id="_s4x69USaEeeqH_SqAQBr-A" name="verificationCriteria"/>
+      <ownedAttribute xmi:id="_s4x69kSaEeeqH_SqAQBr-A" name="domainRastreability"/>
+    </packagedElement>
+    <profileApplication xmi:id="_s44BkESaEeeqH_SqAQBr-A">
+      <eAnnotations xmi:id="_s45PsESaEeeqH_SqAQBr-A" source="http://www.eclipse.org/uml2/2.0.0/UML">
+        <references xmi:type="ecore:EPackage" href="../Perfil/MTPspec.profile.uml#_jZ1UYSqoEeenV5XMBsEPwQ"/>
+      </eAnnotations>
+      <appliedProfile href="../Perfil/MTPspec.profile.uml#_0smawEGyEeWPcaZ390I2pA"/>
+    </profileApplication>
+  </uml:Package>
+  <uml:Generalization xmi:id="_s4zwIESaEeeqH_SqAQBr-A"/>
+  <uml:Generalization xmi:id="_s4zwIUSaEeeqH_SqAQBr-A"/>
+  <MTPspec:TransPack xmi:id="_s5-NwESaEeeqH_SqAQBr-A" base_Package="_s4ws0ESaEeeqH_SqAQBr-A"/>
+  <MTPspec:TransSpec xmi:id="_s5_b4ESaEeeqH_SqAQBr-A" base_Class="_s4xT4ESaEeeqH_SqAQBr-A"/>
+  <MTPspec:SourceMM xmi:id="_s5_b4USaEeeqH_SqAQBr-A" base_Class="_s4xT4kSaEeeqH_SqAQBr-A"/>
+  <MTPspec:TargetMM xmi:id="_s5_b4kSaEeeqH_SqAQBr-A" base_Class="_s4xT5ESaEeeqH_SqAQBr-A"/>
+  <MTPspec:SourceMM xmi:id="_s5_b40SaEeeqH_SqAQBr-A" base_Association="_s4xT5kSaEeeqH_SqAQBr-A"/>
+  <MTPspec:TargetMM xmi:id="_s5_b5ESaEeeqH_SqAQBr-A" base_Association="_s4xT6USaEeeqH_SqAQBr-A"/>
+  <MTPspec:Req xmi:id="_s6AC8kSaEeeqH_SqAQBr-A" base_Class="_s4x68ESaEeeqH_SqAQBr-A"/>
+  <MTPspec:ReqTransf xmi:id="_s6AC80SaEeeqH_SqAQBr-A" base_Association="_s4zJEESaEeeqH_SqAQBr-A"/>
+</xmi:XMI>

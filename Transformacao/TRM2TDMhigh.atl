@@ -1,0 +1,164 @@
+module TRM2TRM_MapRel;
+create OUT:UML from IN:UML,MTPhighd:UML,MMS:UML,MMT:UML;
+
+
+--*** Helpers que testam se os elementos estão estereotipados com seus respectivos estereótipos ***
+-- por exemplo, testa no contexto UML se o pacote que esta sendo transformado esta estereotipada com TransfDefinition
+helper context UML!Package def:isTransPack():Boolean = self.getAppliedStereotypes()->exists(c|c.name='TransPack');
+helper context UML!Class def:isTransSpec():Boolean = self.getAppliedStereotypes()->exists(c|c.name='TransSpec');
+helper context UML!Class def:isSourceMM():Boolean = self.getAppliedStereotypes()->exists(c|c.name='SourceMM');
+helper context UML!Class def:isTargetMM():Boolean = self.getAppliedStereotypes()->exists(c|c.name='TargetMM');
+helper context UML!Class def:isRequirement():Boolean = self.getAppliedStereotypes()->exists(c|c.name='Req');
+helper context UML!Class def:isComprisedReq():Boolean = self.getAppliedStereotypes()->exists(c|c.name='CompReq');
+helper context UML!Class def:isPriority():Boolean = self.ownedAttribute->exists(c|c.name='priority' and c.default='0');
+helper context UML!EClass def:isSource():Boolean = UML!EClass.allInstancesFrom('MMS')-> exists(e |e=self);
+helper context UML!EClass def:isTarget():Boolean = UML!EClass.allInstancesFrom('MMT')-> exists(e |e=self);
+
+--*** helpers para achar um perfil bseado no nome fisico e no nome logico. name: passa o nome do profile no pacote profile; profile: passa o nome que esta no IN, no caso MTPspec ***
+helper def : findProfile(name : String, profile : String): UML!Profile = UML!Profile.allInstancesFrom(profile)-> select(st| st.name = name)->first();
+--*** helper para achar um estereotipo em um perfil. name - nome do estereotipo profile - arquivo de entrada contendo o profile ***
+helper def : findStereotype(name : String, profile : String) : UML!Stereotype = UML!Stereotype.allInstancesFrom(profile)-> select(st| st.name = name)->first();
+
+lazy rule criarPropertyDescrip {
+    from sPropDesc : UML!Property
+    to tPropDesc : UML!Property(
+			name<-sPropDesc.name,
+			default<-sPropDesc.default
+	   	)
+}
+
+rule package2package{
+	from s1:UML!Package (s1.isTransPack())
+	to   t1:UML!Package(
+		    name<-s1.name,
+			packagedElement <- Set {
+			UML!Class.allInstancesFrom('IN')->select (x| x.isSourceMM())-> collect(e | thisModule.resolveTemp(e,'tPSMM')),
+			UML!Class.allInstancesFrom('IN')->select (x| x.isTargetMM())-> collect(e | thisModule.resolveTemp(e,'tPTMM')),
+			UML!Class.allInstancesFrom('IN')->select (x| x.isTransSpec())-> collect(e | thisModule.resolveTemp(e,'tPTransf'))
+			})
+	do{
+        t1.applyProfile(thisModule.findProfile('MTPhighd','MTPhighd'));	
+    	t1.applyStereotype(thisModule.findStereotype('TransPack', 'MTPhighd'));
+      }
+}
+rule class2packageSourceMM{
+	from s2:UML!Class (s2.isSourceMM())
+	to   tPSMM:UML!Package (
+		   name<-s2.ownedAttribute->select(x|x.name='file')->first().default,
+		   packagedElement <-tPSMMClass,
+		   packagedElement <- Set {UML!EClass.allInstancesFrom('MMS')-> collect(e | thisModule.resolveTemp(e,'tEleSMM')),
+		   	                       UML!EClass.allInstancesFrom('MMS')-> collect(e | thisModule.resolveTemp(e,'tAssocSMM'))
+		   }
+		),
+		tPSMMClass:UML!Class(
+		   name<-s2.ownedAttribute->select(x|x.name='file')->first().default
+		   )
+	do{
+		tPSMM.applyStereotype(thisModule.findStereotype('SourceMM', 'MTPhighd'));
+		tPSMMClass.applyStereotype(thisModule.findStereotype('SourceMM', 'MTPhighd'));
+	}
+}
+
+rule class2packageTargetMM{
+	from s3:UML!Class (s3.isTargetMM())
+	to   tPTMM:UML!Package (
+		   name<-s3.ownedAttribute->select(x|x.name='file')->first().default,
+		   packagedElement <- tPTMMClass,
+		   packagedElement <- Set {UML!EClass.allInstancesFrom('MMT')-> collect(e | thisModule.resolveTemp(e,'tEleTMM')),
+		   	                       UML!EClass.allInstancesFrom('MMT')-> collect(e | thisModule.resolveTemp(e,'tAssocTMM'))
+		   }
+		),
+		tPTMMClass:UML!Class (
+		   name<-s3.ownedAttribute->select(x|x.name='file')->first().default
+		)
+	do{
+		tPTMM.applyStereotype(thisModule.findStereotype('TargetMM', 'MTPhighd'));
+		tPTMMClass.applyStereotype(thisModule.findStereotype('TargetMM', 'MTPhighd'));
+	}
+}
+
+rule elementoSMM{
+	from sEleSMM:UML!EClass  (sEleSMM.isSource())
+	using{
+		classeMMS:UML!Class=UML!Class.allInstancesFrom('IN')->select (x| x.isSourceMM())->first();
+	}
+	to   tEleSMM:UML!Class(
+		  name<-sEleSMM.name),
+         tAssocSMM:UML!Association(
+         	ownedEnd<-origemS,
+			ownedEnd<-destinoS),
+		 origemS:UML!Property(
+			name<-'src',
+			type<-thisModule.resolveTemp(classeMMS,'tPSMMClass')
+			),
+		 destinoS:UML!Property(
+			name<-'dst',
+			type<-tEleSMM)
+		 
+    do{
+    	tEleSMM.applyStereotype(thisModule.findStereotype('SourceElem', 'MTPhighd'));
+    	tAssocSMM.applyStereotype(thisModule.findStereotype('SourceMM', 'MTPhighd'));
+    }
+}
+
+rule elementoTMM{
+	from sEleTMM:UML!EClass  (sEleTMM.isTarget())
+	using{
+		classeMMT:UML!Class=UML!Class.allInstancesFrom('IN')->select (x| x.isTargetMM())->first();
+	}
+	to   tEleTMM:UML!Class(
+		  name<-sEleTMM.name),
+		 tAssocTMM:UML!Association(
+         	ownedEnd<-origemT,
+			ownedEnd<-destinoT),
+		 origemT:UML!Property(
+			name<-'src',
+			type<-thisModule.resolveTemp(classeMMT,'tPTMMClass')
+			),
+		 destinoT:UML!Property(
+			name<-'dst',
+			type<-tEleTMM)
+		  
+    do{
+    	tEleTMM.applyStereotype(thisModule.findStereotype('TargetElem', 'MTPhighd'));
+    	tAssocTMM.applyStereotype(thisModule.findStereotype('TargetMM', 'MTPhighd'));
+    }
+}
+rule class2packageTransf{
+	from s4:UML!Class (s4.isTransSpec())
+	to   tPTransf:UML!Package (
+		   name<-s4.name,
+		   packagedElement <- Set {
+ 			 UML!Class.allInstancesFrom('IN')->select (x| x.isRequirement() and x.isPriority())-> collect(e | thisModule.resolveTemp(e,'tRelat')),
+			 tPTransfClass
+		   }
+		),
+		tPTransfClass:UML!Class(
+			name<-s4.name,
+			ownedAttribute<-thisModule.criarPropertyDescrip(s4.ownedAttribute->select(m|m.name='description')->first()))
+	do{
+		tPTransf.applyStereotype(thisModule.findStereotype('M2MTransf', 'MTPhighd'));
+		tPTransfClass.applyStereotype(thisModule.findStereotype('M2MTransf', 'MTPhighd'));
+	}
+}
+
+rule requis2relation{
+	from s5:UML!Class  (s5.isRequirement() and s5.isPriority() )
+	to   tRelat:UML!Class(
+		    name<-s5.name,
+			--ownedAttribute<-tRequired,
+			--ownedAttribute<-tAbstract,
+			ownedAttribute<-thisModule.criarPropertyDescrip(s5.ownedAttribute->select (e|e.name='description')->first())
+	        )--,
+       -- tRequired:UML!Property(
+	--		name<-'isRequired',
+	--		default<-'true'
+   	 --   ),
+	--	tAbstract:UML!Property(
+	--		name<-'isAbstract',
+	--		default<-'false'
+   	 --   )
+    do{
+		tRelat.applyStereotype(thisModule.findStereotype('Relation', 'MTPhighd'));
+	}
+}

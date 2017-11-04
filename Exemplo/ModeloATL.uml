@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<xmi:XMI xmi:version="2.1" xmlns:xmi="http://schema.omg.org/spec/XMI/2.1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:PATL="http:///schemas/PATL/_em6X8CqoEeenV5XMBsEPwQ/23" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:uml="http://www.eclipse.org/uml2/3.0.0/UML" xsi:schemaLocation="http:///schemas/PATL/_em6X8CqoEeenV5XMBsEPwQ/23 ../Perfil/PATL.profile.uml#_em8NICqoEeenV5XMBsEPwQ">
+  <uml:Package xmi:id="_Ma1QICr3EeeCNLEmAjzy4w" name="DemoCBSOFT">
+    <packagedElement xmi:type="uml:Association" xmi:id="_Ma2eSir3EeeCNLEmAjzy4w" memberEnd="_Ma2eSyr3EeeCNLEmAjzy4w _Ma2eTCr3EeeCNLEmAjzy4w">
+      <ownedEnd xmi:id="_Ma2eSyr3EeeCNLEmAjzy4w" name="model" type="_Ma2eSSr3EeeCNLEmAjzy4w" association="_Ma2eSir3EeeCNLEmAjzy4w"/>
+      <ownedEnd xmi:id="_Ma2eTCr3EeeCNLEmAjzy4w" name="metamodel" type="_Ma2eSCr3EeeCNLEmAjzy4w" association="_Ma2eSir3EeeCNLEmAjzy4w"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Association" xmi:id="_Ma2eTSr3EeeCNLEmAjzy4w" memberEnd="_Ma2eTir3EeeCNLEmAjzy4w _Ma2eTyr3EeeCNLEmAjzy4w">
+      <ownedEnd xmi:id="_Ma2eTir3EeeCNLEmAjzy4w" name="module" type="_Ma13MCr3EeeCNLEmAjzy4w" association="_Ma2eTSr3EeeCNLEmAjzy4w"/>
+      <ownedEnd xmi:id="_Ma2eTyr3EeeCNLEmAjzy4w" name="outModels" type="_Ma2eSSr3EeeCNLEmAjzy4w" association="_Ma2eTSr3EeeCNLEmAjzy4w"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Association" xmi:id="_Ma3FUyr3EeeCNLEmAjzy4w" memberEnd="_Ma3FVCr3EeeCNLEmAjzy4w _Ma3FVSr3EeeCNLEmAjzy4w">
+      <ownedEnd xmi:id="_Ma3FVCr3EeeCNLEmAjzy4w" name="inPattern" type="_Ma3FUSr3EeeCNLEmAjzy4w" association="_Ma3FUyr3EeeCNLEmAjzy4w"/>
+      <ownedEnd xmi:id="_Ma3FVSr3EeeCNLEmAjzy4w" name="rule" type="_Ma3FUCr3EeeCNLEmAjzy4w" association="_Ma3FUyr3EeeCNLEmAjzy4w"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Association" xmi:id="_Ma2eRSr3EeeCNLEmAjzy4w" memberEnd="_Ma2eRir3EeeCNLEmAjzy4w _Ma2eRyr3EeeCNLEmAjzy4w">
+      <ownedEnd xmi:id="_Ma2eRir3EeeCNLEmAjzy4w" name="module" type="_Ma13MCr3EeeCNLEmAjzy4w" association="_Ma2eRSr3EeeCNLEmAjzy4w"/>
+      <ownedEnd xmi:id="_Ma2eRyr3EeeCNLEmAjzy4w" name="inModels" type="_Ma2eQSr3EeeCNLEmAjzy4w" association="_Ma2eRSr3EeeCNLEmAjzy4w"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Association" xmi:id="_Ma3FVir3EeeCNLEmAjzy4w" memberEnd="_Ma3FVyr3EeeCNLEmAjzy4w _Ma3FWCr3EeeCNLEmAjzy4w">
+      <ownedEnd xmi:id="_Ma3FVyr3EeeCNLEmAjzy4w" name="outPattern" type="_Ma3FUir3EeeCNLEmAjzy4w" association="_Ma3FVir3EeeCNLEmAjzy4w"/>
+      <ownedEnd xmi:id="_Ma3FWCr3EeeCNLEmAjzy4w" name="rule" type="_Ma3FUCr3EeeCNLEmAjzy4w" association="_Ma3FVir3EeeCNLEmAjzy4w"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Association" xmi:id="_Ma5hkCr3EeeCNLEmAjzy4w" memberEnd="_Ma5hkSr3EeeCNLEmAjzy4w _Ma5hkir3EeeCNLEmAjzy4w">
+      <ownedEnd xmi:id="_Ma5hkSr3EeeCNLEmAjzy4w" name="elements" type="_Ma3sYCr3EeeCNLEmAjzy4w" association="_Ma5hkCr3EeeCNLEmAjzy4w"/>
+      <ownedEnd xmi:id="_Ma5hkir3EeeCNLEmAjzy4w" name="inPattern" type="_Ma3FUSr3EeeCNLEmAjzy4w" association="_Ma5hkCr3EeeCNLEmAjzy4w"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Class" xmi:id="_Ma3FUCr3EeeCNLEmAjzy4w" name="ConverterClasse">
+      <ownedAttribute xmi:id="_McbLlir3EeeCNLEmAjzy4w" name="commentsBefore"/>
+      <ownedAttribute xmi:id="_McbLlyr3EeeCNLEmAjzy4w" name="super">
+        <defaultValue xmi:type="uml:LiteralString" xmi:id="_McbLmCr3EeeCNLEmAjzy4w" value="null"/>
+      </ownedAttribute>
+      <ownedAttribute xmi:id="_McbLlCr3EeeCNLEmAjzy4w" name="isAbstract">
+        <defaultValue xmi:type="uml:LiteralString" xmi:id="_McbLlSr3EeeCNLEmAjzy4w" value="false"/>
+      </ownedAttribute>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Association" xmi:id="_Ma4TdCr3EeeCNLEmAjzy4w" memberEnd="_Ma4TdSr3EeeCNLEmAjzy4w _Ma4Tdir3EeeCNLEmAjzy4w">
+      <ownedEnd xmi:id="_Ma4TdSr3EeeCNLEmAjzy4w" name="src" type="_Ma4TcCr3EeeCNLEmAjzy4w" association="_Ma4TdCr3EeeCNLEmAjzy4w"/>
+      <ownedEnd xmi:id="_Ma4Tdir3EeeCNLEmAjzy4w" name="model" type="_Ma2eSCr3EeeCNLEmAjzy4w" association="_Ma4TdCr3EeeCNLEmAjzy4w"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Class" xmi:id="_Ma2eQSr3EeeCNLEmAjzy4w" name="IN_UML"/>
+    <packagedElement xmi:type="uml:Class" xmi:id="_Ma2eSSr3EeeCNLEmAjzy4w" name="OUT_Banco"/>
+    <packagedElement xmi:type="uml:Class" xmi:id="_Ma3sYCr3EeeCNLEmAjzy4w" name="se_Classe">
+      <ownedAttribute xmi:id="_Ma3sYSr3EeeCNLEmAjzy4w" name="id">
+        <defaultValue xmi:type="uml:LiteralString" xmi:id="_MccZsCr3EeeCNLEmAjzy4w" value="se_Classe"/>
+      </ownedAttribute>
+      <ownedAttribute xmi:id="_Ma3sYir3EeeCNLEmAjzy4w" name="varName">
+        <defaultValue xmi:type="uml:LiteralString" xmi:id="_MccZsSr3EeeCNLEmAjzy4w" value="se_Classe"/>
+      </ownedAttribute>
+      <ownedAttribute xmi:id="_Ma3sYyr3EeeCNLEmAjzy4w" name="type">
+        <defaultValue xmi:type="uml:LiteralString" xmi:id="_MccZsir3EeeCNLEmAjzy4w" value="Classe"/>
+      </ownedAttribute>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Association" xmi:id="_Ma3sZCr3EeeCNLEmAjzy4w" memberEnd="_Ma3sZSr3EeeCNLEmAjzy4w _Ma3sZir3EeeCNLEmAjzy4w">
+      <ownedEnd xmi:id="_Ma3sZSr3EeeCNLEmAjzy4w" name="src" type="_Ma3sYCr3EeeCNLEmAjzy4w" association="_Ma3sZCr3EeeCNLEmAjzy4w"/>
+      <ownedEnd xmi:id="_Ma3sZir3EeeCNLEmAjzy4w" name="model" type="_Ma2eQCr3EeeCNLEmAjzy4w" association="_Ma3sZCr3EeeCNLEmAjzy4w"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Class" xmi:id="_Ma13MCr3EeeCNLEmAjzy4w" name="OO2Banco">
+      <ownedAttribute xmi:id="_McakgSr3EeeCNLEmAjzy4w" name="commentsBefore">
+        <defaultValue xmi:type="uml:LiteralString" xmi:id="_Mcakgir3EeeCNLEmAjzy4w" value="Exemplo teste"/>
+      </ownedAttribute>
+      <ownedAttribute xmi:id="_Ma13MSr3EeeCNLEmAjzy4w" name="isRefining">
+        <defaultValue xmi:type="uml:LiteralString" xmi:id="_Mcakgyr3EeeCNLEmAjzy4w" value="false"/>
+      </ownedAttribute>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Association" xmi:id="_Ma3FWSr3EeeCNLEmAjzy4w" memberEnd="_Ma3FWir3EeeCNLEmAjzy4w _Ma3FWyr3EeeCNLEmAjzy4w">
+      <ownedEnd xmi:id="_Ma3FWir3EeeCNLEmAjzy4w" name="elements" type="_Ma3FUCr3EeeCNLEmAjzy4w" association="_Ma3FWSr3EeeCNLEmAjzy4w"/>
+      <ownedEnd xmi:id="_Ma3FWyr3EeeCNLEmAjzy4w" name="ownedModule" type="_Ma13MCr3EeeCNLEmAjzy4w" association="_Ma3FWSr3EeeCNLEmAjzy4w"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Class" xmi:id="_Ma3FUSr3EeeCNLEmAjzy4w" name="IP_ConverterClasse"/>
+    <packagedElement xmi:type="uml:Class" xmi:id="_Ma3FUir3EeeCNLEmAjzy4w" name="OP_ConverterClasse"/>
+    <packagedElement xmi:type="uml:Class" xmi:id="_Ma2eSCr3EeeCNLEmAjzy4w" name="Banco"/>
+    <packagedElement xmi:type="uml:Class" xmi:id="_Ma6IoCr3EeeCNLEmAjzy4w" name="Conf_Tabela">
+      <ownedAttribute xmi:id="_Ma6IoSr3EeeCNLEmAjzy4w" name="propertyName">
+        <defaultValue xmi:type="uml:LiteralString" xmi:id="_McdAwCr3EeeCNLEmAjzy4w" value="nome"/>
+      </ownedAttribute>
+      <ownedAttribute xmi:id="_Ma6Ioir3EeeCNLEmAjzy4w" name="isAssigment">
+        <defaultValue xmi:type="uml:LiteralString" xmi:id="_McdAwSr3EeeCNLEmAjzy4w" value="true"/>
+      </ownedAttribute>
+      <ownedAttribute xmi:id="_Ma6Ioyr3EeeCNLEmAjzy4w" name="value">
+        <defaultValue xmi:type="uml:LiteralString" xmi:id="_McdAwir3EeeCNLEmAjzy4w" value="se_Classe.nome"/>
+      </ownedAttribute>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Association" xmi:id="_Ma2eQir3EeeCNLEmAjzy4w" memberEnd="_Ma2eQyr3EeeCNLEmAjzy4w _Ma2eRCr3EeeCNLEmAjzy4w">
+      <ownedEnd xmi:id="_Ma2eQyr3EeeCNLEmAjzy4w" name="model" type="_Ma2eQSr3EeeCNLEmAjzy4w" association="_Ma2eQir3EeeCNLEmAjzy4w"/>
+      <ownedEnd xmi:id="_Ma2eRCr3EeeCNLEmAjzy4w" name="metamodel" type="_Ma2eQCr3EeeCNLEmAjzy4w" association="_Ma2eQir3EeeCNLEmAjzy4w"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Class" xmi:id="_Ma4TcCr3EeeCNLEmAjzy4w" name="te_Tabela">
+      <ownedAttribute xmi:id="_Ma4TcSr3EeeCNLEmAjzy4w" name="id">
+        <defaultValue xmi:type="uml:LiteralString" xmi:id="_MccZtCr3EeeCNLEmAjzy4w" value="te_Tabela"/>
+      </ownedAttribute>
+      <ownedAttribute xmi:id="_Ma4Tcir3EeeCNLEmAjzy4w" name="varName">
+        <defaultValue xmi:type="uml:LiteralString" xmi:id="_MccZtSr3EeeCNLEmAjzy4w" value="te_Tabela"/>
+      </ownedAttribute>
+      <ownedAttribute xmi:id="_Ma4Tcyr3EeeCNLEmAjzy4w" name="type">
+        <defaultValue xmi:type="uml:LiteralString" xmi:id="_MccZtir3EeeCNLEmAjzy4w" value="Tabela"/>
+      </ownedAttribute>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Class" xmi:id="_Ma2eQCr3EeeCNLEmAjzy4w" name="UML"/>
+    <packagedElement xmi:type="uml:Association" xmi:id="_Ma5hkyr3EeeCNLEmAjzy4w" memberEnd="_Ma5hlCr3EeeCNLEmAjzy4w _Ma5hlSr3EeeCNLEmAjzy4w">
+      <ownedEnd xmi:id="_Ma5hlCr3EeeCNLEmAjzy4w" name="elements" type="_Ma4TcCr3EeeCNLEmAjzy4w" association="_Ma5hkyr3EeeCNLEmAjzy4w"/>
+      <ownedEnd xmi:id="_Ma5hlSr3EeeCNLEmAjzy4w" name="outPattern" type="_Ma3FUir3EeeCNLEmAjzy4w" association="_Ma5hkyr3EeeCNLEmAjzy4w"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Association" xmi:id="_Ma6IpCr3EeeCNLEmAjzy4w" memberEnd="_Ma6IpSr3EeeCNLEmAjzy4w _Ma6Ipir3EeeCNLEmAjzy4w">
+      <ownedEnd xmi:id="_Ma6IpSr3EeeCNLEmAjzy4w" name="outPatternElement" type="_Ma4TcCr3EeeCNLEmAjzy4w" association="_Ma6IpCr3EeeCNLEmAjzy4w"/>
+      <ownedEnd xmi:id="_Ma6Ipir3EeeCNLEmAjzy4w" name="bidings" type="_Ma6IoCr3EeeCNLEmAjzy4w" association="_Ma6IpCr3EeeCNLEmAjzy4w"/>
+    </packagedElement>
+    <profileApplication xmi:id="_Ma_oMCr3EeeCNLEmAjzy4w">
+      <eAnnotations xmi:id="_Ma_oMSr3EeeCNLEmAjzy4w" source="http://www.eclipse.org/uml2/2.0.0/UML">
+        <references xmi:type="ecore:EPackage" href="../Perfil/PATL.profile.uml#_em8NICqoEeenV5XMBsEPwQ"/>
+      </eAnnotations>
+      <appliedProfile href="../Perfil/PATL.profile.uml#_z9yxcEFZEeWziNZjrqudQg"/>
+    </profileApplication>
+  </uml:Package>
+  <PATL:Unit xmi:id="_McakgCr3EeeCNLEmAjzy4w" base_Package="_Ma1QICr3EeeCNLEmAjzy4w"/>
+  <PATL:Module xmi:id="_McakhCr3EeeCNLEmAjzy4w" base_Class="_Ma13MCr3EeeCNLEmAjzy4w"/>
+  <PATL:OclModel xmi:id="_McbLkCr3EeeCNLEmAjzy4w" base_Class="_Ma2eQCr3EeeCNLEmAjzy4w"/>
+  <PATL:OclModel xmi:id="_McbLkSr3EeeCNLEmAjzy4w" base_Class="_Ma2eQSr3EeeCNLEmAjzy4w"/>
+  <PATL:OclModel xmi:id="_McbLkir3EeeCNLEmAjzy4w" base_Class="_Ma2eSCr3EeeCNLEmAjzy4w"/>
+  <PATL:OclModel xmi:id="_McbLkyr3EeeCNLEmAjzy4w" base_Class="_Ma2eSSr3EeeCNLEmAjzy4w"/>
+  <PATL:MatchedRule xmi:id="_McbyoCr3EeeCNLEmAjzy4w" base_Class="_Ma3FUCr3EeeCNLEmAjzy4w"/>
+  <PATL:InPattern xmi:id="_McbyoSr3EeeCNLEmAjzy4w" base_Class="_Ma3FUSr3EeeCNLEmAjzy4w"/>
+  <PATL:OutPattern xmi:id="_Mcbyoir3EeeCNLEmAjzy4w" base_Class="_Ma3FUir3EeeCNLEmAjzy4w"/>
+  <PATL:InPatternElement xmi:id="_MccZsyr3EeeCNLEmAjzy4w" base_Class="_Ma3sYCr3EeeCNLEmAjzy4w"/>
+  <PATL:SingleOutPatternElement xmi:id="_MccZtyr3EeeCNLEmAjzy4w" base_Class="_Ma4TcCr3EeeCNLEmAjzy4w"/>
+  <PATL:Biding xmi:id="_McdAwyr3EeeCNLEmAjzy4w" base_Class="_Ma6IoCr3EeeCNLEmAjzy4w"/>
+</xmi:XMI>

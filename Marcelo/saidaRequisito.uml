@@ -1,0 +1,242 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xmi:XMI xmi:version="2.1" xmlns:xmi="http://schema.omg.org/spec/XMI/2.1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:MTPspec="http:///schemas/MTPspec/_jZ1UYCqoEeenV5XMBsEPwQ/17" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:uml="http://www.eclipse.org/uml2/3.0.0/UML" xsi:schemaLocation="http:///schemas/MTPspec/_jZ1UYCqoEeenV5XMBsEPwQ/17 ../Perfil/MTPspec.profile.uml#_jZ1UYSqoEeenV5XMBsEPwQ">
+  <uml:Package xmi:id="_wm5awL8VEeeSqYIwuAoOSg" name="default">
+    <packagedElement xmi:type="uml:Association" xmi:id="_wnCkub8VEeeSqYIwuAoOSg" memberEnd="_wnCkur8VEeeSqYIwuAoOSg _wnCku78VEeeSqYIwuAoOSg">
+      <ownedEnd xmi:id="_wnCkur8VEeeSqYIwuAoOSg" name="src" type="_wnCksL8VEeeSqYIwuAoOSg" association="_wnCkub8VEeeSqYIwuAoOSg"/>
+      <ownedEnd xmi:id="_wnCku78VEeeSqYIwuAoOSg" name="dst" type="_wnCktL8VEeeSqYIwuAoOSg" association="_wnCkub8VEeeSqYIwuAoOSg"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Class" xmi:id="_wnCkvL8VEeeSqYIwuAoOSg" name="Gerar Sistema ">
+      <ownedAttribute xmi:id="_wnCkvb8VEeeSqYIwuAoOSg" name="description">
+        <defaultValue xmi:type="uml:LiteralString" xmi:id="_wYgHgL8XEeeSqYIwuAoOSg" value="Cria o sistema"/>
+      </ownedAttribute>
+      <ownedAttribute xmi:id="_wnCkvr8VEeeSqYIwuAoOSg" name="type">
+        <defaultValue xmi:type="uml:LiteralString" xmi:id="_wqBnRr8VEeeSqYIwuAoOSg" value="functional"/>
+      </ownedAttribute>
+      <ownedAttribute xmi:id="_wnCkv78VEeeSqYIwuAoOSg" name="priority">
+        <defaultValue xmi:type="uml:LiteralString" xmi:id="_wqBnR78VEeeSqYIwuAoOSg" value="0"/>
+      </ownedAttribute>
+      <ownedAttribute xmi:id="_wnCkwL8VEeeSqYIwuAoOSg" name="release">
+        <defaultValue xmi:type="uml:LiteralString" xmi:id="_wqBnSL8VEeeSqYIwuAoOSg" value="1"/>
+      </ownedAttribute>
+      <ownedAttribute xmi:id="_wnCkwb8VEeeSqYIwuAoOSg" name="verificationCriteria"/>
+      <ownedAttribute xmi:id="_wnCkwr8VEeeSqYIwuAoOSg" name="domainRastreability"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Class" xmi:id="_wnCkw78VEeeSqYIwuAoOSg" name="Gerar Camada">
+      <ownedAttribute xmi:id="_wnCkxL8VEeeSqYIwuAoOSg" name="description">
+        <defaultValue xmi:type="uml:LiteralString" xmi:id="_zmbcEL8XEeeSqYIwuAoOSg" value="Gera camadas do sistema"/>
+      </ownedAttribute>
+      <ownedAttribute xmi:id="_wnCkxb8VEeeSqYIwuAoOSg" name="type">
+        <defaultValue xmi:type="uml:LiteralString" xmi:id="_wqBnSr8VEeeSqYIwuAoOSg" value="functional"/>
+      </ownedAttribute>
+      <ownedAttribute xmi:id="_wnCkxr8VEeeSqYIwuAoOSg" name="priority">
+        <defaultValue xmi:type="uml:LiteralString" xmi:id="_wqBnS78VEeeSqYIwuAoOSg" value="0"/>
+      </ownedAttribute>
+      <ownedAttribute xmi:id="_wnCkx78VEeeSqYIwuAoOSg" name="release">
+        <defaultValue xmi:type="uml:LiteralString" xmi:id="_wqBnTL8VEeeSqYIwuAoOSg" value="1"/>
+      </ownedAttribute>
+      <ownedAttribute xmi:id="_wnCkyL8VEeeSqYIwuAoOSg" name="verificationCriteria"/>
+      <ownedAttribute xmi:id="_wnCkyb8VEeeSqYIwuAoOSg" name="domainRastreability"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Class" xmi:id="_wnCkyr8VEeeSqYIwuAoOSg" name="Gerar Elemento">
+      <ownedAttribute xmi:id="_wnCky78VEeeSqYIwuAoOSg" name="description">
+        <defaultValue xmi:type="uml:LiteralString" xmi:id="_Y089oL8XEeeSqYIwuAoOSg" value="Cria elementos do sistema"/>
+      </ownedAttribute>
+      <ownedAttribute xmi:id="_wnCkzL8VEeeSqYIwuAoOSg" name="type">
+        <defaultValue xmi:type="uml:LiteralString" xmi:id="_wqBnTr8VEeeSqYIwuAoOSg" value="functional"/>
+      </ownedAttribute>
+      <ownedAttribute xmi:id="_wnCkzb8VEeeSqYIwuAoOSg" name="priority">
+        <defaultValue xmi:type="uml:LiteralString" xmi:id="_wqBnT78VEeeSqYIwuAoOSg" value="0"/>
+      </ownedAttribute>
+      <ownedAttribute xmi:id="_wnCkzr8VEeeSqYIwuAoOSg" name="release">
+        <defaultValue xmi:type="uml:LiteralString" xmi:id="_wqBnUL8VEeeSqYIwuAoOSg" value="1"/>
+      </ownedAttribute>
+      <ownedAttribute xmi:id="_wnCkz78VEeeSqYIwuAoOSg" name="verificationCriteria"/>
+      <ownedAttribute xmi:id="_wnCk0L8VEeeSqYIwuAoOSg" name="domainRastreability"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Class" xmi:id="_wnCk0b8VEeeSqYIwuAoOSg" name="GeraAtributo">
+      <ownedAttribute xmi:id="_wnCk0r8VEeeSqYIwuAoOSg" name="description">
+        <defaultValue xmi:type="uml:LiteralString" xmi:id="_t7TFQL8XEeeSqYIwuAoOSg" value="Gera atributo do sistema"/>
+      </ownedAttribute>
+      <ownedAttribute xmi:id="_wnCk078VEeeSqYIwuAoOSg" name="type">
+        <defaultValue xmi:type="uml:LiteralString" xmi:id="_wqBnUr8VEeeSqYIwuAoOSg" value="functional"/>
+      </ownedAttribute>
+      <ownedAttribute xmi:id="_wnCk1L8VEeeSqYIwuAoOSg" name="priority">
+        <defaultValue xmi:type="uml:LiteralString" xmi:id="_wqBnU78VEeeSqYIwuAoOSg" value="0"/>
+      </ownedAttribute>
+      <ownedAttribute xmi:id="_wnCk1b8VEeeSqYIwuAoOSg" name="release">
+        <defaultValue xmi:type="uml:LiteralString" xmi:id="_wqBnVL8VEeeSqYIwuAoOSg" value="1"/>
+      </ownedAttribute>
+      <ownedAttribute xmi:id="_wnCk1r8VEeeSqYIwuAoOSg" name="verificationCriteria"/>
+      <ownedAttribute xmi:id="_wnCk178VEeeSqYIwuAoOSg" name="domainRastreability"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Class" xmi:id="_wnCktL8VEeeSqYIwuAoOSg" name="Metamodelo">
+      <ownedAttribute xmi:id="_wnCktb8VEeeSqYIwuAoOSg" name="file">
+        <defaultValue xmi:type="uml:LiteralString" xmi:id="_9QHdsL8YEeeSqYIwuAoOSg" value="MMProjeto"/>
+      </ownedAttribute>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Association" xmi:id="_wnCktr8VEeeSqYIwuAoOSg" memberEnd="_wnCkt78VEeeSqYIwuAoOSg _wnCkuL8VEeeSqYIwuAoOSg">
+      <ownedEnd xmi:id="_wnCkt78VEeeSqYIwuAoOSg" name="src" type="_wnCksL8VEeeSqYIwuAoOSg" association="_wnCktr8VEeeSqYIwuAoOSg"/>
+      <ownedEnd xmi:id="_wnCkuL8VEeeSqYIwuAoOSg" name="dst" type="_wnCksr8VEeeSqYIwuAoOSg" association="_wnCktr8VEeeSqYIwuAoOSg"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Association" xmi:id="_wnClC78VEeeSqYIwuAoOSg" memberEnd="_wnClCb8VEeeSqYIwuAoOSg _wnClCr8VEeeSqYIwuAoOSg">
+      <ownedEnd xmi:id="_wnClCb8VEeeSqYIwuAoOSg" name="src" type="_wnCksL8VEeeSqYIwuAoOSg" association="_wnClC78VEeeSqYIwuAoOSg"/>
+      <ownedEnd xmi:id="_wnClCr8VEeeSqYIwuAoOSg" name="dst" type="_wnCkvL8VEeeSqYIwuAoOSg" aggregation="composite" association="_wnClC78VEeeSqYIwuAoOSg"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Association" xmi:id="_wnClDr8VEeeSqYIwuAoOSg" memberEnd="_wnClDL8VEeeSqYIwuAoOSg _wnClDb8VEeeSqYIwuAoOSg">
+      <ownedEnd xmi:id="_wnClDL8VEeeSqYIwuAoOSg" name="src" type="_wnCksL8VEeeSqYIwuAoOSg" association="_wnClDr8VEeeSqYIwuAoOSg"/>
+      <ownedEnd xmi:id="_wnClDb8VEeeSqYIwuAoOSg" name="dst" type="_wnCkw78VEeeSqYIwuAoOSg" aggregation="composite" association="_wnClDr8VEeeSqYIwuAoOSg"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Association" xmi:id="_wnClEb8VEeeSqYIwuAoOSg" memberEnd="_wnClD78VEeeSqYIwuAoOSg _wnClEL8VEeeSqYIwuAoOSg">
+      <ownedEnd xmi:id="_wnClD78VEeeSqYIwuAoOSg" name="src" type="_wnCksL8VEeeSqYIwuAoOSg" association="_wnClEb8VEeeSqYIwuAoOSg"/>
+      <ownedEnd xmi:id="_wnClEL8VEeeSqYIwuAoOSg" name="dst" type="_wnCkyr8VEeeSqYIwuAoOSg" aggregation="composite" association="_wnClEb8VEeeSqYIwuAoOSg"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Association" xmi:id="_wnClFL8VEeeSqYIwuAoOSg" memberEnd="_wnClEr8VEeeSqYIwuAoOSg _wnClE78VEeeSqYIwuAoOSg">
+      <ownedEnd xmi:id="_wnClEr8VEeeSqYIwuAoOSg" name="src" type="_wnCksL8VEeeSqYIwuAoOSg" association="_wnClFL8VEeeSqYIwuAoOSg"/>
+      <ownedEnd xmi:id="_wnClE78VEeeSqYIwuAoOSg" name="dst" type="_wnCk0b8VEeeSqYIwuAoOSg" aggregation="composite" association="_wnClFL8VEeeSqYIwuAoOSg"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Class" xmi:id="_wnCksL8VEeeSqYIwuAoOSg" name="ModelModel2Model">
+      <ownedAttribute xmi:id="_wnCksb8VEeeSqYIwuAoOSg" name="description">
+        <defaultValue xmi:type="uml:LiteralString" xmi:id="_vXzU8L8WEeeSqYIwuAoOSg" value="Trasformação de um modelo conceitual em conformidade com o metamodelo MMConceitual, em um modelo de projeto, em conformidade o metamodelo MMProjeto"/>
+      </ownedAttribute>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Class" xmi:id="_wnCk2L8VEeeSqYIwuAoOSg" name="EleInterface">
+      <generalization xmi:id="_wnClFb8VEeeSqYIwuAoOSg" general="_wnCkyr8VEeeSqYIwuAoOSg"/>
+      <ownedAttribute xmi:id="_wnCk2b8VEeeSqYIwuAoOSg" name="description">
+        <defaultValue xmi:type="uml:LiteralString" xmi:id="_cpx6IL8XEeeSqYIwuAoOSg" value="Cria elemento do tipo interface"/>
+      </ownedAttribute>
+      <ownedAttribute xmi:id="_wnCk2r8VEeeSqYIwuAoOSg" name="type">
+        <defaultValue xmi:type="uml:LiteralString" xmi:id="_wqBnVr8VEeeSqYIwuAoOSg" value="functional"/>
+      </ownedAttribute>
+      <ownedAttribute xmi:id="_wnCk278VEeeSqYIwuAoOSg" name="priority"/>
+      <ownedAttribute xmi:id="_wnCk3L8VEeeSqYIwuAoOSg" name="release">
+        <defaultValue xmi:type="uml:LiteralString" xmi:id="_wqBnV78VEeeSqYIwuAoOSg" value="1"/>
+      </ownedAttribute>
+      <ownedAttribute xmi:id="_wnCk3b8VEeeSqYIwuAoOSg" name="verificationCriteria"/>
+      <ownedAttribute xmi:id="_wnCk3r8VEeeSqYIwuAoOSg" name="domainRastreability"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Class" xmi:id="_wnCk378VEeeSqYIwuAoOSg" name="EleControle">
+      <generalization xmi:id="_wnClFr8VEeeSqYIwuAoOSg" general="_wnCkyr8VEeeSqYIwuAoOSg"/>
+      <ownedAttribute xmi:id="_wnCk4L8VEeeSqYIwuAoOSg" name="description">
+        <defaultValue xmi:type="uml:LiteralString" xmi:id="_gJlo4L8XEeeSqYIwuAoOSg" value="Cria elemento do tipo controle"/>
+      </ownedAttribute>
+      <ownedAttribute xmi:id="_wnCk4b8VEeeSqYIwuAoOSg" name="type">
+        <defaultValue xmi:type="uml:LiteralString" xmi:id="_wqBnWb8VEeeSqYIwuAoOSg" value="functional"/>
+      </ownedAttribute>
+      <ownedAttribute xmi:id="_wnCk4r8VEeeSqYIwuAoOSg" name="priority"/>
+      <ownedAttribute xmi:id="_wnCk478VEeeSqYIwuAoOSg" name="release">
+        <defaultValue xmi:type="uml:LiteralString" xmi:id="_wqBnWr8VEeeSqYIwuAoOSg" value="1"/>
+      </ownedAttribute>
+      <ownedAttribute xmi:id="_wnCk5L8VEeeSqYIwuAoOSg" name="verificationCriteria"/>
+      <ownedAttribute xmi:id="_wnCk5b8VEeeSqYIwuAoOSg" name="domainRastreability"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Class" xmi:id="_wnCk5r8VEeeSqYIwuAoOSg" name="ElePersistencia">
+      <generalization xmi:id="_wnClF78VEeeSqYIwuAoOSg" general="_wnCkyr8VEeeSqYIwuAoOSg"/>
+      <ownedAttribute xmi:id="_wnCk578VEeeSqYIwuAoOSg" name="description">
+        <defaultValue xmi:type="uml:LiteralString" xmi:id="_hZBQcL8XEeeSqYIwuAoOSg" value="Cria elemento do tipo persistencia"/>
+      </ownedAttribute>
+      <ownedAttribute xmi:id="_wnCk6L8VEeeSqYIwuAoOSg" name="type">
+        <defaultValue xmi:type="uml:LiteralString" xmi:id="_wqBnXL8VEeeSqYIwuAoOSg" value="functional"/>
+      </ownedAttribute>
+      <ownedAttribute xmi:id="_wnCk6b8VEeeSqYIwuAoOSg" name="priority"/>
+      <ownedAttribute xmi:id="_wnCk6r8VEeeSqYIwuAoOSg" name="release">
+        <defaultValue xmi:type="uml:LiteralString" xmi:id="_wqBnXb8VEeeSqYIwuAoOSg" value="1"/>
+      </ownedAttribute>
+      <ownedAttribute xmi:id="_wnCk678VEeeSqYIwuAoOSg" name="verificationCriteria"/>
+      <ownedAttribute xmi:id="_wnCk7L8VEeeSqYIwuAoOSg" name="domainRastreability"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Class" xmi:id="_wnCk7b8VEeeSqYIwuAoOSg" name="EleRegraNegocio">
+      <generalization xmi:id="_wnClGL8VEeeSqYIwuAoOSg" general="_wnCkyr8VEeeSqYIwuAoOSg"/>
+      <ownedAttribute xmi:id="_wnCk7r8VEeeSqYIwuAoOSg" name="description">
+        <defaultValue xmi:type="uml:LiteralString" xmi:id="_qtz1kL8XEeeSqYIwuAoOSg" value="Cria elemento do tipo regras de negocio"/>
+      </ownedAttribute>
+      <ownedAttribute xmi:id="_wnCk778VEeeSqYIwuAoOSg" name="type">
+        <defaultValue xmi:type="uml:LiteralString" xmi:id="_wqBnX78VEeeSqYIwuAoOSg" value="functional"/>
+      </ownedAttribute>
+      <ownedAttribute xmi:id="_wnCk8L8VEeeSqYIwuAoOSg" name="priority"/>
+      <ownedAttribute xmi:id="_wnCk8b8VEeeSqYIwuAoOSg" name="release">
+        <defaultValue xmi:type="uml:LiteralString" xmi:id="_wqBnYL8VEeeSqYIwuAoOSg" value="1"/>
+      </ownedAttribute>
+      <ownedAttribute xmi:id="_wnCk8r8VEeeSqYIwuAoOSg" name="verificationCriteria"/>
+      <ownedAttribute xmi:id="_wnCk878VEeeSqYIwuAoOSg" name="domainRastreability"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Class" xmi:id="_wnCk9L8VEeeSqYIwuAoOSg" name="Model">
+      <generalization xmi:id="_wnClGb8VEeeSqYIwuAoOSg" general="_wnCkw78VEeeSqYIwuAoOSg"/>
+      <ownedAttribute xmi:id="_wnCk9b8VEeeSqYIwuAoOSg" name="description">
+        <defaultValue xmi:type="uml:LiteralString" xmi:id="_1pangL8XEeeSqYIwuAoOSg" value="Gera camada do tipo model"/>
+      </ownedAttribute>
+      <ownedAttribute xmi:id="_wnCk9r8VEeeSqYIwuAoOSg" name="type">
+        <defaultValue xmi:type="uml:LiteralString" xmi:id="_wqBnYr8VEeeSqYIwuAoOSg" value="functional"/>
+      </ownedAttribute>
+      <ownedAttribute xmi:id="_wnCk978VEeeSqYIwuAoOSg" name="priority"/>
+      <ownedAttribute xmi:id="_wnCk-L8VEeeSqYIwuAoOSg" name="release">
+        <defaultValue xmi:type="uml:LiteralString" xmi:id="_wqBnY78VEeeSqYIwuAoOSg" value="1"/>
+      </ownedAttribute>
+      <ownedAttribute xmi:id="_wnCk-b8VEeeSqYIwuAoOSg" name="verificationCriteria"/>
+      <ownedAttribute xmi:id="_wnCk-r8VEeeSqYIwuAoOSg" name="domainRastreability"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Class" xmi:id="_wnCk-78VEeeSqYIwuAoOSg" name="View">
+      <generalization xmi:id="_wnClGr8VEeeSqYIwuAoOSg" general="_wnCkw78VEeeSqYIwuAoOSg"/>
+      <ownedAttribute xmi:id="_wnCk_L8VEeeSqYIwuAoOSg" name="description">
+        <defaultValue xmi:type="uml:LiteralString" xmi:id="_8MSeoL8XEeeSqYIwuAoOSg" value="Gera camada do tipo view"/>
+      </ownedAttribute>
+      <ownedAttribute xmi:id="_wnCk_b8VEeeSqYIwuAoOSg" name="type">
+        <defaultValue xmi:type="uml:LiteralString" xmi:id="_wqBnZb8VEeeSqYIwuAoOSg" value="functional"/>
+      </ownedAttribute>
+      <ownedAttribute xmi:id="_wnCk_r8VEeeSqYIwuAoOSg" name="priority"/>
+      <ownedAttribute xmi:id="_wnCk_78VEeeSqYIwuAoOSg" name="release">
+        <defaultValue xmi:type="uml:LiteralString" xmi:id="_wqBnZr8VEeeSqYIwuAoOSg" value="1"/>
+      </ownedAttribute>
+      <ownedAttribute xmi:id="_wnClAL8VEeeSqYIwuAoOSg" name="verificationCriteria"/>
+      <ownedAttribute xmi:id="_wnClAb8VEeeSqYIwuAoOSg" name="domainRastreability"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Class" xmi:id="_wnClAr8VEeeSqYIwuAoOSg" name="Controller">
+      <generalization xmi:id="_wnClG78VEeeSqYIwuAoOSg" general="_wnCkw78VEeeSqYIwuAoOSg"/>
+      <ownedAttribute xmi:id="_wnClA78VEeeSqYIwuAoOSg" name="description">
+        <defaultValue xmi:type="uml:LiteralString" xmi:id="_AbVR8L8YEeeSqYIwuAoOSg" value="Gera camada do tipo controller"/>
+      </ownedAttribute>
+      <ownedAttribute xmi:id="_wnClBL8VEeeSqYIwuAoOSg" name="type">
+        <defaultValue xmi:type="uml:LiteralString" xmi:id="_wqLYQb8VEeeSqYIwuAoOSg" value="functional"/>
+      </ownedAttribute>
+      <ownedAttribute xmi:id="_wnClBb8VEeeSqYIwuAoOSg" name="priority"/>
+      <ownedAttribute xmi:id="_wnClBr8VEeeSqYIwuAoOSg" name="release">
+        <defaultValue xmi:type="uml:LiteralString" xmi:id="_wqLYQr8VEeeSqYIwuAoOSg" value="1"/>
+      </ownedAttribute>
+      <ownedAttribute xmi:id="_wnClB78VEeeSqYIwuAoOSg" name="verificationCriteria"/>
+      <ownedAttribute xmi:id="_wnClCL8VEeeSqYIwuAoOSg" name="domainRastreability"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Class" xmi:id="_wnCksr8VEeeSqYIwuAoOSg" name="Metamodelo">
+      <ownedAttribute xmi:id="_wnCks78VEeeSqYIwuAoOSg" name="file">
+        <defaultValue xmi:type="uml:LiteralString" xmi:id="_idesML8ZEeeSqYIwuAoOSg" value="MMConceitual"/>
+      </ownedAttribute>
+    </packagedElement>
+    <profileApplication xmi:id="_wnClHr8VEeeSqYIwuAoOSg">
+      <eAnnotations xmi:id="_wnClH78VEeeSqYIwuAoOSg" source="http://www.eclipse.org/uml2/2.0.0/UML">
+        <references xmi:type="ecore:EPackage" href="../Perfil/MTPspec.profile.uml#_jZ1UYSqoEeenV5XMBsEPwQ"/>
+      </eAnnotations>
+      <appliedProfile href="../Perfil/MTPspec.profile.uml#_0smawEGyEeWPcaZ390I2pA"/>
+    </profileApplication>
+  </uml:Package>
+  <uml:Generalization xmi:id="_wnClHL8VEeeSqYIwuAoOSg"/>
+  <uml:Generalization xmi:id="_wnClHb8VEeeSqYIwuAoOSg"/>
+  <MTPspec:TransPack xmi:id="_wqBnQL8VEeeSqYIwuAoOSg" base_Package="_wm5awL8VEeeSqYIwuAoOSg"/>
+  <MTPspec:TransSpec xmi:id="_wqBnQb8VEeeSqYIwuAoOSg" base_Class="_wnCksL8VEeeSqYIwuAoOSg"/>
+  <MTPspec:SourceMM xmi:id="_wqBnQr8VEeeSqYIwuAoOSg" base_Class="_wnCksr8VEeeSqYIwuAoOSg"/>
+  <MTPspec:TargetMM xmi:id="_wqBnQ78VEeeSqYIwuAoOSg" base_Class="_wnCktL8VEeeSqYIwuAoOSg"/>
+  <MTPspec:SourceMM xmi:id="_wqBnRL8VEeeSqYIwuAoOSg" base_Association="_wnCktr8VEeeSqYIwuAoOSg"/>
+  <MTPspec:TargetMM xmi:id="_wqBnRb8VEeeSqYIwuAoOSg" base_Association="_wnCkub8VEeeSqYIwuAoOSg"/>
+  <MTPspec:Req xmi:id="_wqBnSb8VEeeSqYIwuAoOSg" base_Class="_wnCkvL8VEeeSqYIwuAoOSg"/>
+  <MTPspec:Req xmi:id="_wqBnTb8VEeeSqYIwuAoOSg" base_Class="_wnCkw78VEeeSqYIwuAoOSg"/>
+  <MTPspec:Req xmi:id="_wqBnUb8VEeeSqYIwuAoOSg" base_Class="_wnCkyr8VEeeSqYIwuAoOSg"/>
+  <MTPspec:Req xmi:id="_wqBnVb8VEeeSqYIwuAoOSg" base_Class="_wnCk0b8VEeeSqYIwuAoOSg"/>
+  <MTPspec:RefReq xmi:id="_wqBnWL8VEeeSqYIwuAoOSg" base_Class="_wnCk2L8VEeeSqYIwuAoOSg"/>
+  <MTPspec:RefReq xmi:id="_wqBnW78VEeeSqYIwuAoOSg" base_Class="_wnCk378VEeeSqYIwuAoOSg"/>
+  <MTPspec:RefReq xmi:id="_wqBnXr8VEeeSqYIwuAoOSg" base_Class="_wnCk5r8VEeeSqYIwuAoOSg"/>
+  <MTPspec:RefReq xmi:id="_wqBnYb8VEeeSqYIwuAoOSg" base_Class="_wnCk7b8VEeeSqYIwuAoOSg"/>
+  <MTPspec:RefReq xmi:id="_wqBnZL8VEeeSqYIwuAoOSg" base_Class="_wnCk9L8VEeeSqYIwuAoOSg"/>
+  <MTPspec:RefReq xmi:id="_wqLYQL8VEeeSqYIwuAoOSg" base_Class="_wnCk-78VEeeSqYIwuAoOSg"/>
+  <MTPspec:RefReq xmi:id="_wqLYQ78VEeeSqYIwuAoOSg" base_Class="_wnClAr8VEeeSqYIwuAoOSg"/>
+  <MTPspec:ReqTransf xmi:id="_wqLYRL8VEeeSqYIwuAoOSg" base_Association="_wnClC78VEeeSqYIwuAoOSg"/>
+  <MTPspec:ReqTransf xmi:id="_wqLYRb8VEeeSqYIwuAoOSg" base_Association="_wnClDr8VEeeSqYIwuAoOSg"/>
+  <MTPspec:ReqTransf xmi:id="_wqLYRr8VEeeSqYIwuAoOSg" base_Association="_wnClEb8VEeeSqYIwuAoOSg"/>
+  <MTPspec:ReqTransf xmi:id="_wqLYR78VEeeSqYIwuAoOSg" base_Association="_wnClFL8VEeeSqYIwuAoOSg"/>
+</xmi:XMI>

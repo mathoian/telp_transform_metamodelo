@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<xmi:XMI xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns="MMConceitual">
+	<Negocio nome="Loja">
+		<entidadesNegocio nome="Cliente">
+		  <dados nome="cpf" tipo="String"/>
+		  <dados nome="nome" tipo="String"/>
+		  <dados nome="email" tipo="String"/>
+		  <dados nome="telefone" tipo="String"/>
+		</entidadesNegocio>
+		<entidadesNegocio nome="Compra">
+		  <dados nome="notaFiscal" tipo="int"/>
+		  <dados nome="data" tipo="date"/>
+		  <dados nome="comprador" tipo="Cliente"/>
+		  <dados nome="total" tipo="float"/>
+		  <dados nome="produto" tipo="Produto"/>
+		</entidadesNegocio>
+		<entidadesNegocio nome="Produto">
+		  <dados nome="codico" tipo="int"/>
+		  <dados nome="nomeDoProduto" tipo="String"/>
+		  <dados nome="precoVenda" tipo="float"/>
+		</entidadesNegocio>
+	</Negocio>
+</xmi:XMI>

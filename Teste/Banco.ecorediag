@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<notation:Diagram xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:notation="http://www.eclipse.org/gmf/runtime/1.0.2/notation" xmi:id="_qJNmkCrhEee3A6rIaQSrsQ" type="EcoreTools" measurementUnit="Pixel">
+  <children xmi:type="notation:Node" xmi:id="_qJQp4CrhEee3A6rIaQSrsQ" type="1001">
+    <children xmi:type="notation:Node" xmi:id="_qJQp4yrhEee3A6rIaQSrsQ" type="4001"/>
+    <children xmi:type="notation:Node" xmi:id="_qJRQ8CrhEee3A6rIaQSrsQ" type="5001">
+      <children xmi:type="notation:Node" xmi:id="_qJRQ-CrhEee3A6rIaQSrsQ" type="2001">
+        <element xmi:type="ecore:EAttribute" href="Banco.ecore#//Tabela/nome"/>
+        <layoutConstraint xmi:type="notation:Location" xmi:id="_qJRQ-SrhEee3A6rIaQSrsQ"/>
+      </children>
+      <styles xmi:type="notation:DrawerStyle" xmi:id="_qJRQ8SrhEee3A6rIaQSrsQ"/>
+      <styles xmi:type="notation:SortingStyle" xmi:id="_qJRQ8irhEee3A6rIaQSrsQ"/>
+      <styles xmi:type="notation:FilteringStyle" xmi:id="_qJRQ8yrhEee3A6rIaQSrsQ"/>
+    </children>
+    <children xmi:type="notation:Node" xmi:id="_qJRQ9CrhEee3A6rIaQSrsQ" type="5002">
+      <styles xmi:type="notation:DrawerStyle" xmi:id="_qJRQ9SrhEee3A6rIaQSrsQ"/>
+      <styles xmi:type="notation:SortingStyle" xmi:id="_qJRQ9irhEee3A6rIaQSrsQ"/>
+      <styles xmi:type="notation:FilteringStyle" xmi:id="_qJRQ9yrhEee3A6rIaQSrsQ"/>
+    </children>
+    <styles xmi:type="notation:ShapeStyle" xmi:id="_qJQp4SrhEee3A6rIaQSrsQ" fontColor="4210752" fontName="Segoe UI" fontHeight="10" fillColor="13761016" lineColor="8421504"/>
+    <element xmi:type="ecore:EClass" href="Banco.ecore#//Tabela"/>
+    <layoutConstraint xmi:type="notation:Bounds" xmi:id="_qJQp4irhEee3A6rIaQSrsQ" x="70" y="100"/>
+  </children>
+  <children xmi:type="notation:Node" xmi:id="_qJRQ-irhEee3A6rIaQSrsQ" type="1001">
+    <children xmi:type="notation:Node" xmi:id="_qJRQ_SrhEee3A6rIaQSrsQ" type="4001"/>
+    <children xmi:type="notation:Node" xmi:id="_qJRQ_irhEee3A6rIaQSrsQ" type="5001">
+      <children xmi:type="notation:Node" xmi:id="_qJRRBirhEee3A6rIaQSrsQ" type="2001">
+        <element xmi:type="ecore:EAttribute" href="Banco.ecore#//Campo/nome"/>
+        <layoutConstraint xmi:type="notation:Location" xmi:id="_qJRRByrhEee3A6rIaQSrsQ"/>
+      </children>
+      <children xmi:type="notation:Node" xmi:id="_qJRRCCrhEee3A6rIaQSrsQ" type="2001">
+        <element xmi:type="ecore:EAttribute" href="Banco.ecore#//Campo/tipo"/>
+        <layoutConstraint xmi:type="notation:Location" xmi:id="_qJRRCSrhEee3A6rIaQSrsQ"/>
+      </children>
+      <styles xmi:type="notation:DrawerStyle" xmi:id="_qJRQ_yrhEee3A6rIaQSrsQ"/>
+      <styles xmi:type="notation:SortingStyle" xmi:id="_qJRRACrhEee3A6rIaQSrsQ"/>
+      <styles xmi:type="notation:FilteringStyle" xmi:id="_qJRRASrhEee3A6rIaQSrsQ"/>
+    </children>
+    <children xmi:type="notation:Node" xmi:id="_qJRRAirhEee3A6rIaQSrsQ" type="5002">
+      <styles xmi:type="notation:DrawerStyle" xmi:id="_qJRRAyrhEee3A6rIaQSrsQ"/>
+      <styles xmi:type="notation:SortingStyle" xmi:id="_qJRRBCrhEee3A6rIaQSrsQ"/>
+      <styles xmi:type="notation:FilteringStyle" xmi:id="_qJRRBSrhEee3A6rIaQSrsQ"/>
+    </children>
+    <styles xmi:type="notation:ShapeStyle" xmi:id="_qJRQ-yrhEee3A6rIaQSrsQ" fontColor="4210752" fontName="Segoe UI" fontHeight="10" fillColor="13761016" lineColor="8421504"/>
+    <element xmi:type="ecore:EClass" href="Banco.ecore#//Campo"/>
+    <layoutConstraint xmi:type="notation:Bounds" xmi:id="_qJRQ_CrhEee3A6rIaQSrsQ" x="160" y="195"/>
+  </children>
+  <styles xmi:type="notation:DiagramStyle" xmi:id="_qJNmkSrhEee3A6rIaQSrsQ"/>
+  <element xmi:type="ecore:EPackage" href="Banco.ecore#/"/>
+  <edges xmi:type="notation:Edge" xmi:id="_qJR4ACrhEee3A6rIaQSrsQ" type="3002" source="_qJQp4CrhEee3A6rIaQSrsQ" target="_qJRQ-irhEee3A6rIaQSrsQ">
+    <children xmi:type="notation:Node" xmi:id="_qJR4BCrhEee3A6rIaQSrsQ" type="4011">
+      <layoutConstraint xmi:type="notation:Location" xmi:id="_qJR4BSrhEee3A6rIaQSrsQ" x="6" y="-31"/>
+    </children>
+    <children xmi:type="notation:Node" xmi:id="_qJR4BirhEee3A6rIaQSrsQ" type="4012">
+      <layoutConstraint xmi:type="notation:Location" xmi:id="_qJR4ByrhEee3A6rIaQSrsQ" x="18" y="-66"/>
+    </children>
+    <styles xmi:type="notation:ConnectorStyle" xmi:id="_qJR4ASrhEee3A6rIaQSrsQ" lineColor="4210752"/>
+    <styles xmi:type="notation:FontStyle" xmi:id="_qJR4AirhEee3A6rIaQSrsQ" fontColor="4210752" fontName="Segoe UI" fontHeight="10"/>
+    <element xmi:type="ecore:EReference" href="Banco.ecore#//Tabela/campos"/>
+    <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_qJR4AyrhEee3A6rIaQSrsQ" points="[8, 49, -2, -177]$[18, 105, 8, -121]$[14, 160, 4, -66]"/>
+    <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_qJaa4irhEee3A6rIaQSrsQ" id="(0.5,0.0)"/>
+    <targetAnchor xmi:type="notation:IdentityAnchor" xmi:id="_qJaa4yrhEee3A6rIaQSrsQ" id="(0.5,1.0)"/>
+  </edges>
+  <edges xmi:type="notation:Edge" xmi:id="_qJR4CCrhEee3A6rIaQSrsQ" type="3002" source="_qJRQ-irhEee3A6rIaQSrsQ" target="_qJQp4CrhEee3A6rIaQSrsQ">
+    <children xmi:type="notation:Node" xmi:id="_qJR4DCrhEee3A6rIaQSrsQ" type="4011">
+      <layoutConstraint xmi:type="notation:Location" xmi:id="_qJR4DSrhEee3A6rIaQSrsQ" x="14" y="-28"/>
+    </children>
+    <children xmi:type="notation:Node" xmi:id="_qJR4DirhEee3A6rIaQSrsQ" type="4012">
+      <layoutConstraint xmi:type="notation:Location" xmi:id="_qJR4DyrhEee3A6rIaQSrsQ" x="30" y="-49"/>
+    </children>
+    <styles xmi:type="notation:ConnectorStyle" xmi:id="_qJR4CSrhEee3A6rIaQSrsQ" lineColor="4210752"/>
+    <styles xmi:type="notation:FontStyle" xmi:id="_qJR4CirhEee3A6rIaQSrsQ" fontColor="4210752" fontName="Segoe UI" fontHeight="10"/>
+    <element xmi:type="ecore:EReference" href="Banco.ecore#//Campo/pai"/>
+    <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_qJR4CyrhEee3A6rIaQSrsQ" points="[4, -66, 14, 160]$[8, -121, 18, 105]$[-2, -177, 8, 49]"/>
+    <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_rWtUcCrhEee3A6rIaQSrsQ" id="(0.5,1.0)"/>
+    <targetAnchor xmi:type="notation:IdentityAnchor" xmi:id="_rWtUcSrhEee3A6rIaQSrsQ" id="(0.5,0.0)"/>
+  </edges>
+</notation:Diagram>

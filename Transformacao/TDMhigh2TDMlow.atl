@@ -1,0 +1,291 @@
+-- @atlcompiler atl2006
+module TDMhigh2TDMlow;
+create OUT:UML from IN:UML,MTPhighd:UML,MTPlowd:UML;
+
+
+helper context UML!Package def:isTransPack():Boolean = self.getAppliedStereotypes()->exists(c|c.name='TransPack');
+helper context UML!Class def:isM2MTransf():Boolean = self.getAppliedStereotypes()->exists(c|c.name='M2MTransf');
+helper context UML!Class def:isRelation():Boolean = self.getAppliedStereotypes()->exists(c|c.name='Relation');
+helper context UML!Class def:isSourceElem():Boolean = self.getAppliedStereotypes()->exists(c|c.name='SourceElem');
+helper context UML!Class def:isTargetElem():Boolean = self.getAppliedStereotypes()->exists(c|c.name='TargetElem');
+helper context UML!Association def:isInElem():Boolean = self.getAppliedStereotypes()->exists(c|c.name='inElem');
+helper context UML!Association def:isOutElem():Boolean = self.getAppliedStereotypes()->exists(c|c.name='outElem');
+helper context UML!Class def:isSourceMM():Boolean = self.getAppliedStereotypes()->exists(c|c.name='SourceMM');
+helper context UML!Class def:isTargetMM():Boolean = self.getAppliedStereotypes()->exists(c|c.name='TargetMM');
+helper context UML!Association def:isSourceMM():Boolean = self.getAppliedStereotypes()->exists(c|c.name='SourceMM');
+helper context UML!Association def:isTargetMM():Boolean = self.getAppliedStereotypes()->exists(c|c.name='TargetMM');
+
+--esse helper verifica se a classe destino da associação é a relation passada em 'pai' para incluir o elemento source no pacote desta rule
+helper context UML!Association def:isChild(pai:UML!Class):Boolean = self.ownedEnd->select(m|m.name='dst')->first().type=pai; 
+
+--esse helper verifica se a clsse origem da associacao é a relation passada em 'filho' para incluir o elemento target no pacote desta rule
+helper context UML!Association def:isFather(filho:UML!Class):Boolean = self.ownedEnd->select(m|m.name='src')->first().type=filho;
+
+--*** helpers para achar um perfil bseado no nome fisico e no nome logico. name: passa o nome do profile no pacote profile; profile: passa o nome que esta no IN, no caso MTPspec ***
+helper def : findProfile(name : String, profile : String): UML!Profile = UML!Profile.allInstancesFrom(profile)-> select(st| st.name = name)->first();
+--*** helper para achar um estereotipo em um perfil. name - nome do estereotipo profile - arquivo de entrada contendo o profile ***
+helper def : findStereotype(name : String, profile : String) : UML!Stereotype = UML!Stereotype.allInstancesFrom(profile)-> select(st| st.name = name)->first();
+
+lazy rule criarProperty {
+    from sProp : UML!Property (not sProp.oclIsUndefined())
+    to tProp : UML!Property(
+			name<-sProp.name,
+			default<-sProp.default
+	   	)
+}
+
+--regra principal. Cria um pacote representando todo o digrama. 
+rule diagram2diagram{
+	from s1:UML!Package (s1.isTransPack())
+	to   t1:UML!Package(
+		name<-s1.name,
+		packagedElement<-Set{
+		UML!Class.allInstancesFrom('IN')->select (x| x.isM2MTransf())->collect(e | thisModule.resolveTemp(e,'tM2M')),
+		UML!Class.allInstancesFrom('IN')->select (x| x.isRelation())-> collect(e | thisModule.resolveTemp(e,'tRuleClass')),
+		UML!Association.allInstancesFrom('IN')->select (x| x.isInElem())->collect(e | thisModule.resolveTemp(e,'tSE')),
+		UML!Association.allInstancesFrom('IN')->select (x| x.isInElem())->collect(e | thisModule.resolveTemp(e,'tAssocSE')),
+		UML!Class.allInstancesFrom('IN')->select (x| x.isSourceMM())->collect(e | thisModule.resolveTemp(e,'tSrcMM')),
+		UML!Class.allInstancesFrom('IN')->select (x| x.isSourceMM())->collect(e | thisModule.resolveTemp(e,'tAssocSMM_Transf')),
+		UML!Association.allInstancesFrom('IN')->select (x| x.isOutElem())->collect(e | thisModule.resolveTemp(e,'tTE')),
+		UML!Association.allInstancesFrom('IN')->select (x| x.isOutElem())->collect(e | thisModule.resolveTemp(e,'tAssocTE')),
+		UML!Association.allInstancesFrom('IN')->select (x| x.isOutElem())->collect(e | thisModule.resolveTemp(e,'tConfig')),
+		UML!Association.allInstancesFrom('IN')->select (x| x.isOutElem())->collect(e | thisModule.resolveTemp(e,'tConfigAssoc')),
+		UML!Class.allInstancesFrom('IN')->select (x| x.isTargetMM())->collect(e | thisModule.resolveTemp(e,'tTargMM')),
+		UML!Class.allInstancesFrom('IN')->select (x| x.isTargetMM())->collect(e | thisModule.resolveTemp(e,'tAssocTMM_Transf'))
+		}  
+		)
+    do{
+    	t1.applyProfile(thisModule.findProfile('MTPlowd','MTPlowd'));	
+    	t1.applyStereotype(thisModule.findStereotype('TransPack', 'MTPlowd'));
+    }
+}
+--cria um classe representando a transformação
+rule M2MTransf{
+	from sM2M:UML!Class (sM2M.isM2MTransf())
+	to   tM2M:UML!Class(
+		   name<-sM2M.name,
+		   ownedAttribute<-thisModule.criarProperty(sM2M.ownedAttribute->select(m|m.name='description')->first()))
+    do{
+    	tM2M.applyStereotype(thisModule.findStereotype('M2MTransf','MTPlowd'));
+    }
+	
+}
+
+--cria tambem um classe representando a Relation com os dados que vieram do highDesign
+rule Relation2Rule{
+	from s2:UML!Class (s2.isRelation())
+	to tRuleClass:UML!Class(
+			name<-s2.name,
+			ownedAttribute<-thisModule.criarProperty(s2.ownedAttribute->select (e|e.name='description')->first()),
+			ownedAttribute<-pIsRequired,
+			ownedAttribute<-pIsAbstract,
+			ownedAttribute<-pSuper
+		),
+	    pIsRequired:UML!Property(
+	    	name<-'isRequired',
+			default<-'true'),
+		pIsAbstract:UML!Property(
+	    	name<-'isAbstract',
+			default<-'false'),
+		pSuper:UML!Property(
+	    	name<-'super',
+			default<-'null')
+	do{
+    	
+    	tRuleClass.applyStereotype(thisModule.findStereotype('Rule', 'MTPlowd'));
+    }
+}
+
+rule associacao2SER{
+   from s5:UML!Association  (s5.isInElem())
+   using{
+   --pega o nome do sourceElement   	  
+   	   vNomeSE:String=s5.ownedEnd->select(m|m.name='src')->first().type.name;
+       vRegra:UML!Class=s5.ownedEnd->select(m|m.name='dst')->first().type;
+       --***Atenção essa forma nao esta boa pois so serve para 1 metaModelo de entrada
+       vMetaModel:UML!Class=UML!Class.allInstancesFrom('IN')->select (x| x.isSourceMM())->first();
+      
+   }
+   to   tSE:UML!Class(
+   	    name<-vNomeSE,
+		ownedAttribute<-tRef3,
+		ownedAttribute<-tType,
+		ownedAttribute<-tMeta),
+		tRef3:UML!Property(
+		 	name<-'ref',
+			default<-'se_'+vNomeSE),
+		tType:UML!Property(
+			name<-'type',
+			default<-vNomeSE
+			),
+		tMeta:UML!Property(
+			name<-'metamodel',
+			default<-vMetaModel.name),
+		tAssocSE:UML!Association(
+			ownedEnd<-origem,
+			ownedEnd<-destino),
+		origem:UML!Property(
+			name<-'src',
+			type<-thisModule.resolveTemp(vRegra,'tRuleClass')
+			),
+		destino:UML!Property(
+			name<-'dst',
+			type<-tSE)
+	do{
+    	tSE.applyStereotype(thisModule.findStereotype('SERule', 'MTPlowd'));
+    	tAssocSE.applyStereotype(thisModule.findStereotype('inElem', 'MTPlowd'));
+    }
+}
+
+rule associacao2TER{
+   from s6:UML!Association  (s6.isOutElem())
+   using{
+   --pega o nome do sourceElement   	  
+   	   vNomeTE:String=s6.ownedEnd->select(m|m.name='dst')->first().type.name;
+       vRegra:UML!Class=s6.ownedEnd->select(m|m.name='src')->first().type;
+   --***Atenção essa forma nao esta boa pois so serve para 1 metaModelo de saida
+       vMetaModel:UML!Class=UML!Class.allInstancesFrom('IN')->select (x| x.isTargetMM())->first();
+   }
+   to   tTE:UML!Class(
+   	    name<-vNomeTE,
+		ownedAttribute<-tRef4,
+		ownedAttribute<-tType,
+		ownedAttribute<-tMeta),
+		tRef4:UML!Property(
+		 	name<-'ref',
+			default<-'te_'+vNomeTE),
+		tType:UML!Property(
+			name<-'type',
+			default<-vNomeTE
+			),	
+		tMeta:UML!Property(
+			name<-'metamodel',
+			default<-vMetaModel.name),
+		tAssocTE:UML!Association(
+			ownedEnd<-origem,
+			ownedEnd<-destino),
+		origem:UML!Property(
+			name<-'src',
+			type<-thisModule.resolveTemp(vRegra,'tRuleClass')
+			),
+		destino:UML!Property(
+			name<-'dst',
+			type<-tTE),
+		tConfig:UML!Class(
+			name<-'Conf_'+vNomeTE,
+			ownedAttribute<-tProp,
+			ownedAttribute<-tExp),
+		tProp:UML!Property(
+			name<-'property',
+			default<-''),
+		tExp:UML!Property(
+			name<-'exp',
+			default<-''),
+		tConfigAssoc:UML!Association(
+			 ownedEnd<-origConf,
+			 ownedEnd<-destConf),
+		origConf:UML!Property(
+			 name<-'src',
+			 type<-tTE),
+		destConf:UML!Property(
+			 name<-'dst',
+			 type<-tConfig)
+	do{
+    	tTE.applyStereotype(thisModule.findStereotype('TERule', 'MTPlowd'));
+    	tAssocTE.applyStereotype(thisModule.findStereotype('outElem', 'MTPlowd'));
+    	tConfig.applyStereotype(thisModule.findStereotype('Config', 'MTPlowd'));
+    	tConfigAssoc.applyStereotype(thisModule.findStereotype('ConfigTE', 'MTPlowd'));
+    }
+}
+
+--Cria uma classe para representar o SourceMM
+rule CopySourceMM{
+	from s7:UML!Class (s7.isSourceMM())
+	using {
+		   vClassTransf:UML!Class=UML!Class.allInstancesFrom('IN')->select (x| x.isM2MTransf())->first();
+	      }
+	to   tSrcMM:UML!Class(
+		   name<-s7.name
+		),
+	     tAssocSMM_Transf:UML!Association(
+	     	ownedEnd<-origem,
+			ownedEnd<-destino
+	    ),
+		origem:UML!Property(
+			name<-'src',
+			type<-thisModule.resolveTemp(vClassTransf,'tM2M')),
+		destino:UML!Property(
+			name<-'dst',
+			type<-tSrcMM)
+	do{
+    	tSrcMM.applyStereotype(thisModule.findStereotype('SourceMM', 'MTPlowd'));
+    	tAssocSMM_Transf.applyStereotype(thisModule.findStereotype('SourceMM', 'MTPlowd'));
+    }
+}
+--Cria uma classe para representar o TargetMM
+rule CopyTargetMM{
+	from s8:UML!Class (s8.isTargetMM())
+	using {
+		   vClassTransf:UML!Class=UML!Class.allInstancesFrom('IN')->select (x| x.isM2MTransf())->first();
+	      }
+	to   tTargMM:UML!Class(
+		   name<-s8.name
+		),
+	     tAssocTMM_Transf:UML!Association(
+	     	ownedEnd<-origem,
+			ownedEnd<-destino
+	    ),
+		origem:UML!Property(
+			name<-'src',
+			type<-thisModule.resolveTemp(vClassTransf,'tM2M')),
+		destino:UML!Property(
+			name<-'dst',
+			type<-tTargMM)
+		
+	do{
+    	tTargMM.applyStereotype(thisModule.findStereotype('TargetMM', 'MTPlowd'));
+    	tAssocTMM_Transf.applyStereotype(thisModule.findStereotype('TargetMM', 'MTPlowd'));
+    }
+}
+
+--essa regra foi uma tentativa de pegar o metamodelo de origem para associar ao SERule
+--rule AssocMetaModel{
+--	from sAssocSMM:UML!Association (sAssocSMM.isSourceMM())
+--	to   tAssocSMM:UML!Association(
+--		   ownedEnd<-origem,
+--		   ownedEnd<-destino
+--		   ),
+--		  origem:UML!Property(
+--		  	name<-'src',
+--			type<-thisModule.resolveTemp(sAssocSMM.ownedEnd->select(e|e.name='src')->first().type,'tSrcMM')
+--			),
+--		  destino:UML!Property(
+--		  	name<-'dst'
+--			--********FALTA ISSO ********* e alterar a transf que gera ATL model para pegar o metamodelos
+--			--type<-thisModule.resolveTemp(sAssocSMM.ownedEnd->select(e|e.name='dst')->first().type,'tSE')
+--			)
+--	
+--	do{
+ --   	tAssocSMM.applyStereotype(thisModule.findStereotype('metamodel', 'MTPlowd'));
+--	}
+--}
+--essa regra foi uma tentativa de pegar o metamodelo de destino para associar ao TERule
+--	rule AssocTMetaModel{
+--	from sAssocTMM:UML!Association (sAssocTMM.isTargetMM())
+--	to   tAssocTMM:UML!Association(
+--		   ownedEnd<-origem,
+--		   ownedEnd<-destino
+--		   ),
+--		  origem:UML!Property(
+--		  	name<-'src',
+--			type<-thisModule.resolveTemp(sAssocTMM.ownedEnd->select(e|e.name='src')->first().type,'tTargMM')
+--			),
+--		  destino:UML!Property(
+--		  	name<-'dst'
+--			--type<-thisModule.resolveTemp(sAssocTMM.ownedEnd->select(e|e.name='dst')->first().type,'tTE')
+--			)
+--	
+--	do{
+ --   	tAssocTMM.applyStereotype(thisModule.findStereotype('metamodel', 'MTPlowd'));
+--	}
+--}

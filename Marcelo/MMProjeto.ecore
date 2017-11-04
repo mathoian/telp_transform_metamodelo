@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ecore:EPackage xmi:version="2.0"
+    xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="MMProjeto">
+  <eClassifiers xsi:type="ecore:EClass" name="Sistema">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="camadas" upperBound="-1"
+        eType="#//Camada" containment="true" eOpposite="#//Camada/sistemaAssociado"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="nome" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Camada" abstract="true">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="nome" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="sistemaAssociado" lowerBound="1"
+        eType="#//Sistema" eOpposite="#//Sistema/camadas"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="elementos" upperBound="-1"
+        eType="#//Elemento" containment="true" eOpposite="#//Elemento/camadaAssociada"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Model" eSuperTypes="#//Camada"/>
+  <eClassifiers xsi:type="ecore:EClass" name="View" eSuperTypes="#//Camada"/>
+  <eClassifiers xsi:type="ecore:EClass" name="Controller" eSuperTypes="#//Camada"/>
+  <eClassifiers xsi:type="ecore:EClass" name="Elemento">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="camadaAssociada" lowerBound="1"
+        eType="#//Camada" eOpposite="#//Camada/elementos"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="nome" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="EleInterface" eSuperTypes="#//Elemento"/>
+  <eClassifiers xsi:type="ecore:EClass" name="EleControle" eSuperTypes="#//Elemento"/>
+  <eClassifiers xsi:type="ecore:EClass" name="EleRegraNegocio" eSuperTypes="#//Elemento">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="atributos" upperBound="-1"
+        eType="#//Atributo" containment="true" eOpposite="#//Atributo/elementoAssociado"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ElePersistencia" eSuperTypes="#//Elemento"/>
+  <eClassifiers xsi:type="ecore:EClass" name="Atributo">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="nome" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="elementoAssociado" lowerBound="1"
+        eType="#//EleRegraNegocio" eOpposite="#//EleRegraNegocio/atributos"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="tipo" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+</ecore:EPackage>

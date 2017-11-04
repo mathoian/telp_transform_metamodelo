@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<notation:Diagram xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:notation="http://www.eclipse.org/gmf/runtime/1.0.2/notation" xmlns:uml="http://www.eclipse.org/uml2/3.0.0/UML" xmlns:uml2tools.notation="http://www.eclipse.org/mdt/uml2tools/gmf/notation/ext/2008" xmi:id="_lfHVUVH5Eeeppb2KGI-Yfg" type="UMLProfile" name="exeAula.umlprofile" measurementUnit="Pixel">
+  <children xmi:type="notation:Shape" xmi:id="_lmpgsFH5Eeeppb2KGI-Yfg" type="2007" fontName="Segoe UI">
+    <children xmi:type="notation:DecorationNode" xmi:id="_lmqHwFH5Eeeppb2KGI-Yfg" type="5009"/>
+    <children xmi:type="notation:BasicCompartment" xmi:id="_lmqHwVH5Eeeppb2KGI-Yfg" type="7005" collapsed="true">
+      <styles xmi:type="notation:SortingStyle" xmi:id="_lmqHwlH5Eeeppb2KGI-Yfg"/>
+      <styles xmi:type="notation:FilteringStyle" xmi:id="_lmqHw1H5Eeeppb2KGI-Yfg"/>
+      <styles xmi:type="notation:CanonicalStyle" xmi:id="_lmqHxFH5Eeeppb2KGI-Yfg"/>
+    </children>
+    <element xmi:type="uml:Profile" href="exeAula.profile.uml#_le5S4FH5Eeeppb2KGI-Yfg"/>
+    <layoutConstraint xmi:type="notation:Bounds" xmi:id="_lmpgsVH5Eeeppb2KGI-Yfg"/>
+  </children>
+  <children xmi:type="notation:Shape" xmi:id="_m7AEgFH5Eeeppb2KGI-Yfg" type="2001" fontName="Segoe UI">
+    <children xmi:type="notation:DecorationNode" xmi:id="_m7AEglH5Eeeppb2KGI-Yfg" type="5001">
+      <styles xmi:type="notation:FontStyle" xmi:id="_m7BSoFH5Eeeppb2KGI-Yfg" bold="true"/>
+    </children>
+    <children xmi:type="notation:DecorationNode" xmi:id="_m7AEg1H5Eeeppb2KGI-Yfg" type="5012"/>
+    <children xmi:type="notation:BasicCompartment" xmi:id="_m7AEhFH5Eeeppb2KGI-Yfg" type="7001">
+      <styles xmi:type="notation:TitleStyle" xmi:id="_m7AEhVH5Eeeppb2KGI-Yfg" showTitle="true"/>
+      <styles xmi:type="notation:SortingStyle" xmi:id="_m7AEhlH5Eeeppb2KGI-Yfg"/>
+      <styles xmi:type="notation:FilteringStyle" xmi:id="_m7AEh1H5Eeeppb2KGI-Yfg"/>
+      <styles xmi:type="notation:CanonicalStyle" xmi:id="_m7AEiFH5Eeeppb2KGI-Yfg"/>
+    </children>
+    <children xmi:type="notation:BasicCompartment" xmi:id="_m7AEiVH5Eeeppb2KGI-Yfg" type="7002">
+      <styles xmi:type="notation:TitleStyle" xmi:id="_m7AEilH5Eeeppb2KGI-Yfg" showTitle="true"/>
+      <styles xmi:type="notation:SortingStyle" xmi:id="_m7AEi1H5Eeeppb2KGI-Yfg"/>
+      <styles xmi:type="notation:FilteringStyle" xmi:id="_m7AEjFH5Eeeppb2KGI-Yfg"/>
+      <styles xmi:type="notation:CanonicalStyle" xmi:id="_m7AEjVH5Eeeppb2KGI-Yfg"/>
+    </children>
+    <children xmi:type="notation:BasicCompartment" xmi:id="_m7AEjlH5Eeeppb2KGI-Yfg" type="7006">
+      <styles xmi:type="notation:TitleStyle" xmi:id="_m7AEj1H5Eeeppb2KGI-Yfg" showTitle="true"/>
+      <styles xmi:type="notation:SortingStyle" xmi:id="_m7AEkFH5Eeeppb2KGI-Yfg"/>
+      <styles xmi:type="notation:FilteringStyle" xmi:id="_m7AEkVH5Eeeppb2KGI-Yfg"/>
+      <styles xmi:type="notation:CanonicalStyle" xmi:id="_m7AEklH5Eeeppb2KGI-Yfg"/>
+    </children>
+    <element xmi:type="uml:Stereotype" href="exeAula.profile.uml#_m6594FH5Eeeppb2KGI-Yfg"/>
+    <layoutConstraint xmi:type="notation:Bounds" xmi:id="_m7AEgVH5Eeeppb2KGI-Yfg" x="130" y="130"/>
+  </children>
+  <children xmi:type="notation:Node" xmi:id="_sRaIgFH5Eeeppb2KGI-Yfg" type="2006">
+    <children xmi:type="notation:DecorationNode" xmi:id="_sRaIhVH5Eeeppb2KGI-Yfg" type="5008"/>
+    <styles xmi:type="notation:DescriptionStyle" xmi:id="_sRaIgVH5Eeeppb2KGI-Yfg"/>
+    <styles xmi:type="notation:FontStyle" xmi:id="_sRaIglH5Eeeppb2KGI-Yfg" fontName="Segoe UI"/>
+    <styles xmi:type="notation:FillStyle" xmi:id="_sRaIg1H5Eeeppb2KGI-Yfg"/>
+    <element xmi:type="uml:ElementImport" href="exeAula.profile.uml#_sRY6YFH5Eeeppb2KGI-Yfg"/>
+    <layoutConstraint xmi:type="notation:Bounds" xmi:id="_sRaIhFH5Eeeppb2KGI-Yfg" x="140" y="30"/>
+  </children>
+  <styles xmi:type="notation:DiagramStyle" xmi:id="_lfHVUlH5Eeeppb2KGI-Yfg"/>
+  <styles xmi:type="uml2tools.notation:U2TDiagramCanonicalStyle" xmi:id="_lfHVU1H5Eeeppb2KGI-Yfg"/>
+  <element xmi:type="uml:Profile" href="exeAula.profile.uml#_le5S4FH5Eeeppb2KGI-Yfg"/>
+  <edges xmi:type="notation:Edge" xmi:id="_tDcpcFH5Eeeppb2KGI-Yfg" type="4002" source="_m7AEgFH5Eeeppb2KGI-Yfg" target="_sRaIgFH5Eeeppb2KGI-Yfg">
+    <children xmi:type="notation:DecorationNode" xmi:id="_tDcpdFH5Eeeppb2KGI-Yfg" type="6001">
+      <layoutConstraint xmi:type="notation:Location" xmi:id="_tDcpdVH5Eeeppb2KGI-Yfg" y="-15"/>
+    </children>
+    <styles xmi:type="notation:RoutingStyle" xmi:id="_tDcpcVH5Eeeppb2KGI-Yfg"/>
+    <styles xmi:type="notation:FontStyle" xmi:id="_tDcpclH5Eeeppb2KGI-Yfg" fontName="Segoe UI"/>
+    <element xmi:type="uml:Extension" href="exeAula.profile.uml#_tDbbUFH5Eeeppb2KGI-Yfg"/>
+    <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_tDcpc1H5Eeeppb2KGI-Yfg" points="[-1, -7, 3, 66]$[-6, -67, -2, 6]"/>
+    <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_tDd3kFH5Eeeppb2KGI-Yfg" id="(0.49,0.11475409836065574)"/>
+    <targetAnchor xmi:type="notation:IdentityAnchor" xmi:id="_tDd3kVH5Eeeppb2KGI-Yfg" id="(0.4473684210526316,0.85)"/>
+  </edges>
+</notation:Diagram>

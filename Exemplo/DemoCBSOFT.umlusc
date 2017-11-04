@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<notation:Diagram xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:notation="http://www.eclipse.org/gmf/runtime/1.0.2/notation" xmlns:uml="http://www.eclipse.org/uml2/3.0.0/UML" xmlns:uml2tools.notation="http://www.eclipse.org/mdt/uml2tools/gmf/notation/ext/2008" xmi:id="_hKiO0Sr2EeeCNLEmAjzy4w" type="UMLUseCase" name="DemoCBSOFT.umlusc" measurementUnit="Pixel">
+  <children xmi:type="notation:Shape" xmi:id="_hSfQ8Cr2EeeCNLEmAjzy4w" type="2001" fontName="Segoe UI">
+    <children xmi:type="notation:DecorationNode" xmi:id="_hSfQ8ir2EeeCNLEmAjzy4w" type="5001"/>
+    <children xmi:type="notation:DecorationNode" xmi:id="_hSfQ8yr2EeeCNLEmAjzy4w" type="5016"/>
+    <children xmi:type="notation:BasicCompartment" xmi:id="_hSfQ9Cr2EeeCNLEmAjzy4w" type="7001" collapsed="true">
+      <styles xmi:type="notation:SortingStyle" xmi:id="_hSfQ9Sr2EeeCNLEmAjzy4w"/>
+      <styles xmi:type="notation:FilteringStyle" xmi:id="_hSfQ9ir2EeeCNLEmAjzy4w"/>
+      <styles xmi:type="notation:CanonicalStyle" xmi:id="_hSfQ9yr2EeeCNLEmAjzy4w"/>
+    </children>
+    <element xmi:type="uml:Package" href="DemoCBSOFT.uml#_hKUMYCr2EeeCNLEmAjzy4w"/>
+    <layoutConstraint xmi:type="notation:Bounds" xmi:id="_hSfQ8Sr2EeeCNLEmAjzy4w"/>
+  </children>
+  <children xmi:type="notation:Shape" xmi:id="_h3ATQCr2EeeCNLEmAjzy4w" type="2002" fontName="Segoe UI">
+    <children xmi:type="notation:DecorationNode" xmi:id="_h3ATQir2EeeCNLEmAjzy4w" type="5002">
+      <layoutConstraint xmi:type="notation:Location" xmi:id="_h3ATQyr2EeeCNLEmAjzy4w" y="5"/>
+    </children>
+    <element xmi:type="uml:Actor" href="DemoCBSOFT.uml#_h25lkCr2EeeCNLEmAjzy4w"/>
+    <layoutConstraint xmi:type="notation:Bounds" xmi:id="_h3ATQSr2EeeCNLEmAjzy4w" x="72" y="153"/>
+  </children>
+  <children xmi:type="notation:Shape" xmi:id="_jAIegCr2EeeCNLEmAjzy4w" type="2003" fontName="Segoe UI">
+    <children xmi:type="notation:DecorationNode" xmi:id="_jAIegir2EeeCNLEmAjzy4w" type="5003">
+      <styles xmi:type="notation:FontStyle" xmi:id="_jAJsoCr2EeeCNLEmAjzy4w" bold="true"/>
+    </children>
+    <children xmi:type="notation:BasicCompartment" xmi:id="_jAIegyr2EeeCNLEmAjzy4w" type="7002">
+      <styles xmi:type="notation:TitleStyle" xmi:id="_jAIehCr2EeeCNLEmAjzy4w" showTitle="true"/>
+      <styles xmi:type="notation:SortingStyle" xmi:id="_jAIehSr2EeeCNLEmAjzy4w"/>
+      <styles xmi:type="notation:FilteringStyle" xmi:id="_jAIehir2EeeCNLEmAjzy4w"/>
+      <styles xmi:type="notation:CanonicalStyle" xmi:id="_jAIehyr2EeeCNLEmAjzy4w"/>
+    </children>
+    <element xmi:type="uml:UseCase" href="DemoCBSOFT.uml#_jABJwCr2EeeCNLEmAjzy4w"/>
+    <layoutConstraint xmi:type="notation:Bounds" xmi:id="_jAIegSr2EeeCNLEmAjzy4w" x="259" y="163"/>
+  </children>
+  <styles xmi:type="notation:DiagramStyle" xmi:id="_hKiO0ir2EeeCNLEmAjzy4w"/>
+  <styles xmi:type="uml2tools.notation:U2TDiagramCanonicalStyle" xmi:id="_hKiO0yr2EeeCNLEmAjzy4w"/>
+  <element xmi:type="uml:Package" href="DemoCBSOFT.uml#_hKUMYCr2EeeCNLEmAjzy4w"/>
+  <edges xmi:type="notation:Edge" xmi:id="_kV7z0Cr2EeeCNLEmAjzy4w" type="4004" source="_h3ATQCr2EeeCNLEmAjzy4w" target="_jAIegCr2EeeCNLEmAjzy4w">
+    <children xmi:type="notation:DecorationNode" xmi:id="_kV7z1Cr2EeeCNLEmAjzy4w" type="6003">
+      <layoutConstraint xmi:type="notation:Location" xmi:id="_kV7z1Sr2EeeCNLEmAjzy4w" y="15"/>
+    </children>
+    <children xmi:type="notation:DecorationNode" xmi:id="_kV7z1ir2EeeCNLEmAjzy4w" type="6004">
+      <layoutConstraint xmi:type="notation:Location" xmi:id="_kV7z1yr2EeeCNLEmAjzy4w" y="15"/>
+    </children>
+    <styles xmi:type="notation:RoutingStyle" xmi:id="_kV7z0Sr2EeeCNLEmAjzy4w"/>
+    <styles xmi:type="notation:FontStyle" xmi:id="_kV7z0ir2EeeCNLEmAjzy4w" fontName="Segoe UI"/>
+    <element xmi:type="uml:Association" href="DemoCBSOFT.uml#_kV6lsCr2EeeCNLEmAjzy4w"/>
+    <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_kV7z0yr2EeeCNLEmAjzy4w" points="[15, 0, -180, -12]$[172, 10, -23, -2]"/>
+    <targetAnchor xmi:type="notation:IdentityAnchor" xmi:id="_kV9pACr2EeeCNLEmAjzy4w" id="(0.1411042944785276,0.45)"/>
+  </edges>
+</notation:Diagram>

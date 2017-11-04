@@ -1,0 +1,196 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ecore:EPackage xmi:version="2.0"
+    xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="MMT">
+  <eSubpackages name="Spec">
+    <eClassifiers xsi:type="ecore:EClass" name="NamedElement" abstract="true">
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="TransformationSpecification" eSuperTypes="#//Spec/NamedElement">
+      <eStructuralFeatures xsi:type="ecore:EReference" name="reqTransf" lowerBound="1"
+          upperBound="-1" eType="#//Spec/Requirement" containment="true" eOpposite="#//Spec/Requirement/ownedTransf"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="sourceMM" lowerBound="1"
+          upperBound="-1" eType="#//Spec/SourceMM" containment="true" eOpposite="#//Spec/SourceMM/ownedTransf"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="targetMM" lowerBound="1"
+          upperBound="-1" eType="#//Spec/TargetMM" containment="true" eOpposite="#//Spec/TargetMM/ownedTransf"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="inModel" lowerBound="1"
+          upperBound="-1" eType="#//Spec/SourceModel" containment="true"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="outModel" lowerBound="1"
+          upperBound="-1" eType="#//Spec/TargetModel" containment="true"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="transfProperty" upperBound="-1"
+          eType="#//Spec/Property" containment="true"/>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="description" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="Requirement">
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="description" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="priority" eType="#//Spec/PriorityKind"/>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="implementationRelease"
+          eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="verificationCriteria"
+          eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="domainRastreability"
+          eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="comprisedReq" upperBound="-1"
+          eType="#//Spec/Requirement" containment="true" eOpposite="#//Spec/Requirement/requirementC"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="requirementC" eType="#//Spec/Requirement"
+          eOpposite="#//Spec/Requirement/comprisedReq"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="refinedReq" upperBound="-1"
+          eType="#//Spec/Requirement" containment="true" eOpposite="#//Spec/Requirement/requirementR"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="requirementR" eType="#//Spec/Requirement"
+          eOpposite="#//Spec/Requirement/refinedReq"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="ownedTransf" lowerBound="1"
+          eType="#//Spec/TransformationSpecification" eOpposite="#//Spec/TransformationSpecification/reqTransf"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="reqConstraint" upperBound="-1"
+          eType="#//Spec/Constraint" containment="true" eOpposite="#//Spec/Constraint/ownedReq"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EEnum" name="PriorityKind">
+      <eLiterals name="low"/>
+      <eLiterals name="midium" value="5"/>
+      <eLiterals name="high" value="10"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EEnum" name="HierarchicalLevelKind">
+      <eLiterals name="M0"/>
+      <eLiterals name="M1" value="1"/>
+      <eLiterals name="M2" value="2"/>
+      <eLiterals name="M3" value="3"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="Model" eSuperTypes="#//Spec/NamedElement">
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="level" eType="#//Spec/HierarchicalLevelKind"/>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="file" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="modelProperty" upperBound="-1"
+          eType="#//Spec/Property" containment="true"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="modelElement" upperBound="-1"
+          eType="#//HighDesign/ModelElement" containment="true" eOpposite="#//HighDesign/ModelElement/metamodel"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="SourceModel" eSuperTypes="#//Spec/Model"/>
+    <eClassifiers xsi:type="ecore:EClass" name="TargetModel" eSuperTypes="#//Spec/Model"/>
+    <eClassifiers xsi:type="ecore:EClass" name="SourceMM" eSuperTypes="#//Spec/SourceModel">
+      <eStructuralFeatures xsi:type="ecore:EReference" name="ownedTransf" upperBound="-1"
+          eType="#//Spec/TransformationSpecification" eOpposite="#//Spec/TransformationSpecification/sourceMM"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="TargetMM" eSuperTypes="#//Spec/TargetModel">
+      <eStructuralFeatures xsi:type="ecore:EReference" name="ownedTransf" upperBound="-1"
+          eType="#//Spec/TransformationSpecification" eOpposite="#//Spec/TransformationSpecification/targetMM"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="Constraint" eSuperTypes="#//Spec/NamedElement">
+      <eStructuralFeatures xsi:type="ecore:EReference" name="ownedReq" lowerBound="1"
+          eType="#//Spec/Requirement" eOpposite="#//Spec/Requirement/reqConstraint"/>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="description" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="Property">
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="expression" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="language" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    </eClassifiers>
+  </eSubpackages>
+  <eSubpackages name="HighDesign">
+    <eClassifiers xsi:type="ecore:EClass" name="Transformation" abstract="true" eSuperTypes="#//Spec/NamedElement">
+      <eStructuralFeatures xsi:type="ecore:EReference" name="calledTransf" upperBound="-1"
+          eType="#//HighDesign/Transformation" containment="true"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="sourceMM" lowerBound="1"
+          upperBound="-1" eType="#//Spec/SourceMM" containment="true"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="targetMM" lowerBound="1"
+          upperBound="-1" eType="#//Spec/TargetMM" containment="true"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="transfProperty" upperBound="-1"
+          eType="#//Spec/Property" containment="true"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="inModel" lowerBound="1"
+          upperBound="-1" eType="#//Spec/SourceModel"/>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="isMain" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="description" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="ModelElement" abstract="true" eSuperTypes="#//Spec/NamedElement">
+      <eStructuralFeatures xsi:type="ecore:EReference" name="metamodel" lowerBound="1"
+          eType="#//Spec/Model" eOpposite="#//Spec/Model/modelElement"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="elementProperty" lowerBound="1"
+          upperBound="-1" eType="#//LowDesign/ElementProperty" containment="true"
+          eOpposite="#//LowDesign/ElementProperty/ownedModel"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="ownedDomain" upperBound="-1"
+          eType="#//HighDesign/Domain" eOpposite="#//HighDesign/Domain/domainElement"/>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="type" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="M2MTransformation" eSuperTypes="#//HighDesign/Transformation">
+      <eStructuralFeatures xsi:type="ecore:EReference" name="transfDomain" lowerBound="1"
+          upperBound="-1" eType="#//HighDesign/Domain" containment="true" eOpposite="#//HighDesign/Domain/ownedTransf"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="transfRelation" lowerBound="1"
+          upperBound="-1" eType="#//HighDesign/Relation" containment="true" eOpposite="#//HighDesign/Relation/ownedTransf"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="rules" eType="#//LowDesign/Rule"
+          containment="true" eOpposite="#//LowDesign/Rule/ownedTransf"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="outModel" lowerBound="1"
+          upperBound="-1" eType="#//Spec/TargetModel"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="M2TTransformation" eSuperTypes="#//HighDesign/Transformation"/>
+    <eClassifiers xsi:type="ecore:EClass" name="Relation" eSuperTypes="#//Spec/NamedElement">
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="description" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="ownedTransf" lowerBound="1"
+          eType="#//HighDesign/M2MTransformation" eOpposite="#//HighDesign/M2MTransformation/transfRelation"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="inElem" upperBound="-1"
+          eType="#//HighDesign/SourceElement"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="ouElem" upperBound="-1"
+          eType="#//HighDesign/TargetElement"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="Domain" eSuperTypes="#//Spec/NamedElement">
+      <eStructuralFeatures xsi:type="ecore:EReference" name="ownedTransf" eType="#//HighDesign/M2MTransformation"
+          eOpposite="#//HighDesign/M2MTransformation/transfDomain"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="domainElement" lowerBound="1"
+          upperBound="-1" eType="#//HighDesign/ModelElement" containment="true" eOpposite="#//HighDesign/ModelElement/ownedDomain"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="SourceElement" eSuperTypes="#//HighDesign/ModelElement"/>
+    <eClassifiers xsi:type="ecore:EClass" name="TargetElement" eSuperTypes="#//HighDesign/ModelElement"/>
+  </eSubpackages>
+  <eSubpackages name="LowDesign">
+    <eClassifiers xsi:type="ecore:EClass" name="Rule" eSuperTypes="#//Spec/NamedElement">
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="isAbstract" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="isRequired" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="childRule" upperBound="-1"
+          eType="#//LowDesign/Rule" containment="true" eOpposite="#//LowDesign/Rule/super"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="super" eType="#//LowDesign/Rule"
+          eOpposite="#//LowDesign/Rule/childRule"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="ruleCond" upperBound="-1"
+          eType="#//LowDesign/Condition" containment="true" eOpposite="#//LowDesign/Condition/ownedRule"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="sourceElem" upperBound="-1"
+          eType="#//LowDesign/SourceElementRule" containment="true"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="targetElem" lowerBound="1"
+          upperBound="-1" eType="#//LowDesign/TargetElementRule" containment="true"/>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="description" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="ownedTransf" eType="#//HighDesign/M2MTransformation"
+          eOpposite="#//HighDesign/M2MTransformation/rules"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="Condition">
+      <eStructuralFeatures xsi:type="ecore:EReference" name="ownedRule" eType="#//LowDesign/Rule"
+          eOpposite="#//LowDesign/Rule/ruleCond"/>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="exp" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="SourceElementRule" eSuperTypes="#//HighDesign/SourceElement">
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="ref" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="sourceKind" eType="#//LowDesign/ElementKind"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="TargetElementRule" eSuperTypes="#//HighDesign/TargetElement">
+      <eStructuralFeatures xsi:type="ecore:EReference" name="configTargetElem" lowerBound="1"
+          upperBound="-1" eType="#//LowDesign/Configuration" containment="true" eOpposite="#//LowDesign/Configuration/ownedTargetElemRule"/>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="ref" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="targetKind" eType="#//LowDesign/ElementKind"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="Configuration" eSuperTypes="#//Spec/NamedElement">
+      <eStructuralFeatures xsi:type="ecore:EReference" name="ownedTargetElemRule"
+          lowerBound="1" eType="#//LowDesign/TargetElementRule" eOpposite="#//LowDesign/TargetElementRule/configTargetElem"/>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="exp" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="property" lowerBound="1"
+          eType="#//LowDesign/ElementProperty"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="preCondition" eType="#//LowDesign/Rule"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="ElementProperty" eSuperTypes="#//Spec/NamedElement">
+      <eStructuralFeatures xsi:type="ecore:EReference" name="ownedModel" lowerBound="1"
+          eType="#//HighDesign/ModelElement" eOpposite="#//HighDesign/ModelElement/elementProperty"/>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="type" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EEnum" name="ElementKind">
+      <eLiterals name="Main" value="1"/>
+      <eLiterals name="Secondary" value="2"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="PropertyUse" eSuperTypes="#//Spec/NamedElement">
+      <eStructuralFeatures xsi:type="ecore:EReference" name="ownedSourceElemRule"
+          lowerBound="1" eType="#//LowDesign/SourceElementRule"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="property" lowerBound="1"
+          eType="#//LowDesign/ElementProperty"/>
+    </eClassifiers>
+  </eSubpackages>
+</ecore:EPackage>

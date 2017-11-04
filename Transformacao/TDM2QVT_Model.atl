@@ -1,0 +1,875 @@
+module TDM2QVT_Model;
+create OUT:UML from IN:UML,PQVT:UML;
+
+helper context UML!Package def:isTransPack():Boolean = self.getAppliedStereotypes()->exists(c|c.name='TransPack');
+helper context UML!Class def:isM2MTransf():Boolean = self.getAppliedStereotypes()->exists(c|c.name='M2MTransf');
+helper context UML!Class def:isSourceMM():Boolean = self.getAppliedStereotypes()->exists(c|c.name='SourceMM');
+helper context UML!Class def:isTargetMM():Boolean = self.getAppliedStereotypes()->exists(c|c.name='TargetMM');
+helper context UML!Association def:isSourceMM():Boolean = self.getAppliedStereotypes()->exists(c|c.name='SourceMM');
+helper context UML!Association def:isTargetMM():Boolean = self.getAppliedStereotypes()->exists(c|c.name='TargetMM');
+helper context UML!Class def:isRule():Boolean = self.getAppliedStereotypes()->exists(c|c.name='Rule');
+helper context UML!Class def:isSERule():Boolean = self.getAppliedStereotypes()->exists(c|c.name='SERule');
+helper context UML!Class def:isTERule():Boolean = self.getAppliedStereotypes()->exists(c|c.name='TERule');
+helper context UML!Class def:isMain():Boolean = self.getAppliedStereotypes()->exists(c|c.name='Main');
+
+helper context UML!Class def:isRequired():Boolean = if (self.ownedAttribute->select(a|a.name='isRequired')->first()).oclIsUndefined() then false
+                                                    else if (self.ownedAttribute->select(a|a.name='isRequired')->first()).default='true' then 
+													true else false 
+													endif endif;
+
+helper context UML!Association def:isInElem():Boolean = self.getAppliedStereotypes()->exists(c|c.name='inElem');
+helper context UML!Association def:isOutElem():Boolean = self.getAppliedStereotypes()->exists(c|c.name='outElem');
+helper context UML!Association def:isSource(SourceElement:UML!Class):Boolean = self.ownedEnd->exists(c|c.type=SourceElement);
+ 
+helper context UML!Class def:isCondition():Boolean = self.getAppliedStereotypes()->exists(c|c.name='Condition');
+helper context UML!Association def:isCondSE():Boolean = self.getAppliedStereotypes()->exists(c|c.name='CondSE');
+helper context UML!Class def:isConfig():Boolean = self.getAppliedStereotypes()->exists(c|c.name='Config');
+helper context UML!Class def:isConfigSE():Boolean = self.getAppliedStereotypes()->exists(c|c.name='ConfigSE');
+helper context UML!Association def:isConfigTE():Boolean = self.getAppliedStereotypes()->exists(c|c.name='ConfigTE');
+helper context UML!Association def:isConfigSE():Boolean = self.getAppliedStereotypes()->exists(c|c.name='ConfigSE');
+helper context UML!Class def:isCall():Boolean = if(not self.isConfig())then false else if (self.ownedAttribute->select(anm|anm.name='exp')->first().default.startsWith('call')) then true else false endif endif;
+helper context UML!Class def:isPreCondition():Boolean = self.getAppliedStereotypes()->exists(c|c.name='PreCondition');
+helper context UML!Association def:isPreCondition():Boolean = self.getAppliedStereotypes()->exists(c|c.name='PreCondition');
+
+--retorna a classe destino de uma associacao
+helper context UML!Association def:getDst():UML!Class = self.ownedEnd->select(c|c.name='dst')->first().type;
+--retorna a classe origem de uma associacao
+helper context UML!Association def:getSrc():UML!Class = self.ownedEnd->select(c|c.name='src')->first().type;
+
+
+--name: passa o nome do profile no pacote profile; profile: passa o nome que esta no IN, no caso PerfilMTP.
+helper def : findProfile(name : String, profile : String): UML!Profile = UML!Profile.allInstancesFrom(profile)-> select(st| st.name = name)->first();
+helper def : findStereotype(name : String, profile : String) : UML!Stereotype = UML!Stereotype.allInstancesFrom(profile)-> select(st| st.name = name)->first();
+
+--cria o pacote que vai conter o modelo
+rule Package2Package{
+	from s1:UML!Package (s1.isTransPack())
+	--o modelo vai conte 1 pacote (a unit) onde estará toda a definição da transformação
+	to   tPacote:UML!Package( 
+		   name<-s1.name,
+		   packagedElement<-Set{
+		   	
+		   --transformação
+		   UML!Class.allInstancesFrom('IN')->select (x| x.isM2MTransf())-> collect(e | thisModule.resolveTemp(e,'tRelatTransf')),
+		   --sourcemodel e metamodelo e assoc entre eles 
+		   UML!Class.allInstancesFrom('IN')->select (x| x.isSourceMM())-> collect(e | thisModule.resolveTemp(e,'tSrcMM')),
+		   UML!Class.allInstancesFrom('IN')->select (x| x.isSourceMM())-> collect(e | thisModule.resolveTemp(e,'tSrcMod')),
+		   UML!Class.allInstancesFrom('IN')->select (x| x.isSourceMM())-> collect(e | thisModule.resolveTemp(e,'tAssocModMeta1')),
+		   --assoc entre do source com a transformacao
+		   UML!Class.allInstancesFrom('IN')->select (x| x.isSourceMM())-> collect(e | thisModule.resolveTemp(e,'tAssocRelatTransf')),
+		   --target model e metamodelo e assoc entre eles
+		   UML!Class.allInstancesFrom('IN')->select (x| x.isTargetMM())-> collect(e | thisModule.resolveTemp(e,'tTargMM')),
+		   UML!Class.allInstancesFrom('IN')->select (x| x.isTargetMM())-> collect(e | thisModule.resolveTemp(e,'tTargMod')),
+		   UML!Class.allInstancesFrom('IN')->select (x| x.isTargetMM())-> collect(e | thisModule.resolveTemp(e,'tAssocModMeta2')),
+		   --assoc entre do target com a transformacao
+		   UML!Class.allInstancesFrom('IN')->select (x| x.isTargetMM())-> collect(e | thisModule.resolveTemp(e,'tAssocRelatTranfTarg')),
+		   
+		   --top relations
+		   UML!Class.allInstancesFrom('IN')->select (x| x.isRule())-> collect(e | thisModule.resolveTemp(e,'tRelation')),
+		   -- associacao da top relation com a transformacao
+		   UML!Class.allInstancesFrom('IN')->select (x| x.isRule())-> collect(e | thisModule.resolveTemp(e,'tAssocRelTransfRule')),
+
+		   --RelationDomain (entrada) e a variavel que o representa
+		   UML!Class.allInstancesFrom('IN')->select (x| x.isSERule() and x.isMain())-> collect(e | thisModule.resolveTemp(e,'tDomCheck')),
+		   UML!Class.allInstancesFrom('IN')->select (x| x.isSERule() and x.isMain())-> collect(e | thisModule.resolveTemp(e,'tVar_RD_in')),
+		   --associacao entre RelationDomain e a variavel que o representa
+		   UML!Class.allInstancesFrom('IN')->select (x| x.isSERule() and x.isMain())-> collect(e | thisModule.resolveTemp(e,'assocRD_Var')),
+		   --associacao entre o DomainPattern e o metamodelo 
+		   UML!Class.allInstancesFrom('IN')->select (x| x.isSERule() and x.isMain())-> collect(e | thisModule.resolveTemp(e,'assocDPin_MM')),
+		   --Domain pattern (entrada)
+		   UML!Class.allInstancesFrom('IN')->select (x| x.isSERule() and x.isMain())-> collect(e | thisModule.resolveTemp(e,'tDomainPatin')),
+		   --associacao entre o DomainPattern e o RelationDomain
+		   UML!Class.allInstancesFrom('IN')->select (x| x.isSERule() and x.isMain())-> collect(e | thisModule.resolveTemp(e,'assocDPin_RelatDomain')),
+		   --associacao entre a Relation e o RelationDomain
+		   UML!Class.allInstancesFrom('IN')->select (x| x.isSERule() and x.isMain())-> collect(e | thisModule.resolveTemp(e,'tAssocRuleRDin')),
+		   --Object template principal e a sua associacao com o DomainPattern
+		   UML!Class.allInstancesFrom('IN')->select (x| x.isSERule() and x.isMain())-> collect(e | thisModule.resolveTemp(e,'tObjTempExpin')),
+		   UML!Class.allInstancesFrom('IN')->select (x| x.isSERule() and x.isMain())-> collect(e | thisModule.resolveTemp(e,'assocDPin_ObjTempExp')),
+           --Object template filho do princial e a sua associacao com o principal 
+		   UML!Class.allInstancesFrom('IN')->select (x| x.isSERule() and not x.isMain())-> collect(e | thisModule.resolveTemp(e,'tObjTempExpin_adic')),
+		   UML!Class.allInstancesFrom('IN')->select (x| x.isSERule() and not x.isMain())-> collect(e | thisModule.resolveTemp(e,'assocDPin_ObjTempExp2')),
+		   
+		   --RelationDomain (SAIDA) e a variavel que o representa
+		   UML!Class.allInstancesFrom('IN')->select (x| x.isTERule() and x.isMain())-> collect(e | thisModule.resolveTemp(e,'tDomCheckOut')),
+		   UML!Class.allInstancesFrom('IN')->select (x| x.isTERule() and x.isMain())-> collect(e | thisModule.resolveTemp(e,'tVar_RD_out')),
+		   --associacao entre RelationDomain(Saida) e a variavel que o representa
+		   UML!Class.allInstancesFrom('IN')->select (x| x.isTERule() and x.isMain())-> collect(e | thisModule.resolveTemp(e,'assocRD_Var_out')),
+
+		   --associacao entre o DomainPattern e o metamodelo 
+		   UML!Class.allInstancesFrom('IN')->select (x| x.isTERule() and x.isMain())-> collect(e | thisModule.resolveTemp(e,'assocDPout_MM')),
+		   --Domain pattern (entrada)
+		   UML!Class.allInstancesFrom('IN')->select (x| x.isTERule() and x.isMain())-> collect(e | thisModule.resolveTemp(e,'tDomainPatout')),
+		   --associacao entre o DomainPattern e o RelationDomain
+		   UML!Class.allInstancesFrom('IN')->select (x| x.isTERule() and x.isMain())-> collect(e | thisModule.resolveTemp(e,'assocDPout_RelatDomain')),
+		   --associacao entre a Relation e o RelationDomain
+		   UML!Class.allInstancesFrom('IN')->select (x| x.isTERule() and x.isMain())-> collect(e | thisModule.resolveTemp(e,'tAssocRuleRDout')),
+		   --Object template principal e a sua associacao com o DomainPattern out
+		   UML!Class.allInstancesFrom('IN')->select (x| x.isTERule() and x.isMain())-> collect(e | thisModule.resolveTemp(e,'tObjTempExpout')),
+		   UML!Class.allInstancesFrom('IN')->select (x| x.isTERule() and x.isMain())-> collect(e | thisModule.resolveTemp(e,'assocDPout_ObjTempExp')),
+		   --variavel para o object template exp out e sua associacao com o objTemExp out
+		   UML!Class.allInstancesFrom('IN')->select (x| x.isTERule() and x.isMain())-> collect(e | thisModule.resolveTemp(e,'tVarOTE_out')),
+		   UML!Class.allInstancesFrom('IN')->select (x| x.isTERule() and x.isMain())-> collect(e | thisModule.resolveTemp(e,'assocOTE_Var_out')),
+		   
+		   
+		   --Object template filho do princial e a sua associacao com o principal (out) 
+		   UML!Class.allInstancesFrom('IN')->select (x| x.isTERule() and not x.isMain())-> collect(e | thisModule.resolveTemp(e,'tObjTempExpout_adic')),
+		   UML!Class.allInstancesFrom('IN')->select (x| x.isTERule() and not x.isMain())-> collect(e | thisModule.resolveTemp(e,'assocDPout_ObjTempExp2')),
+		   --variavel para o object template exp out e sua associacao com o objTemExp out
+		   UML!Class.allInstancesFrom('IN')->select (x| x.isTERule() and not x.isMain())-> collect(e | thisModule.resolveTemp(e,'tVarOTE_out_adic')),
+		   UML!Class.allInstancesFrom('IN')->select (x| x.isTERule() and not x.isMain())-> collect(e | thisModule.resolveTemp(e,'assocOTE_Var_out_adic')),
+		   
+		  
+		   --PropertyTemplateItem e sua associacao com o ObjectTemplateExp (out)
+		   UML!Class.allInstancesFrom('IN')->select (x| x.isConfig() and not x.isPreCondition())-> collect(e | thisModule.resolveTemp(e,'tPropTempItem')),
+		   UML!Association.allInstancesFrom('IN')->select (x| x.isConfigTE()  and not x.isPreCondition())-> collect(e | thisModule.resolveTemp(e,'tAssocPropTI_OTE')),
+		   
+		   --PropertyTemplateItem e sua associacao com o ObjectTemplateExp (in) e a variavel globad da relation
+		   UML!Class.allInstancesFrom('IN')->select (x| x.isConfigSE())-> collect(e | thisModule.resolveTemp(e,'tPropTempItemIn')),
+		   UML!Class.allInstancesFrom('IN')->select (x| x.isConfigSE())-> collect(e | thisModule.resolveTemp(e,'tVarGlobal')),
+		   UML!Association.allInstancesFrom('IN')->select (x| x.isConfigSE())-> collect(e | thisModule.resolveTemp(e,'tAssocPropTI_OTE_IN')),
+		   UML!Association.allInstancesFrom('IN')->select (x| x.isConfigSE())-> collect(e | thisModule.resolveTemp(e,'tAssocVarGlobal')),
+           		   
+		   --Pattern when
+		   UML!Class.allInstancesFrom('IN')->select (x| x.isPreCondition())-> collect(e | thisModule.resolveTemp(e,'tPattern')),
+		   UML!Association.allInstancesFrom('IN')->select (x| x.isPreCondition())-> collect(e | thisModule.resolveTemp(e,'tAPreCondRelat'))
+           
+		   
+		   })      								
+	do {
+       tPacote.applyProfile(thisModule.findProfile('PQVT','PQVT'));
+       tPacote.applyStereotype(thisModule.findStereotype('Package', 'PQVT'));
+      }
+}
+
+
+ --*** regra que cria a RelationalTransformation ( a transformação) ***
+rule Transf2RelatTransf{
+	from s3:UML!Class (s3.isM2MTransf())
+	to   tRelatTransf:UML!Class( 
+		   name<-s3.name
+		   )
+	do {
+       tRelatTransf.applyStereotype(thisModule.findStereotype('RelationalTransformation', 'PQVT'));
+      }
+}
+
+ -- *** mapeamento dos metamodelos e modelos de ENTRADA que são representados como typedModel
+rule SourceMM2TypedModel{
+	from s5:UML!Class (s5.isSourceMM())
+	using {
+		   classeTransf:UML!Class=UML!Class.allInstancesFrom('IN')->select (x| x.isM2MTransf())->first();
+	      }
+         --cria o metamodelo fonte
+	to   tSrcMM:UML!Class( 
+		   name<-s5.name),
+		 --cria o modelo fonte
+		 tSrcMod:UML!Class( 
+		 	name<-'source'    --'IN_'+s5.name
+			),
+	     --cria associacao entre o modelo e o metamodelo fonte
+		 tAssocModMeta1:UML!Association(
+			ownedEnd<-ass1,
+			ownedEnd<-ass2),
+		 ass1:UML!Property(
+		 	name<-'dependent',
+			type<-tSrcMod),
+		 ass2:UML!Property(
+			name<-'dependsOn',
+			type<-tSrcMM),
+		-- cria associacao entre o modelo e a relationaltransformation
+		tAssocRelatTransf:UML!Association(
+			ownedEnd<-ass3,
+			ownedEnd<-ass4),
+		ass3:UML!Property(
+			name<-'transformation',
+			type<-thisModule.resolveTemp(classeTransf,'tRelatTransf')
+			),
+		ass4:UML!Property(
+			name<-'modelParameter',
+			type<-tSrcMod)
+			do{
+		tSrcMM.applyStereotype(thisModule.findStereotype('TypedModel', 'PQVT'));
+	    tSrcMod.applyStereotype(thisModule.findStereotype('TypedModel', 'PQVT'));
+	}
+}
+ 
+ -- *** mapeamento dos metamodelos e modelos de SAIDA que são representados como typedModel (idem anterior)
+rule tMM2TypedModel{
+	from s7:UML!Class (s7.isTargetMM())
+	using {
+		   classeTransf:UML!Class=UML!Class.allInstancesFrom('IN')->select (x| x.isM2MTransf())->first();
+	      }
+	to   --cria o metamodelo
+	     tTargMM:UML!Class( 
+		   name<-s7.name),
+		 --cria o modelo
+		 tTargMod:UML!Class(
+		 	name<-'target'            --'OUT_'+s7.name
+			),
+	     --associa o metamodelo com o modelo
+		 tAssocModMeta2:UML!Association(
+			ownedEnd<-ass7,
+			ownedEnd<-ass8),
+		 ass7:UML!Property(
+		 	name<-'dependent',
+			type<-tTargMod),
+		 ass8:UML!Property(
+			name<-'dependsOn',
+			type<-tTargMM),
+		--associa com a transformação
+		tAssocRelatTranfTarg:UML!Association(
+			ownedEnd<-ass9,
+			ownedEnd<-ass10),
+		 ass9:UML!Property(
+			name<-'transformation',
+			type<-thisModule.resolveTemp(classeTransf,'tRelatTransf')
+			),
+		ass10:UML!Property(
+			name<-'modelParameter',
+			type<-tTargMod)
+	do{
+		tTargMM.applyStereotype(thisModule.findStereotype('TypedModel', 'PQVT'));
+	    tTargMod.applyStereotype(thisModule.findStereotype('TypedModel', 'PQVT'));
+	}
+}
+ 
+ 
+ --transforma a regra definida como isRequired em uma Relation do tipo isTopLevel=true
+rule Rule2TopRelation{
+   from s9:UML!Class (s9.isRule() and s9.isRequired())
+   using {
+		   classeTransf:UML!Class=UML!Class.allInstancesFrom('IN')->select (x| x.isM2MTransf())->first();
+	      }
+   to   tRelation:UML!Class(
+	    name<-s9.name,
+		ownedAttribute <- tAttribute
+	    ),
+		tAttribute:UML!Property(
+		   name <-'isTopLevel',
+		   default <-'true'),
+		--cria a associacao entre a Relation e a transformaco. A transformação é composta de relations
+		tAssocRelTransfRule:UML!Association(
+			ownedEnd<-ass17,
+			ownedEnd<-ass18),
+		ass17:UML!Property(
+			name<-'rule',
+			type<-tRelation),
+		ass18:UML!Property(
+			name<-'transformation',
+			type<-thisModule.resolveTemp(classeTransf,'tRelatTransf'))
+		
+   do{ 
+   	   tRelation.applyStereotype(thisModule.findStereotype('Relation','PQVT'));
+   	   
+   }
+}
+
+-- cria o Relation Domain de ENTRADA referente ao elemento de entrada que é o Main 
+rule SourceER2InRelationDomain{
+	from s11:UML!Class (s11.isSERule() and s11.isMain())
+	using{ ref:String=s11.ownedAttribute->select(ar|ar.name='ref')->first().default;
+           nomeType:String=s11.ownedAttribute->select(ant|ant.name='type')->first().default;
+           nomeMetaM:String=s11.ownedAttribute->select(anm|anm.name='metamodel')->first().default;
+           metamodeloSrc:UML!Class=UML!Class.allInstancesFrom('IN')->select (x| x.isSourceMM() and x.name=nomeMetaM)->first();
+           minhaAssoc:UML!Association=UML!Association.allInstancesFrom('IN')->select(x|x.isInElem() and x.getDst()=s11)->first();
+           minhaRegra:UML!Class=minhaAssoc.getSrc();
+          }
+         -- Relation domain checkable
+	to  tDomCheck:UML!Class(
+			name<-'RD_in_'+s11.name,
+			ownedAttribute<-propIsCheckable1,
+			ownedAttribute<-propIsEnforc1
+			),
+		--propriedade checkable
+		propIsCheckable1:UML!Property(
+		   name<-'isCheckable',
+		   default<-'true'
+		  ),
+		--propriedade enforceable
+		propIsEnforc1:UML!Property(
+		  name<-'isEnforceable',
+		  default<-'false'
+		  ),
+  
+		 --classe que representa uma variavel para referenciar o Relation domain (root)
+		 tVar_RD_in:UML!Class(
+		 	name<-'r_'+ref,
+			ownedAttribute<-propName,
+			ownedAttribute<-propType
+	      ),
+		 	--propriedade que guarda o nome da variavel
+		 	propName:UML!Property(
+		 		name<-'name',
+				default<-'r_'+ref),
+		 	--propriedade que guarda o tipo da variavel
+	     	propType:UML!Property(
+	     		name<-'type',
+				default<-nomeType),
+		  --cria associacao entre RelationDomain e a variavel
+		  assocRD_Var:UML!Association(
+		  ownedEnd<-propRootVar,
+		  ownedEnd<-propRelatDom
+		  ),
+		  	propRootVar:UML!Property(
+				name<-'rootVariable',
+				type<-tVar_RD_in),
+		  	propRelatDom:UML!Property(
+				name<-'relationDomain',
+				type<-tDomCheck),		
+		 
+		--cria associacao entre o dominio e o metamodelo de entrada (typedModel)
+		  assocDPin_MM:UML!Association(
+		  ownedEnd<-propInDP,
+		  ownedEnd<-propMM
+		  ),
+		 	propInDP:UML!Property(
+				name<-'domain',
+				type<-tDomCheck),
+		  	propMM:UML!Property(
+				name<-'typedModel',
+				type<-thisModule.resolveTemp(metamodeloSrc,'tSrcMM')
+		  		),
+		
+			
+		--*** cria o DomainPattern de in ****
+		tDomainPatin:UML!Class(
+			name<-'DP_in_'+s11.name
+			),
+			
+		-- cria associacao entre o DomainPattern e o RelationDomain
+		assocDPin_RelatDomain:UML!Association(
+		  ownedEnd<-propDP_RD1,
+		  ownedEnd<-propDP_RD2
+		  ),
+		  	propDP_RD1:UML!Property(
+				name<-'relationDomain',
+				type<-tDomCheck),
+		  	propDP_RD2:UML!Property(
+				name<-'pattern',
+				type<-tDomainPatin
+		  		),
+				
+		--cria associacao entre o relationdomain e a relation
+		tAssocRuleRDin:UML!Association(
+		    ownedEnd<-assRule,
+			ownedEnd<-assRD),
+		 assRule:UML!Property(
+			name<-'rule',
+			type<-thisModule.resolveTemp(minhaRegra,'tRelation')
+			),
+		 assRD:UML!Property(
+			name<-'domain',
+			type<-tDomCheck
+			),
+		
+		-- ***cria o ObjectTemplateExp de in ****
+		tObjTempExpin:UML!Class(
+			name<-'OT_in_'+s11.name
+			),
+		-- cria associacao entre o DomainPattern e o ObjectTemplateExp
+		assocDPin_ObjTempExp:UML!Association(
+		  ownedEnd<-propDP_OTE1,
+		  ownedEnd<-propDP_OTE2
+		  ),
+		  	propDP_OTE1:UML!Property(
+				name<-'templateExpression',
+				type<-tObjTempExpin),
+		  	propDP_OTE2:UML!Property(
+				name<-'domainPattern',
+				type<-tDomainPatin
+		  		)
+		
+			
+	do{ 
+		
+	   tDomCheck.applyStereotype(thisModule.findStereotype('RelationDomain','PQVT'));
+  	   tVar_RD_in.applyStereotype(thisModule.findStereotype('Variable','PQVT'));
+  	   
+  	   tDomainPatin.applyStereotype(thisModule.findStereotype('DomainPattern','PQVT'));
+  	   
+  	   tObjTempExpin.applyStereotype(thisModule.findStereotype('ObjectTemplateExp','PQVT'));
+   }	   
+}
+
+rule SourceER2ObjectTempExp_Adicionais{
+	from s13:UML!Class (s13.isSERule() and not s13.isMain())
+	using{ ref:String=s13.ownedAttribute->select(ar|ar.name='ref')->first().default;
+           nomeType:String=s13.ownedAttribute->select(ant|ant.name='type')->first().default;
+           nomeMetaM:String=s13.ownedAttribute->select(anm|anm.name='metamodel')->first().default;
+           metamodeloSrc:UML!Class=UML!Class.allInstancesFrom('IN')->select (x| x.isSourceMM() and x.name=nomeMetaM)->first();
+           minhaAssoc:UML!Association=UML!Association.allInstancesFrom('IN')->select(x|x.isInElem() and x.getDst()=s13)->first();
+           minhaRegra:UML!Class=minhaAssoc.getSrc();
+           assocMinhaRegra:Sequence(UML!Association)=UML!Association.allInstancesFrom('IN')->select(x|x.isInElem() and x.getSrc()=minhaRegra);
+           classe:UML!Class=UML!Class;
+          }
+     to -- ***cria o ObjectTemplateExp de in ****
+		tObjTempExpin_adic:UML!Class(
+			name<-'OT_in_'+s13.name
+			),
+		-- cria associacao entre o ObjectTemplateExp adicional e o principal (gerado da regra anterior)
+		assocDPin_ObjTempExp2:UML!Association(
+		  ownedEnd<-propDP_OTE1,
+		  ownedEnd<-propDP_OTE2
+		  ),
+		  	propDP_OTE1:UML!Property(
+				name<-'templateExpression',
+				type<-tObjTempExpin_adic),
+		  	propDP_OTE2:UML!Property(
+				name<-'owner'
+			--	type<-thisModule.resolveTemp(meuSEMain,'tObjTempExpin')
+		  		)
+	do{
+		tObjTempExpin_adic.applyStereotype(thisModule.findStereotype('ObjectTemplateExp','PQVT'));
+		for (associacao in assocMinhaRegra)
+		{
+			classe<-associacao.getDst();
+			if (classe.isMain())
+				propDP_OTE2.type<-thisModule.resolveTemp(classe,'tObjTempExpin');
+		}
+			
+	}
+}
+ 
+-- cria o Relation Domain de SAIDA referente ao elemento de entrada que é o Main 
+rule TargetER2OutRelationDomain{
+	from s15:UML!Class (s15.isTERule() and s15.isMain())
+	using{ ref:String=s15.ownedAttribute->select(ar|ar.name='ref')->first().default;
+           nomeType:String=s15.ownedAttribute->select(ant|ant.name='type')->first().default;
+           nomeMetaM:String=s15.ownedAttribute->select(anm|anm.name='metamodel')->first().default;
+           metamodeloDst:UML!Class=UML!Class.allInstancesFrom('IN')->select (x| x.isTargetMM() and x.name=nomeMetaM)->first();
+           minhaAssoc:UML!Association=UML!Association.allInstancesFrom('IN')->select(x|x.isOutElem() and x.getDst()=s15)->first();
+           minhaRegra:UML!Class=minhaAssoc.getSrc();
+          }
+         -- Relation domain checkable
+	to  tDomCheckOut:UML!Class(
+			name<-'RD_out_'+s15.name,
+			ownedAttribute<-propIsCheckable1,
+			ownedAttribute<-propIsEnforc1
+			),
+		--propriedade checkable
+		propIsCheckable1:UML!Property(
+		   name<-'isCheckable',
+		   default<-'false'
+		  ),
+		--propriedade enforceable
+		propIsEnforc1:UML!Property(
+		  name<-'isEnforceable',
+		  default<-'true'
+		  ),
+  
+		 --classe que representa uma variavel para referenciar o Relation domain (root)
+		 tVar_RD_out:UML!Class(
+		 	name<-'r_'+ref,
+			ownedAttribute<-propName,
+			ownedAttribute<-propType
+	      ),
+		 	--propriedade que guarda o nome da variavel
+		 	propName:UML!Property(
+		 		name<-'name',
+				default<-'r_'+ref),
+		 	--propriedade que guarda o tipo da variavel
+	     	propType:UML!Property(
+	     		name<-'type',
+				default<-nomeType),
+		  --cria associacao entre RelationDomain e a variavel
+		  assocRD_Var_out:UML!Association(
+		  ownedEnd<-propRootVar,
+		  ownedEnd<-propRelatDom
+		  ),
+		  	propRootVar:UML!Property(
+				name<-'rootVariable',
+				type<-tVar_RD_out),
+		  	propRelatDom:UML!Property(
+				name<-'relationDomain',
+				type<-tDomCheckOut),
+				
+ 		 
+		  --cria associacao entre o dominio e o metamodelo de entrada (typedModel)
+		  assocDPout_MM:UML!Association(
+		  ownedEnd<-propInDP,
+		  ownedEnd<-propMM
+		  ),
+		 	propInDP:UML!Property(
+				name<-'domain',
+				type<-tDomCheckOut),
+		  	propMM:UML!Property(
+				name<-'typedModel',
+				type<-thisModule.resolveTemp(metamodeloDst,'tTargMM')
+		  		),
+		
+			
+		--*** cria o DomainPattern de out ****
+		tDomainPatout:UML!Class(
+			name<-'DP_out_'+s15.name
+			),
+			
+		-- cria associacao entre o DomainPattern e o RelationDomain
+		assocDPout_RelatDomain:UML!Association(
+		  ownedEnd<-propDP_RD1,
+		  ownedEnd<-propDP_RD2
+		  ),
+		  	propDP_RD1:UML!Property(
+				name<-'relationDomain',
+				type<-tDomCheckOut),
+		  	propDP_RD2:UML!Property(
+				name<-'pattern',
+				type<-tDomainPatout
+		  		),
+				
+		--cria associacao entre o relationdomain e a relation
+		tAssocRuleRDout:UML!Association(
+		    ownedEnd<-assRule,
+			ownedEnd<-assRD),
+			
+			assRule:UML!Property(
+				name<-'rule',
+			type<-thisModule.resolveTemp(minhaRegra,'tRelation')
+			),
+		    assRD:UML!Property(
+			   name<-'domain',
+			   type<-tDomCheckOut
+			),
+			
+		-- ***cria o ObjectTemplateExp de out ****
+		tObjTempExpout:UML!Class(
+			name<-'OT_out_'+s15.name
+			),
+		-- cria associacao entre o DomainPattern e o ObjectTemplateExp
+		assocDPout_ObjTempExp:UML!Association(
+		  ownedEnd<-propDP_OTE1,
+		  ownedEnd<-propDP_OTE2
+		  ),
+		  	propDP_OTE1:UML!Property(
+				name<-'templateExpression',
+				type<-tObjTempExpout),
+		  	propDP_OTE2:UML!Property(
+				name<-'domainPattern',
+				type<-tDomainPatout
+		  		),
+				
+		--cria variavel para referenciar o ObjectTemplateExp (é outra variavel)
+		 tVarOTE_out:UML!Class(
+		 	name<-ref,
+			ownedAttribute<-propNameOTE,
+			ownedAttribute<-propTypeOTE
+	      ),
+			 --propriedade que guarda o nome da variavel
+		 	propNameOTE:UML!Property(
+		 		name<-'name',
+				default<-ref),
+			--propriedade que guarda o nome do tipo da variavel
+	     	propTypeOTE:UML!Property(
+	     		name<-'type',
+				default<-nomeType),
+		  	--cria associacao entre Object template expression e a variavel
+		  	assocOTE_Var_out:UML!Association(
+		  	ownedEnd<-propVarOTE,
+		  	ownedEnd<-propOTE
+		  	),
+		  	propVarOTE:UML!Property(
+				name<-'bindsTo',
+				type<-tVarOTE_out),
+		  	propOTE:UML!Property(
+				name<-'templateExp',
+				type<-tObjTempExpout)
+		
+			
+		
+				
+	do{
+	   tDomCheckOut.applyStereotype(thisModule.findStereotype('RelationDomain','PQVT'));
+  	   tVar_RD_out.applyStereotype(thisModule.findStereotype('Variable','PQVT'));
+
+  	   tDomainPatout.applyStereotype(thisModule.findStereotype('DomainPattern','PQVT'));
+  	   
+  	   tObjTempExpout.applyStereotype(thisModule.findStereotype('ObjectTemplateExp','PQVT'));
+  	   
+  	   tVarOTE_out.applyStereotype(thisModule.findStereotype('Variable','PQVT'));
+  	   
+	}
+}
+
+
+rule TargetER2ObjectTempExp_Adicionais{
+	from s17:UML!Class (s17.isTERule() and not s17.isMain())
+	using{ ref:String=s17.ownedAttribute->select(ar|ar.name='ref')->first().default;
+           nomeType:String=s17.ownedAttribute->select(ant|ant.name='type')->first().default;
+           nomeMetaM:String=s17.ownedAttribute->select(anm|anm.name='metamodel')->first().default;
+           metamodeloDrc:UML!Class=UML!Class.allInstancesFrom('IN')->select (x| x.isTargetMM() and x.name=nomeMetaM)->first();
+           minhaAssoc:UML!Association=UML!Association.allInstancesFrom('IN')->select(x|x.isOutElem() and x.getDst()=s17)->first();
+           minhaRegra:UML!Class=minhaAssoc.getSrc();
+           assocMinhaRegra:Sequence(UML!Association)=UML!Association.allInstancesFrom('IN')->select(x|x.isOutElem() and x.getSrc()=minhaRegra);
+           classe:UML!Class=UML!Class;
+          }
+     to -- ***cria o ObjectTemplateExp de out ****
+		tObjTempExpout_adic:UML!Class(
+			name<-'OT_out_'+s17.name
+			),
+		-- cria associacao entre o ObjectTemplateExp adicional e o principal (gerado da regra anterior)
+		assocDPout_ObjTempExp2:UML!Association(
+		  ownedEnd<-propDP_OTE1,
+		  ownedEnd<-propDP_OTE2
+		  ),
+		  	propDP_OTE1:UML!Property(
+				name<-'templateExpression',
+				type<-tObjTempExpout_adic),
+		  	propDP_OTE2:UML!Property(
+				name<-'owner'
+			--	type<-thisModule.resolveTemp(meuSEMain,'tObjTempExpin')
+		  		),
+		
+		--cria variavel para referenciar o ObjectTemplateExp (é outra variavel)
+		 tVarOTE_out_adic:UML!Class(
+		 	name<-ref,
+			ownedAttribute<-propNameOTE,
+			ownedAttribute<-propTypeOTE
+	      ),
+			 --propriedade que guarda o nome da variavel
+		 	propNameOTE:UML!Property(
+		 		name<-'name',
+				default<-ref),
+			--propriedade que guarda o nome do tipo da variavel
+	     	propTypeOTE:UML!Property(
+	     		name<-'type',
+				default<-nomeType),
+		  	--cria associacao entre Object template expression e a variavel
+		  	assocOTE_Var_out_adic:UML!Association(
+		  	ownedEnd<-propVarOTE,
+		  	ownedEnd<-propOTE
+		  	),
+		  	propVarOTE:UML!Property(
+				name<-'bindsTo',
+				type<-tVarOTE_out_adic),
+		  	propOTE:UML!Property(
+				name<-'templateExp',
+				type<-tObjTempExpout_adic)
+		
+				
+	do{
+		tObjTempExpout_adic.applyStereotype(thisModule.findStereotype('ObjectTemplateExp','PQVT'));
+		tVarOTE_out_adic.applyStereotype(thisModule.findStereotype('Variable','PQVT'));
+		
+		for (associacao in assocMinhaRegra)
+		{
+			classe<-associacao.getDst();
+			if (classe.isMain())
+				propDP_OTE2.type<-thisModule.resolveTemp(classe,'tObjTempExpout');
+		}
+			
+	}
+}
+ 
+
+--criação dos PropertyTemplateItem a partir da configuração dos atributos de saida
+rule CriarPropertyTemplateItem{
+  from sConfig:UML!Class (sConfig.isConfig() and not sConfig.isPreCondition())
+  using{
+  	expressao:String=sConfig.ownedAttribute->select(anm|anm.name='exp')->first().default;
+    propriedade:String=sConfig.ownedAttribute->select(anm|anm.name='property')->first().default;
+    fazReferencia:Integer=expressao.indexOf('.'); --verifica se a expressão faz referencia a outra propriedade
+    fazCall:Boolean=expressao.startsWith('call');
+    allClasses:Sequence(UML!Class)=UML!Class.allInstancesFrom('IN')->select (x| x.isSERule());
+    valor:String=propriedade;
+  }
+  to   tPropTempItem:UML!Class(
+         name<-sConfig.name,
+	     ownedAttribute<-tValue,
+		 ownedAttribute<-tProperty
+       ),
+	   tValue:UML!Property(
+	   	 name<-'value'
+		-- default<-expressao
+		
+		 ),
+	   tProperty:UML!Property(
+	   	 name<-'referedProperty',
+		 default<-propriedade)
+	   
+		 	   
+	 do{
+	 	
+	 tPropTempItem.applyStereotype(thisModule.findStereotype('PropertyTemplateItem','PQVT'));
+	   -- if (fazCall) 
+		    --    tValue.default<-'when '+expressao.substring(6,expressao.indexOf('('))+'(,)';
+	--	else 
+	 	if (fazReferencia>0)
+		 {
+		   --percorre todas as propriedades definidas para serem usadas na entrada
+		    for (classe in allClasses){
+		        valor<-'';
+		        --pega a propriedade 
+		    	valor<-valor.concat(classe.ownedAttribute->select(p|p.name='ref')->first().default);
+		        --concatena com o ponto '.'
+		        valor<-valor.concat('.');
+		        --substitui a string da propriedade com o ponto pela letra v. Foi definido que as variaveis criadas para o
+				--padrao de entrada serão formadas pela letra v concatenada com o nome da propriedade.
+		    	expressao<-expressao.regexReplaceAll(valor,'v');
+		     }
+		    tValue.default<-expressao;
+	 	 }
+		else 
+		    tValue.default<-expressao; 
+	        
+		
+	 }
+}
+
+--criação dos Pattern de when quando encontrar um call
+rule CriarPatternWhen{
+  from sConfigPat:UML!Class (sConfigPat.isConfig() and sConfigPat.isPreCondition())
+  using{
+  	expressao:String=sConfigPat.ownedAttribute->select(anm|anm.name='exp')->first().default;
+    propriedade:String=sConfigPat.ownedAttribute->select(anm|anm.name='property')->first().default;
+    fazCall:Boolean=expressao.startsWith('call');
+  }
+  to   tPattern:UML!Class(
+         name<-sConfigPat.name,
+	     ownedAttribute<-tValue,
+		 ownedAttribute<-tProperty
+       ),
+	   tValue:UML!Property(
+	   	 name<-'variable',
+		 default<-propriedade
+		 ),
+	   tProperty:UML!Property(
+	   	 name<-'predicate'
+		 --default<-propriedade
+		 )	   
+	 do{
+	 	
+	 tPattern.applyStereotype(thisModule.findStereotype('Pattern','PQVT'));
+	 tProperty.default<-expressao.substring(6,expressao.indexOf('('))+'(,)';
+	 }
+}
+
+
+--regra que liga o PropertyTemplateItem ao ObjectTempateExp
+rule PropTempItem2ObjectTempExp{
+	from sAssocConfigTE:UML!Association (sAssocConfigTE.isConfigTE() and not sAssocConfigTE.isPreCondition())
+	using{ meuTE:UML!Class=sAssocConfigTE.getSrc();
+          }
+	to   tAssocPropTI_OTE:UML!Association(
+		    ownedEnd<-tSrc,
+			ownedEnd<-tDest
+			),
+		 tSrc:UML!Property(
+		 	name<-'objContainer'
+			--type<-thisModule.resolveTemp((sAssocConfigTE.ownedEnd->select(m|m.name='src')->first()).type,'tObjTempExpout')
+		 	),
+		 tDest:UML!Property(
+		 	name<-'part',
+			type<-thisModule.resolveTemp((sAssocConfigTE.ownedEnd->select(m|m.name='dst')->first()).type,'tPropTempItem')
+		 	)
+	do{ 
+			
+		if (meuTE.isMain())
+		  tSrc.type<-thisModule.resolveTemp((sAssocConfigTE.ownedEnd->select(m|m.name='src')->first()).type,'tObjTempExpout');
+	    else
+	      tSrc.type<-thisModule.resolveTemp((sAssocConfigTE.ownedEnd->select(m|m.name='src')->first()).type,'tObjTempExpout_adic');
+	}
+}
+
+--regra que liga o Pattern a top relation
+rule PreCondition{
+	from sPreCond:UML!Association (sPreCond.isPreCondition())
+	using{ meuTE:UML!Class=sPreCond.getSrc();
+          minhaAssoc:UML!Association=UML!Association.allInstancesFrom('IN')->select(x|x.isOutElem() and x.getDst()=meuTE)->first();
+--****problema aqui ****
+          minhaRegra:UML!Class=minhaAssoc.getSrc();
+          }
+	to   tAPreCondRelat:UML!Association(
+		    ownedEnd<-tSrc,
+			ownedEnd<-tDest
+			),
+		 tSrc:UML!Property(
+		 	name<-'whenOwner',
+			type<-thisModule.resolveTemp(minhaRegra,'tRelation')
+		 	),
+		 tDest:UML!Property(
+		 	name<-'when',
+			type<-thisModule.resolveTemp((sPreCond.ownedEnd->select(m|m.name='dst')->first()).type,'tPattern')
+		 	)
+}
+
+--criação dos PropertyTemplateItem a partir da configuração dos atributos de entrada
+--aqui estou criando tambem variaveis para ficarem associadas à relation com o mesmo nome de variavel usada nas configuracoes de in
+rule CriarPropertyTemplateItemIn{
+  from sConfigSE:UML!Class (sConfigSE.isConfigSE())
+  using{
+    propriedade:String=sConfigSE.ownedAttribute->select(anm|anm.name='property')->first().default;
+    nomeVar:String='v'+propriedade;
+    
+  }
+  to   tPropTempItemIn:UML!Class(
+         name<-sConfigSE.name,
+	     ownedAttribute<-tValue,
+		 ownedAttribute<-tProperty
+       ),
+	   		tValue:UML!Property(
+	   	 		name<-'value',
+		 		default<-nomeVar
+		 		),
+	   		tProperty:UML!Property(
+	   	 		name<-'referedProperty',
+		 		default<-propriedade
+				),
+		 
+	   -- criacao das variaveis globais para a relation
+	   tVarGlobal:UML!Class(
+	   	  name<-'var'+sConfigSE.name,
+		  ownedAttribute<-tValVar,
+		  ownedAttribute<-tPropVar),
+			tValVar:UML!Property(
+	   	 		name<-'name',
+		 		default<-nomeVar
+		 		),
+	   		tPropVar:UML!Property(
+	   	 		name<-'type',
+		 		default<-'String'
+				)
+		
+
+	 do{
+	 	tPropTempItemIn.applyStereotype(thisModule.findStereotype('PropertyTemplateItem','PQVT'));
+	 	tVarGlobal.applyStereotype(thisModule.findStereotype('Variable','PQVT'));
+	 		
+	 }
+}
+
+--regra que liga o PropertyTemplateItem ao ObjectTempateExp
+rule PropTempItemIn2ObjectTempExp{
+	from sAssocConfigSE:UML!Association (sAssocConfigSE.isConfigSE())
+	using{ meuSE:UML!Class=sAssocConfigSE.getSrc();
+           minhaAssoc:UML!Association=UML!Association.allInstancesFrom('IN')->select(x|x.getDst()=meuSE)->first();
+           minhaRelation:UML!Class=minhaAssoc.getSrc();
+         }
+	to   tAssocPropTI_OTE_IN:UML!Association(
+		    ownedEnd<-tSrc,
+			ownedEnd<-tDest
+			),
+		 	tSrc:UML!Property(
+		 		name<-'objContainer'
+				--type<-thisModule.resolveTemp((sAssocConfigSE.ownedEnd->select(m|m.name='src')->first()).type,'tObjTempExpin')
+		 		),
+		 	tDest:UML!Property(
+		 		name<-'part',
+				type<-thisModule.resolveTemp((sAssocConfigSE.ownedEnd->select(m|m.name='dst')->first()).type,'tPropTempItemIn')
+		 		),
+		tAssocVarGlobal:UML!Association(
+			  ownedEnd<-tSrcVarGlobal,
+			  ownedEnd<-tDestVarGlobal),
+			tSrcVarGlobal:UML!Property(
+		 		name<-'variable',
+				type<-thisModule.resolveTemp((sAssocConfigSE.ownedEnd->select(m|m.name='dst')->first()).type,'tVarGlobal')
+		 		),
+		 	tDestVarGlobal:UML!Property(
+		 		name<-'relation',
+				type<-thisModule.resolveTemp(minhaRelation,'tRelation')
+		 		)
+			
+	do{ if (meuSE.isMain())
+		  tSrc.type<-thisModule.resolveTemp((sAssocConfigSE.ownedEnd->select(m|m.name='src')->first()).type,'tObjTempExpin');
+	    else
+	      tSrc.type<-thisModule.resolveTemp((sAssocConfigSE.ownedEnd->select(m|m.name='src')->first()).type,'tObjTempExpin_adic');	
+	}
+}

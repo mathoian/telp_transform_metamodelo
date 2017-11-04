@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xmi:XMI xmi:version="2.1" xmlns:xmi="http://schema.omg.org/spec/XMI/2.1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:Processo="http:///schemas/Processo/_vwXDAFH2Eeeppb2KGI-Yfg/0" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:uml="http://www.eclipse.org/uml2/3.0.0/UML" xsi:schemaLocation="http:///schemas/Processo/_vwXDAFH2Eeeppb2KGI-Yfg/0 Processo.profile.uml#_vwY4MFH2Eeeppb2KGI-Yfg">
+  <uml:Package xmi:id="_qIUR4FH1Eeeppb2KGI-Yfg" name="Exemplo">
+    <elementImport xmi:id="_qIl-sFH1Eeeppb2KGI-Yfg">
+      <importedElement xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Boolean"/>
+    </elementImport>
+    <elementImport xmi:id="_qInz4FH1Eeeppb2KGI-Yfg">
+      <importedElement xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+    </elementImport>
+    <elementImport xmi:id="_qInz4VH1Eeeppb2KGI-Yfg">
+      <importedElement xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#UnlimitedNatural"/>
+    </elementImport>
+    <elementImport xmi:id="_qInz4lH1Eeeppb2KGI-Yfg">
+      <importedElement xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Integer"/>
+    </elementImport>
+    <packagedElement xmi:type="uml:Package" xmi:id="_yxt7MFH2Eeeppb2KGI-Yfg" name="Concepcao"/>
+    <packagedElement xmi:type="uml:Class" xmi:id="_10ZCAFH2Eeeppb2KGI-Yfg" name="Analista de Requisitos"/>
+    <packagedElement xmi:type="uml:Class" xmi:id="_6vUD4FH2Eeeppb2KGI-Yfg" name="Identificar Requisitos"/>
+    <packagedElement xmi:type="uml:Class" xmi:id="_-9k0EFH2Eeeppb2KGI-Yfg" name="Contrato"/>
+    <packagedElement xmi:type="uml:Class" xmi:id="_CN2SAFH3Eeeppb2KGI-Yfg" name="Caso de Uso"/>
+    <packagedElement xmi:type="uml:Association" xmi:id="_JRCA4FH3Eeeppb2KGI-Yfg" memberEnd="_JRCn8FH3Eeeppb2KGI-Yfg _JRDPAVH3Eeeppb2KGI-Yfg">
+      <ownedEnd xmi:id="_JRCn8FH3Eeeppb2KGI-Yfg" name="src" type="_10ZCAFH2Eeeppb2KGI-Yfg" association="_JRCA4FH3Eeeppb2KGI-Yfg">
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_JRDPAFH3Eeeppb2KGI-Yfg" value="1"/>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_JRCn8VH3Eeeppb2KGI-Yfg" value="1"/>
+      </ownedEnd>
+      <ownedEnd xmi:id="_JRDPAVH3Eeeppb2KGI-Yfg" name="dst" type="_6vUD4FH2Eeeppb2KGI-Yfg" association="_JRCA4FH3Eeeppb2KGI-Yfg">
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_JRDPA1H3Eeeppb2KGI-Yfg" value="1"/>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_JRDPAlH3Eeeppb2KGI-Yfg" value="1"/>
+      </ownedEnd>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Association" xmi:id="_JzspEFH3Eeeppb2KGI-Yfg" memberEnd="_JztQIFH3Eeeppb2KGI-Yfg _JztQI1H3Eeeppb2KGI-Yfg">
+      <ownedEnd xmi:id="_JztQIFH3Eeeppb2KGI-Yfg" name="src" type="_6vUD4FH2Eeeppb2KGI-Yfg" association="_JzspEFH3Eeeppb2KGI-Yfg">
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_JztQIlH3Eeeppb2KGI-Yfg" value="1"/>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_JztQIVH3Eeeppb2KGI-Yfg" value="1"/>
+      </ownedEnd>
+      <ownedEnd xmi:id="_JztQI1H3Eeeppb2KGI-Yfg" name="dst" type="_-9k0EFH2Eeeppb2KGI-Yfg" association="_JzspEFH3Eeeppb2KGI-Yfg">
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_JztQJVH3Eeeppb2KGI-Yfg" value="1"/>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_JztQJFH3Eeeppb2KGI-Yfg" value="1"/>
+      </ownedEnd>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Association" xmi:id="_LEEEwFH3Eeeppb2KGI-Yfg" memberEnd="_LEEEwVH3Eeeppb2KGI-Yfg _LEEr0lH3Eeeppb2KGI-Yfg">
+      <ownedEnd xmi:id="_LEEEwVH3Eeeppb2KGI-Yfg" name="src" type="_6vUD4FH2Eeeppb2KGI-Yfg" association="_LEEEwFH3Eeeppb2KGI-Yfg">
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_LEEr0VH3Eeeppb2KGI-Yfg" value="1"/>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_LEEr0FH3Eeeppb2KGI-Yfg" value="1"/>
+      </ownedEnd>
+      <ownedEnd xmi:id="_LEEr0lH3Eeeppb2KGI-Yfg" name="dst" type="_CN2SAFH3Eeeppb2KGI-Yfg" association="_LEEEwFH3Eeeppb2KGI-Yfg">
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_LEEr1FH3Eeeppb2KGI-Yfg" value="1"/>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_LEEr01H3Eeeppb2KGI-Yfg" value="1"/>
+      </ownedEnd>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Package" xmi:id="_yEdPwFH6Eeeppb2KGI-Yfg" name="Profile Processo"/>
+    <profileApplication xmi:id="_xk-bQFH2Eeeppb2KGI-Yfg">
+      <eAnnotations xmi:id="_xlAQcFH2Eeeppb2KGI-Yfg" source="http://www.eclipse.org/uml2/2.0.0/UML">
+        <references xmi:type="ecore:EPackage" href="Processo.profile.uml#_vwY4MFH2Eeeppb2KGI-Yfg"/>
+      </eAnnotations>
+      <appliedProfile href="Processo.profile.uml#_0KAZQFH1Eeeppb2KGI-Yfg"/>
+    </profileApplication>
+  </uml:Package>
+  <Processo:Fase xmi:id="_036LoFH2Eeeppb2KGI-Yfg" base_Package="_yxt7MFH2Eeeppb2KGI-Yfg"/>
+  <Processo:Papel xmi:id="_5DhQcFH2Eeeppb2KGI-Yfg" base_Class="_10ZCAFH2Eeeppb2KGI-Yfg"/>
+  <Processo:Tarefa xmi:id="_9ur_EFH2Eeeppb2KGI-Yfg" base_Class="_6vUD4FH2Eeeppb2KGI-Yfg"/>
+  <Processo:Artefato xmi:id="_BlDzsFH3Eeeppb2KGI-Yfg" base_Class="_-9k0EFH2Eeeppb2KGI-Yfg"/>
+  <Processo:Artefato xmi:id="_FP3RgFH3Eeeppb2KGI-Yfg" base_Class="_CN2SAFH3Eeeppb2KGI-Yfg"/>
+  <Processo:Responsavel xmi:id="_L6G78FH3Eeeppb2KGI-Yfg" base_Association="_JRCA4FH3Eeeppb2KGI-Yfg"/>
+  <Processo:Consumido xmi:id="_NXv-oFH3Eeeppb2KGI-Yfg" base_Association="_JzspEFH3Eeeppb2KGI-Yfg"/>
+  <Processo:Produzido xmi:id="_PQJqsFH3Eeeppb2KGI-Yfg" base_Association="_LEEEwFH3Eeeppb2KGI-Yfg"/>
+</xmi:XMI>

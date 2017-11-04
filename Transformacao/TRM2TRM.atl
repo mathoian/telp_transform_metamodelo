@@ -1,0 +1,267 @@
+module TRM2TRM2;
+--*** a saida é um diagrama UML (classe). A entrada é o diagrama UML (caso uso) e o perfil MTPSpec ***
+create OUT:UML from IN:UML,MTPspec:UML;
+
+
+--*** Helpers que testam se os elementos estão estereotipados com seus respectivos estereótipos ***
+-- por exemplo, testa no contexto UML se o pacote que esta sendo transformado esta estereotipada com TransfDefinition
+helper context UML!Package def:isTransPack():Boolean = self.getAppliedStereotypes()->exists(c|c.name='TransPack');
+helper context UML!Actor def:isTransSpec():Boolean = self.getAppliedStereotypes()->exists(c|c.name='TransSpec');
+helper context UML!UseCase def:isRequirement():Boolean = self.getAppliedStereotypes()->exists(c|c.name='Req');
+helper context UML!Association def:isTransfReq():Boolean = self.getAppliedStereotypes()->exists(c|c.name='ReqTransf');
+helper context UML!UseCase def:isRefinedReq():Boolean = self.getAppliedStereotypes()->exists(c|c.name='RefReq');
+helper context UML!UseCase def:isComprisedReq():Boolean = self.getAppliedStereotypes()->exists(c|c.name='CompReq');
+helper context UML!Comment def:isConstraint():Boolean = self.getAppliedStereotypes()->exists(c|c.name='Constraint');
+
+--*** helpers para achar um perfil bseado no nome fisico e no nome logico. name: passa o nome do profile no pacote profile; profile: passa o nome que esta no IN, no caso MTPspec ***
+helper def : findProfile(name : String, profile : String): UML!Profile = UML!Profile.allInstancesFrom(profile)-> select(st| st.name = name)->first();
+--*** helper para achar um estereotipo em um perfil. name - nome do estereotipo profile - arquivo de entrada contendo o profile ***
+helper def : findStereotype(name : String, profile : String) : UML!Stereotype = UML!Stereotype.allInstancesFrom(profile)-> select(st| st.name = name)->first();
+
+
+-- *** regra principal. Cria o pacote que vai conter os elementos do diagrama a ser gerado
+-- *** para que essa transformação funcione o diagrama de caso de uso deve ter sido criado dentro de um pacote estereotipado como TransPack
+rule Model2Model{
+	from s1:UML!Package (s1.isTransPack())
+	
+	to   t1:UML!Package(
+		 name<-s1.name,
+		 ownedComment <- Set {UML!Comment.allInstancesFrom('IN')->select (x| x.isConstraint())-> collect(e | thisModule.resolveTemp(e,'tConst'))},
+		 packagedElement <- Set {
+		    UML!Actor.allInstancesFrom('IN')->select (x| x.isTransSpec())-> collect(e | thisModule.resolveTemp(e,'tTransf')),
+		    UML!Actor.allInstancesFrom('IN')->select (x| x.isTransSpec())-> collect(e | thisModule.resolveTemp(e,'tSourceMM')),
+			UML!Actor.allInstancesFrom('IN')->select (x| x.isTransSpec())-> collect(e | thisModule.resolveTemp(e,'tTargetMM')),
+			UML!Actor.allInstancesFrom('IN')->select (x| x.isTransSpec())-> collect(e | thisModule.resolveTemp(e,'tAssocSourceMM')),
+			UML!Actor.allInstancesFrom('IN')->select (x| x.isTransSpec())-> collect(e | thisModule.resolveTemp(e,'tAssocTargetMM')),
+			UML!UseCase.allInstancesFrom('IN')->select (x| x.isRequirement())-> collect(e | thisModule.resolveTemp(e,'tRequirement')),
+			UML!UseCase.allInstancesFrom('IN')->select (x| x.isRefinedReq())-> collect(e | thisModule.resolveTemp(e,'tRefined')),
+			UML!UseCase.allInstancesFrom('IN')->select (x| x.isComprisedReq())-> collect(e | thisModule.resolveTemp(e,'tComprised')),
+			UML!Association.allInstancesFrom('IN')->select (x| x.isTransfReq())-> collect(e | thisModule.resolveTemp(e,'tAssoc'))
+		 }
+		 )
+   do {
+        t1.applyProfile(thisModule.findProfile('MTPspec','MTPspec'));	
+    	t1.applyStereotype(thisModule.findStereotype('TransPack', 'MTPspec'));
+      }
+}
+
+--*** regra que transforma o ator estereotipado como TransSpec em uma classe com o mesmo estereoripo ***
+rule Actor2Class{
+from s2:UML!Actor (s2.isTransSpec())
+to tTransf:UML!Class(
+      name<-s2.name,
+	  ownedAttribute<-tPropTrans
+	  ),
+   tPropTrans:UML!Property(
+			name<-'description'
+   	),
+	tSourceMM:UML!Class(
+		name<-'Metamodelo',
+		ownedAttribute<-tFile
+	),
+	tFile:UML!Property(
+		name<-'file'),
+	tTargetMM:UML!Class(
+		name<-'Metamodelo',
+		ownedAttribute<-tFile2
+	),
+	tFile2:UML!Property(
+		name<-'file'),
+	tAssocSourceMM:UML!Association(
+		ownedEnd<-tOrigemSrcMM,
+		ownedEnd<-tDestSrcMM),
+    tOrigemSrcMM:UML!Property(
+    	name<-'src',
+		type<-tTransf),
+	tDestSrcMM:UML!Property(
+    	name<-'dst',
+		type<-tSourceMM),
+	tAssocTargetMM:UML!Association(
+		ownedEnd<-tOrigemTargMM,
+		ownedEnd<-tDestTargMM),
+    tOrigemTargMM:UML!Property(
+    	name<-'src',
+		type<-tTransf),
+	tDestTargMM:UML!Property(
+    	name<-'dst',
+		type<-tTargetMM)
+do{
+
+	
+	tTransf.applyStereotype(thisModule.findStereotype('TransSpec', 'MTPspec'));
+	tSourceMM.applyStereotype(thisModule.findStereotype('SourceMM', 'MTPspec'));
+	tTargetMM.applyStereotype(thisModule.findStereotype('TargetMM', 'MTPspec'));
+	tAssocSourceMM.applyStereotype(thisModule.findStereotype('SourceMM', 'MTPspec'));
+	tAssocTargetMM.applyStereotype(thisModule.findStereotype('TargetMM', 'MTPspec'));
+}
+}   
+
+--*** regra que transforma um caso de uso estereotipado como Req em uma classe com o mesmo estereoripo ***
+rule UseCase2ClassReq{
+from s3:UML!UseCase (s3.isRequirement())
+to tRequirement:UML!Class(
+      name<-s3.name,
+	  ownedAttribute<-tPropReq,
+	  ownedAttribute<-ttype,
+	  ownedAttribute<-tPriority,
+	  ownedAttribute<-tRelease,
+	  ownedAttribute<-tVer,
+	  ownedAttribute<-tRastrea
+	  ),
+   tPropReq:UML!Property(
+			name<-'description'
+   	),
+   ttype:UML!Property(
+			name<-'type',
+			default<-'functional'
+   	),
+   tPriority:UML!Property(
+			name<-'priority',
+			default<-'0'
+   	), 
+   tRelease:UML!Property(
+			name<-'release',
+			default<-'1'
+   	), 
+   tVer:UML!Property(
+			name<-'verificationCriteria'
+   	), 	
+   tRastrea:UML!Property(
+			name<-'domainRastreability'
+   	) 	
+ 	 
+do{
+	tRequirement.applyStereotype(thisModule.findStereotype('Req', 'MTPspec'));
+}
+}
+
+--*** regra que transforma um caso de uso especializado estereotipado como RefinedReq
+--*** em uma classe com o mesmo estereoripo
+rule UseCase2ClassRefinedReq{
+from s4:UML!UseCase (s4.isRefinedReq())
+to tRefined:UML!Class(
+      name<-s4.name,
+	  generalization <- s4.generalization,
+	  ownedAttribute<-tPropReq2,
+	  ownedAttribute<-ttype2,
+	  ownedAttribute<-tPriority2,
+	  ownedAttribute<-tRelease2,
+	  ownedAttribute<-tVer2,
+	  ownedAttribute<-tRastrea2
+	  ),
+   tPropReq2:UML!Property(
+			name<-'description'
+   	),
+   ttype2:UML!Property(
+			name<-'type',
+			default<-'functional'
+   	),
+   tPriority2:UML!Property(
+			name<-'priority'
+   	), 
+   tRelease2:UML!Property(
+			name<-'release',
+			default<-'1'
+   	), 
+   tVer2:UML!Property(
+			name<-'verificationCriteria'
+   	), 	
+   tRastrea2:UML!Property(
+			name<-'domainRastreability'
+   	) 	
+ 	    
+do{
+	tRefined.applyStereotype(thisModule.findStereotype('RefReq', 'MTPspec'));
+}
+}
+
+rule Comprised2Comprised{
+from s5:UML!UseCase (s5.isComprisedReq())
+to tComprised:UML!Class(
+      name<-s5.name,
+	  ownedAttribute<-tPropReqComp,
+	  ownedAttribute<-ttypeComp,
+	  ownedAttribute<-tPriorityComp,
+	  ownedAttribute<-tReleaseComp,
+	  ownedAttribute<-tVerComp,
+	  ownedAttribute<-tRastreaComp
+	  ),
+   tPropReqComp:UML!Property(
+			name<-'description'
+   	),
+   ttypeComp:UML!Property(
+			name<-'type',
+			default<-'functional'
+   	),
+   tPriorityComp:UML!Property(
+			name<-'priority'
+   	), 
+   tReleaseComp:UML!Property(
+			name<-'release',
+			default<-'1'
+   	), 
+   tVerComp:UML!Property(
+			name<-'verificationCriteria'
+   	), 	
+   tRastreaComp:UML!Property(
+			name<-'domainRastreability'
+   	) 	
+do{
+   tComprised.applyStereotype(thisModule.findStereotype('CompReq', 'MTPspec'));
+   }
+}
+
+--*** regra que transforma associacoes entre ator e caso de uso 
+--*** em associacao de composicao entre a classe que representa a transformacao 
+--*** e a classe de requisito
+rule AssocSimples2AssocComposicao{
+	from s4:UML!Association (s4.isTransfReq())
+	using{
+	   vorig: UML!Property = thisModule.criarOrigem(s4.ownedEnd->select(m|m.name='src')->first());
+	   vdest: UML!Property = thisModule.criarDestino(s4.ownedEnd->select(m|m.name='dst')->first());
+	}
+	to   tAssoc:UML!Association(
+		    name<-s4.name,
+			ownedEnd<- Set {vorig,vdest}
+			)
+			
+	do{
+		tAssoc.applyStereotype(thisModule.findStereotype('ReqTransf','MTPspec'));
+	}
+	
+}
+
+rule General2Refined{
+	from s6:UML!Generalization 
+	to   tGeneral:UML!Generalization(
+		    general<-s6.general,
+			generalizationSet <- s6.generalizationSet
+			)
+}
+
+--*** regra que transforma uma nota estereotipado como Constraint em outra nota com o mesmo estereoripo ***
+rule Constraint2Constraint{
+	from s7:UML!Comment (s7.isConstraint())
+	to tConst:UML!Comment(
+		body <- s7.body)
+do{
+	tConst.applyStereotype(thisModule.findStereotype('Constraint', 'MTPspec'));
+}	
+}
+
+
+lazy rule criarDestino {
+    from destino : UML!Property
+    to tdst : UML!Property(
+			name<-'dst',
+			type<-thisModule.resolveTemp(destino.type,'tRequirement'),
+			aggregation <- #composite
+	   	)
+}
+lazy rule criarOrigem {
+    from origem : UML!Property
+    to tsrc : UML!Property(
+			name<-'src',
+			type<-thisModule.resolveTemp(origem.type,'tTransf')
+	   	)
+}

@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<uml:Profile xmi:version="2.1" xmlns:xmi="http://schema.omg.org/spec/XMI/2.1" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:uml="http://www.eclipse.org/uml2/3.0.0/UML" xmi:id="_PkMwAStTEeeuIK_UI7emaQ" name="perfilBanco" metaclassReference="__JGaECtTEeeuIK_UI7emaQ _LT7YMCtUEeeuIK_UI7emaQ">
+  <eAnnotations xmi:id="_19FhAStUEeeuIK_UI7emaQ" source="http://www.eclipse.org/uml2/2.0.0/UML">
+    <contents xmi:type="ecore:EPackage" xmi:id="_19FhAitUEeeuIK_UI7emaQ" name="perfilBanco" nsURI="http:///schemas/perfilBanco/_19FhACtUEeeuIK_UI7emaQ/0" nsPrefix="perfilBanco">
+      <eClassifiers xmi:type="ecore:EClass" xmi:id="_19FhAytUEeeuIK_UI7emaQ" name="Homem" eSuperTypes="_19FhCCtUEeeuIK_UI7emaQ">
+        <eAnnotations xmi:id="_19FhBCtUEeeuIK_UI7emaQ" source="http://www.eclipse.org/uml2/2.0.0/UML" references="_9s3FkCtTEeeuIK_UI7emaQ"/>
+        <eStructuralFeatures xmi:type="ecore:EReference" xmi:id="_19FhBStUEeeuIK_UI7emaQ" name="base_Class" ordered="false" lowerBound="1">
+          <eType xmi:type="ecore:EClass" href="http://www.eclipse.org/uml2/3.0.0/UML#//Class"/>
+        </eStructuralFeatures>
+      </eClassifiers>
+      <eClassifiers xmi:type="ecore:EClass" xmi:id="_19FhCCtUEeeuIK_UI7emaQ" name="Pessoa">
+        <eAnnotations xmi:id="_19FhCStUEeeuIK_UI7emaQ" source="http://www.eclipse.org/uml2/2.0.0/UML" references="_W4dLUCtUEeeuIK_UI7emaQ"/>
+        <eStructuralFeatures xmi:type="ecore:EAttribute" xmi:id="_19FhCitUEeeuIK_UI7emaQ" name="nome" ordered="false" lowerBound="1"/>
+      </eClassifiers>
+      <eClassifiers xmi:type="ecore:EClass" xmi:id="_19FhCytUEeeuIK_UI7emaQ" name="Mulher" eSuperTypes="_19FhCCtUEeeuIK_UI7emaQ">
+        <eAnnotations xmi:id="_19FhDCtUEeeuIK_UI7emaQ" source="http://www.eclipse.org/uml2/2.0.0/UML" references="_CUNEICtUEeeuIK_UI7emaQ"/>
+        <eStructuralFeatures xmi:type="ecore:EReference" xmi:id="_19FhDStUEeeuIK_UI7emaQ" name="base_Class" ordered="false" lowerBound="1">
+          <eType xmi:type="ecore:EClass" href="http://www.eclipse.org/uml2/3.0.0/UML#//Class"/>
+        </eStructuralFeatures>
+      </eClassifiers>
+      <eClassifiers xmi:type="ecore:EClass" xmi:id="_19FhECtUEeeuIK_UI7emaQ" name="Conversa">
+        <eAnnotations xmi:id="_19FhEStUEeeuIK_UI7emaQ" source="http://www.eclipse.org/uml2/2.0.0/UML" references="_KKd1wCtUEeeuIK_UI7emaQ"/>
+        <eStructuralFeatures xmi:type="ecore:EReference" xmi:id="_19FhEitUEeeuIK_UI7emaQ" name="base_Association" ordered="false" lowerBound="1">
+          <eType xmi:type="ecore:EClass" href="http://www.eclipse.org/uml2/3.0.0/UML#//Association"/>
+        </eStructuralFeatures>
+      </eClassifiers>
+    </contents>
+  </eAnnotations>
+  <elementImport xmi:id="_Plr9wCtTEeeuIK_UI7emaQ">
+    <importedElement xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Boolean"/>
+  </elementImport>
+  <elementImport xmi:id="_Pl1HsCtTEeeuIK_UI7emaQ">
+    <importedElement xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+  </elementImport>
+  <elementImport xmi:id="_Pl1HsStTEeeuIK_UI7emaQ">
+    <importedElement xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#UnlimitedNatural"/>
+  </elementImport>
+  <elementImport xmi:id="_Pl1HsitTEeeuIK_UI7emaQ">
+    <importedElement xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Integer"/>
+  </elementImport>
+  <elementImport xmi:id="__JGaECtTEeeuIK_UI7emaQ">
+    <importedElement xmi:type="uml:Class" href="pathmap://UML_METAMODELS/UML.metamodel.uml#Class"/>
+  </elementImport>
+  <elementImport xmi:id="_LT7YMCtUEeeuIK_UI7emaQ">
+    <importedElement xmi:type="uml:Class" href="pathmap://UML_METAMODELS/UML.metamodel.uml#Association"/>
+  </elementImport>
+  <packagedElement xmi:type="uml:Stereotype" xmi:id="_9s3FkCtTEeeuIK_UI7emaQ" name="Homem">
+    <generalization xmi:id="_YcmeoCtUEeeuIK_UI7emaQ" general="_W4dLUCtUEeeuIK_UI7emaQ"/>
+    <ownedAttribute xmi:id="_Ayc9gitUEeeuIK_UI7emaQ" name="base_Class" association="_Ayc9gCtUEeeuIK_UI7emaQ">
+      <type xmi:type="uml:Class" href="pathmap://UML_METAMODELS/UML.metamodel.uml#Class"/>
+    </ownedAttribute>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Extension" xmi:id="_Ayc9gCtUEeeuIK_UI7emaQ" name="Class_Homem" memberEnd="_Ayc9gStUEeeuIK_UI7emaQ _Ayc9gitUEeeuIK_UI7emaQ">
+    <ownedEnd xmi:type="uml:ExtensionEnd" xmi:id="_Ayc9gStUEeeuIK_UI7emaQ" name="extension_Homem" type="_9s3FkCtTEeeuIK_UI7emaQ" aggregation="composite" association="_Ayc9gCtUEeeuIK_UI7emaQ"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Stereotype" xmi:id="_CUNEICtUEeeuIK_UI7emaQ" name="Mulher">
+    <generalization xmi:id="_Y6_q0CtUEeeuIK_UI7emaQ" general="_W4dLUCtUEeeuIK_UI7emaQ"/>
+    <ownedAttribute xmi:id="_Dbus4itUEeeuIK_UI7emaQ" name="base_Class" association="_Dbus4CtUEeeuIK_UI7emaQ">
+      <type xmi:type="uml:Class" href="pathmap://UML_METAMODELS/UML.metamodel.uml#Class"/>
+    </ownedAttribute>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Extension" xmi:id="_Dbus4CtUEeeuIK_UI7emaQ" name="Class_Mulher" memberEnd="_Dbus4StUEeeuIK_UI7emaQ _Dbus4itUEeeuIK_UI7emaQ">
+    <ownedEnd xmi:type="uml:ExtensionEnd" xmi:id="_Dbus4StUEeeuIK_UI7emaQ" name="extension_Mulher" type="_CUNEICtUEeeuIK_UI7emaQ" aggregation="composite" association="_Dbus4CtUEeeuIK_UI7emaQ"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Stereotype" xmi:id="_KKd1wCtUEeeuIK_UI7emaQ" name="Conversa">
+    <ownedAttribute xmi:id="_MgwXsitUEeeuIK_UI7emaQ" name="base_Association" association="_MgwXsCtUEeeuIK_UI7emaQ">
+      <type xmi:type="uml:Class" href="pathmap://UML_METAMODELS/UML.metamodel.uml#Association"/>
+    </ownedAttribute>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Extension" xmi:id="_MgwXsCtUEeeuIK_UI7emaQ" name="Association_Conversa" memberEnd="_MgwXsStUEeeuIK_UI7emaQ _MgwXsitUEeeuIK_UI7emaQ">
+    <ownedEnd xmi:type="uml:ExtensionEnd" xmi:id="_MgwXsStUEeeuIK_UI7emaQ" name="extension_Conversa" type="_KKd1wCtUEeeuIK_UI7emaQ" aggregation="composite" association="_MgwXsCtUEeeuIK_UI7emaQ"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Stereotype" xmi:id="_W4dLUCtUEeeuIK_UI7emaQ" name="Pessoa">
+    <ownedAttribute xmi:id="_ZgGjACtUEeeuIK_UI7emaQ" name="nome"/>
+  </packagedElement>
+</uml:Profile>

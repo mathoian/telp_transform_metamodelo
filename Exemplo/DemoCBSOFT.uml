@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xmi:XMI xmi:version="2.1" xmlns:xmi="http://schema.omg.org/spec/XMI/2.1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:MTPspec="http:///schemas/MTPspec/_jZ1UYCqoEeenV5XMBsEPwQ/17" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:uml="http://www.eclipse.org/uml2/3.0.0/UML" xsi:schemaLocation="http:///schemas/MTPspec/_jZ1UYCqoEeenV5XMBsEPwQ/17 ../Perfil/MTPspec.profile.uml#_jZ1UYSqoEeenV5XMBsEPwQ">
+  <uml:Package xmi:id="_hKUMYCr2EeeCNLEmAjzy4w" name="DemoCBSOFT">
+    <elementImport xmi:id="_hKhnwCr2EeeCNLEmAjzy4w">
+      <importedElement xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Boolean"/>
+    </elementImport>
+    <elementImport xmi:id="_hKhnwSr2EeeCNLEmAjzy4w">
+      <importedElement xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+    </elementImport>
+    <elementImport xmi:id="_hKhnwir2EeeCNLEmAjzy4w">
+      <importedElement xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#UnlimitedNatural"/>
+    </elementImport>
+    <elementImport xmi:id="_hKiO0Cr2EeeCNLEmAjzy4w">
+      <importedElement xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Integer"/>
+    </elementImport>
+    <packagedElement xmi:type="uml:Actor" xmi:id="_h25lkCr2EeeCNLEmAjzy4w" name="OO2Banco"/>
+    <packagedElement xmi:type="uml:UseCase" xmi:id="_jABJwCr2EeeCNLEmAjzy4w" name="ConverterClasse"/>
+    <packagedElement xmi:type="uml:Association" xmi:id="_kV6lsCr2EeeCNLEmAjzy4w" memberEnd="_kV6lsSr2EeeCNLEmAjzy4w _kV7MwCr2EeeCNLEmAjzy4w" navigableOwnedEnd="_kV7MwCr2EeeCNLEmAjzy4w">
+      <ownedEnd xmi:id="_kV6lsSr2EeeCNLEmAjzy4w" name="src" type="_h25lkCr2EeeCNLEmAjzy4w" association="_kV6lsCr2EeeCNLEmAjzy4w">
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_kV6lsyr2EeeCNLEmAjzy4w" value="1"/>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_kV6lsir2EeeCNLEmAjzy4w" value="1"/>
+      </ownedEnd>
+      <ownedEnd xmi:id="_kV7MwCr2EeeCNLEmAjzy4w" name="dst" type="_jABJwCr2EeeCNLEmAjzy4w" association="_kV6lsCr2EeeCNLEmAjzy4w">
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_kV7Mwir2EeeCNLEmAjzy4w" value="1"/>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_kV7MwSr2EeeCNLEmAjzy4w" value="1"/>
+      </ownedEnd>
+    </packagedElement>
+    <profileApplication xmi:id="_nEivICr2EeeCNLEmAjzy4w">
+      <eAnnotations xmi:id="_nEivISr2EeeCNLEmAjzy4w" source="http://www.eclipse.org/uml2/2.0.0/UML">
+        <references xmi:type="ecore:EPackage" href="../Perfil/MTPspec.profile.uml#_jZ1UYSqoEeenV5XMBsEPwQ"/>
+      </eAnnotations>
+      <appliedProfile href="../Perfil/MTPspec.profile.uml#_0smawEGyEeWPcaZ390I2pA"/>
+    </profileApplication>
+  </uml:Package>
+  <MTPspec:TransPack xmi:id="_nvqvwCr2EeeCNLEmAjzy4w" base_Package="_hKUMYCr2EeeCNLEmAjzy4w"/>
+  <MTPspec:TransSpec xmi:id="_oYK6MCr2EeeCNLEmAjzy4w" base_Actor="_h25lkCr2EeeCNLEmAjzy4w"/>
+  <MTPspec:Req xmi:id="_pAxyUCr2EeeCNLEmAjzy4w" base_UseCase="_jABJwCr2EeeCNLEmAjzy4w"/>
+  <MTPspec:ReqTransf xmi:id="_pkuz8Cr2EeeCNLEmAjzy4w" base_Association="_kV6lsCr2EeeCNLEmAjzy4w"/>
+</xmi:XMI>
